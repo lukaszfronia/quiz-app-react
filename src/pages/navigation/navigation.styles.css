@@ -1,0 +1,14 @@
+.naviagion-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 0;
+  max-width: 110rem;
+  margin: 0 auto;
+  border-bottom: 0.2rem solid rgba(51, 51, 51, 0.466);
+}
+
+.logo {
+  padding-left: 1rem;
+  text-decoration: none;
+  color: inherit; /* wyrzucic jak wstawie obraz */
+}
