@@ -6,7 +6,9 @@ const Navigation = () => {
     <Fragment>
       <div className="naviagion-container">
         <Link className="logo" to="/">
-          <h1>Logo</h1>
+          <h1>
+            Quiz<span>Math</span>
+          </h1>
         </Link>
 
         <div className="links-container">

@@ -8,7 +8,34 @@
 }
 
 .logo {
+  display: flex;
+  align-items: center;
   padding-left: 1rem;
   text-decoration: none;
+  font-size: 1.2rem;
   color: inherit; /* wyrzucic jak wstawie obraz */
+}
+span {
+  color: #ffe066;
+}
+
+.links-container {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  padding-right: 2rem;
+}
+
+.link:link,
+.link:visited {
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: #adb5bd;
+  transition: all 0.3s ease;
+}
+
+.link:hover,
+.link:active {
+  color: inherit;
+  text-decoration: underline;
 }
