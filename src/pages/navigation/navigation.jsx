@@ -1,6 +1,13 @@
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
+
+import Button from "../../components/button/button.component";
+
 import "./navigation.styles.css";
+
+{
+  /* Dodac helperFunction która przeniesie nas do Strony logowania12 */
+}
 const Navigation = () => {
   return (
     <Fragment>
@@ -18,9 +25,8 @@ const Navigation = () => {
           <Link className="link" to="/">
             Statystyki
           </Link>
-          <Link className="link" to="/">
-            Zaloguj się
-          </Link>
+
+          <Button>Zaloguj się</Button>
         </div>
       </div>
     </Fragment>

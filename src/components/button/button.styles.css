@@ -1,0 +1,20 @@
+.btn {
+  border: 1px solid #fcc822;
+  background-color: #fff;
+  color: #fcc822;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  padding: 0 1.8rem;
+  max-width: 12rem;
+  height: 3rem;
+  box-shadow: 0 0.4rem 0.6rem #fcc92279;
+  transition: all 0.4s ease-in-out;
+  margin-left: 2.4rem;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: #fcc822;
+  color: #fff;
+  transform: translateY(3px);
+}

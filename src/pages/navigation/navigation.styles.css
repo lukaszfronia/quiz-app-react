@@ -13,22 +13,24 @@
   padding-left: 1rem;
   text-decoration: none;
   font-size: 1.2rem;
+  letter-spacing: 3px;
   color: inherit; /* wyrzucic jak wstawie obraz */
 }
 span {
-  color: #ffe066;
+  color: #fcc822;
 }
 
 .links-container {
   display: flex;
   align-items: center;
-  gap: 4rem;
+  gap: 3rem;
   padding-right: 2rem;
 }
 
 .link:link,
 .link:visited {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
   text-decoration: none;
   color: #adb5bd;
   transition: all 0.3s ease;
