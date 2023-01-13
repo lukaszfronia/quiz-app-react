@@ -2,6 +2,11 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./pages/navigation/navigation";
 import Home from "./pages/home/home";
+import Statistic from "./pages/statistic/statistic";
+import Footer from "./components/footer/footer.component";
+import SignIn from "./pages/sign-in/sign-in";
+import Quiz from "./pages/quiz/quiz";
+import { Fragment } from "react";
 
 function App() {
   //nagłowek z logo i navigacją
@@ -9,11 +14,17 @@ function App() {
   // 2# miejsce na quiz
 
   return (
-    <Routes>
-      <Route path="/" element={<Navigation />}>
-        <Route index element={<Home />} />
-      </Route>
-    </Routes>
+    <Fragment>
+      <Routes>
+        <Route path="/" element={<Navigation />}>
+          <Route index element={<Home />} />
+          <Route path="statystyki/*" element={<Statistic />} />
+          <Route path="zaloguj-sie/" element={<SignIn />} />
+          <Route path="quiz/" element={<Quiz />} />
+        </Route>
+      </Routes>
+      {/*<Footer />*/}
+    </Fragment>
   );
 }
 

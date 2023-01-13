@@ -1,0 +1,12 @@
+.footer-container {
+  margin-top: 6rem;
+  background-color: rgb(220, 220, 220);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4.3rem;
+}
+
+.copyright {
+  font-size: 0.8rem;
+}
