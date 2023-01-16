@@ -21,7 +21,7 @@ const Navigation = () => {
       <div className="naviagion-container">
         <Link className="logo" to="/">
           <h1>
-            Quiz<span>Math</span>
+            Quiz<span className="quiz-color">Math</span>
           </h1>
         </Link>
 

@@ -16,7 +16,7 @@
   letter-spacing: 3px;
   color: inherit; /* wyrzucic jak wstawie obraz */
 }
-span {
+.quiz-color {
   color: #fcc822;
 }
 
