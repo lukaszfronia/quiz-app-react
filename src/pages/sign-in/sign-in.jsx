@@ -40,7 +40,9 @@ const SignIn = () => {
             <div className="to-register-box">
               <span className="register-span">
                 Nie masz jeszcze konta ?
-                <Link className="link-to-register">Zarejestruj się</Link>
+                <Link className="link-to-register" to="/zarejestruj-sie">
+                  Zarejestruj się
+                </Link>
               </span>
             </div>
           </form>

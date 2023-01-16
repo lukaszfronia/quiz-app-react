@@ -1,0 +1,31 @@
+.sign-up-container {
+  display: flex;
+
+  border-bottom: 5px solid #fcc822;
+  border-top: 5px solid #fcc822;
+
+  padding: 2.4rem;
+  justify-content: center;
+  gap: 6rem;
+
+  color: #000;
+  background-color: #f7f7f794;
+
+  max-width: 90rem;
+  height: 40rem;
+  margin: 5rem auto;
+
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+}
+
+.img-box-left {
+  border-right: 5px solid #fcc822;
+  display: flex;
+
+  align-items: center;
+  padding: 0 10em;
+}
+.sign-up-img {
+  width: 30rem;
+  height: 30rem;
+}

@@ -7,6 +7,7 @@ import Footer from "./components/footer/footer.component";
 import SignIn from "./pages/sign-in/sign-in";
 import Quiz from "./pages/quiz/quiz";
 import { Fragment } from "react";
+import SignUp from "./pages/sign-up/sign-up";
 
 function App() {
   //nagłowek z logo i navigacją
@@ -20,6 +21,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="statystyki/*" element={<Statistic />} />
           <Route path="zaloguj-sie/" element={<SignIn />} />
+          <Route path="zarejestruj-sie/" element={<SignUp />} />
           <Route path="quiz/" element={<Quiz />} />
         </Route>
       </Routes>
