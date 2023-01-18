@@ -1,15 +1,39 @@
 import Button from "../../components/button/button.component";
 import GoogleButton from "react-google-button";
+import { signInWithGooglePopup } from "../../utils/firebase/firebase.utils";
+import { AuthContext } from "../../context/auth.context";
 
 import image from "./geometry-g8bc5c6b0e_1280.png";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
 
 import "./sign-in.styles.css";
+import { async } from "@firebase/util";
 
 const SignIn = () => {
+  const navigate = useNavigate();
+  //Funkcje
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
+
+  const logInWithGoogle = async () => {
+    try {
+      const { user } = await signInWithGooglePopup();
+      setCurrentUser(user);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    if (currentUser !== null) {
+      navigate("/");
+    }
+  }, [currentUser]);
+
+  // Reszta kodu
   return (
     <>
+      <p>{currentUser?.displayName}</p>
       <div className="log-in-container">
         <div className="log-in-box">
           <div className="log-in-text-box">
@@ -35,8 +59,12 @@ const SignIn = () => {
               <Button type="submit" buttonType="secondary">
                 Zaloguj się
               </Button>
-              <GoogleButton type="light"></GoogleButton>
+              <GoogleButton
+                type="light"
+                onClick={logInWithGoogle}
+              ></GoogleButton>
             </div>
+
             <div className="to-register-box">
               <span className="register-span">
                 Nie masz jeszcze konta ?

@@ -1,8 +1,9 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
 import Button from "../../components/button/button.component";
 import Statistic from "../statistic/statistic";
+import { AuthContext } from "../../context/auth.context";
 
 import "./navigation.styles.css";
 
@@ -11,6 +12,7 @@ import "./navigation.styles.css";
 }
 const Navigation = () => {
   const navigate = useNavigate();
+  const { currentUser } = useContext(AuthContext);
 
   const goToSignInHandler = () => {
     navigate("zaloguj-sie/");
@@ -29,10 +31,23 @@ const Navigation = () => {
           <Link className="link" to="/">
             Stwórz Quiz
           </Link>
-          <Link className="link" to="/statystyki">
-            Statystyki
-          </Link>
-          <Button onClick={goToSignInHandler}>Zaloguj się</Button>
+
+          {currentUser ? (
+            <>
+              <Link className="link" to="/statystyki">
+                Statystyki
+              </Link>
+              <p>
+                {currentUser.displayName.substring(
+                  0,
+                  currentUser.displayName.indexOf(" ")
+                )}
+              </p>
+              <Button>Wyloguj się</Button>
+            </>
+          ) : (
+            <Button onClick={goToSignInHandler}>Zaloguj się</Button>
+          )}
         </div>
       </div>
       <Outlet />

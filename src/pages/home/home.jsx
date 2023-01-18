@@ -1,17 +1,22 @@
-import { Outlet, useNavigate, Routes, Route } from "react-router-dom";
-import { Fragment } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import { Fragment, useContext } from "react";
 
 // import image from "./brain-g19d53071e_1920.jpg";
 import graduation from "./graduation-g428339860_1280.png";
 import Button from "../../components/button/button.component";
+import { AuthContext } from "../../context/auth.context";
 
 import "./home.styles.css";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { currentUser } = useContext(AuthContext);
 
   const goToQuizHandler = () => {
     navigate("quiz/");
+  };
+  const goToSignInPageHandler = () => {
+    navigate("zaloguj-sie/");
   };
   return (
     <Fragment>
@@ -22,9 +27,15 @@ const Home = () => {
             Pomożemy Ci zrozumieć matematykę od zaraz
           </p>
           <div className="button-box">
-            <Button buttonType="secondary" onClick={goToQuizHandler}>
-              Zaczynajmy
-            </Button>
+            {currentUser ? (
+              <Button buttonType="secondary" onClick={goToQuizHandler}>
+                Zaczynajmy
+              </Button>
+            ) : (
+              <Button buttonType="secondary" onClick={goToSignInPageHandler}>
+                Zaczynajmy
+              </Button>
+            )}
           </div>
         </div>
         <div className="img=-box">

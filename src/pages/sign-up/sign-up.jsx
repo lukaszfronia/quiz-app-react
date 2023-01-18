@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import Button from "../../components/button/button.component";
 import image from "../sign-in/geometry-g8bc5c6b0e_1280.png";
 
