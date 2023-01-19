@@ -18,6 +18,8 @@ const Home = () => {
   const goToSignInPageHandler = () => {
     navigate("zaloguj-sie/");
   };
+
+  // Reszta kodu
   return (
     <Fragment>
       <div className="home-container">

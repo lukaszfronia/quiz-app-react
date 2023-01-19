@@ -1,5 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  getAuth,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -25,3 +31,9 @@ provider.setCustomParameters({
 });
 
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+
+// Sign Out
+export const signOutUser = async () => await signOut(auth);
+
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);

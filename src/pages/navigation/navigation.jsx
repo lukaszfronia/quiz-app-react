@@ -4,6 +4,7 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import Button from "../../components/button/button.component";
 import Statistic from "../statistic/statistic";
 import { AuthContext } from "../../context/auth.context";
+import { signOutUser } from "../../utils/firebase/firebase.utils";
 
 import "./navigation.styles.css";
 
@@ -12,10 +13,20 @@ import "./navigation.styles.css";
 }
 const Navigation = () => {
   const navigate = useNavigate();
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
 
   const goToSignInHandler = () => {
     navigate("zaloguj-sie/");
+  };
+
+  const signOutHandler = async () => {
+    try {
+      await signOutUser();
+
+      setCurrentUser(null);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -43,7 +54,7 @@ const Navigation = () => {
                   currentUser.displayName.indexOf(" ")
                 )}
               </p>
-              <Button>Wyloguj się</Button>
+              <Button onClick={signOutHandler}>Wyloguj się</Button>
             </>
           ) : (
             <Button onClick={goToSignInHandler}>Zaloguj się</Button>

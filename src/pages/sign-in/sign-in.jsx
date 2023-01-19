@@ -24,11 +24,16 @@ const SignIn = () => {
       console.log(err);
     }
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  };
+
   useEffect(() => {
     if (currentUser !== null) {
       navigate("/");
     }
-  }, [currentUser]);
+  }, [currentUser, navigate]);
 
   // Reszta kodu
   return (
@@ -40,7 +45,7 @@ const SignIn = () => {
             <h1>Witaj ponownie !</h1>
             <p>Zaloguj się za pomocą e-mail i hasła</p>
           </div>
-          <form onSubmit={""}>
+          <form onSubmit={handleSubmit}>
             <div className="input-form">
               <input
                 type="e-mail"
@@ -56,9 +61,7 @@ const SignIn = () => {
               />
             </div>
             <div className="btn-box">
-              <Button type="submit" buttonType="secondary">
-                Zaloguj się
-              </Button>
+              <Button buttonType="secondary">Zaloguj się</Button>
               <GoogleButton
                 type="light"
                 onClick={logInWithGoogle}
