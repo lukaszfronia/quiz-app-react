@@ -8,6 +8,7 @@ import SignIn from "./pages/sign-in/sign-in";
 import Quiz from "./pages/quiz/quiz";
 import { Fragment } from "react";
 import SignUp from "./pages/sign-up/sign-up";
+import Protected from "./pages/protectedPage";
 
 function App() {
   //nagłowek z logo i navigacją
@@ -19,10 +20,24 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigation />}>
           <Route index element={<Home />} />
-          <Route path="statystyki/*" element={<Statistic />} />
+          <Route
+            path="statystyki/*"
+            element={
+              <Protected>
+                <Statistic />
+              </Protected>
+            }
+          />
           <Route path="zaloguj-sie/" element={<SignIn />} />
           <Route path="zarejestruj-sie/" element={<SignUp />} />
-          <Route path="quiz/" element={<Quiz />} />
+          <Route
+            path="quiz/"
+            element={
+              <Protected>
+                <Quiz />
+              </Protected>
+            }
+          />
         </Route>
       </Routes>
       {/*<Footer />*/}
