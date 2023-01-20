@@ -49,9 +49,9 @@ const Navigation = () => {
                 Statystyki
               </Link>
               <p>
-                {currentUser.displayName.substring(
+                {currentUser.displayName?.substring(
                   0,
-                  currentUser.displayName.indexOf(" ")
+                  currentUser.displayName?.indexOf(" ")
                 )}
               </p>
               <Button onClick={signOutHandler}>Wyloguj się</Button>

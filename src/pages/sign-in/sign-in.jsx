@@ -1,20 +1,35 @@
 import Button from "../../components/button/button.component";
 import GoogleButton from "react-google-button";
-import { signInWithGooglePopup } from "../../utils/firebase/firebase.utils";
+import {
+  signInWithGooglePopup,
+  signInUserWithEmailAndPassword,
+} from "../../utils/firebase/firebase.utils";
 import { AuthContext } from "../../context/auth.context";
 
 import image from "./geometry-g8bc5c6b0e_1280.png";
 
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import "./sign-in.styles.css";
 import { async } from "@firebase/util";
 
+const defaultField = {
+  email: "",
+  password: "",
+};
+
 const SignIn = () => {
   const navigate = useNavigate();
-  //Funkcje
   const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const [formFields, setFormFields] = useState(defaultField);
+  const { email, password } = formFields;
+
+  //Funkcje
+
+  const resetFields = () => {
+    setFormFields(defaultField);
+  };
 
   const logInWithGoogle = async () => {
     try {
@@ -24,9 +39,35 @@ const SignIn = () => {
       console.log(err);
     }
   };
-
+  console.log(formFields);
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const { user } = await signInUserWithEmailAndPassword(email, password);
+      setCurrentUser(user);
+
+      resetFields();
+    } catch (error) {
+      // TODO: Ulepszyć wyswitlanie się błędów
+      switch (error.code) {
+        case "auth/wrong-password":
+          alert("Błędne hasło");
+          resetFields();
+          break;
+        case "auth/user-not-found":
+          alert("Błędny adres e-mail");
+          resetFields();
+          break;
+        default:
+          console.log(error);
+      }
+    }
+  };
+
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setFormFields({ ...formFields, [name]: value });
   };
 
   useEffect(() => {
@@ -50,18 +91,24 @@ const SignIn = () => {
               <input
                 type="e-mail"
                 name="email"
+                value={email}
                 placeholder="Podaj adres e-mail"
+                onChange={onChangeHandler}
                 required
               />
               <input
                 type="password"
                 name="password"
+                value={password}
                 placeholder="Podaj hasło"
+                onChange={onChangeHandler}
                 required
               />
             </div>
             <div className="btn-box">
-              <Button buttonType="secondary">Zaloguj się</Button>
+              <Button type="submit" buttonType="secondary">
+                Zaloguj się
+              </Button>
               <GoogleButton
                 type="light"
                 onClick={logInWithGoogle}
