@@ -39,7 +39,7 @@ const SignIn = () => {
       console.log(err);
     }
   };
-  console.log(formFields);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

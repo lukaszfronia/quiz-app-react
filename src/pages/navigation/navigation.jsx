@@ -28,7 +28,7 @@ const Navigation = () => {
       console.log(err);
     }
   };
-
+  console.log(currentUser);
   return (
     <Fragment>
       <div className="naviagion-container">
