@@ -1,10 +1,13 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useState, useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
 import Button from "../../components/button/button.component";
 import Statistic from "../statistic/statistic";
 import { AuthContext } from "../../context/auth.context";
-import { signOutUser } from "../../utils/firebase/firebase.utils";
+import {
+  signOutUser,
+  displayNameFromDatabase,
+} from "../../utils/firebase/firebase.utils";
 
 import "./navigation.styles.css";
 
@@ -15,6 +18,8 @@ const Navigation = () => {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(AuthContext);
 
+  const [name, setName] = useState([]);
+
   const goToSignInHandler = () => {
     navigate("zaloguj-sie/");
   };
@@ -24,11 +29,20 @@ const Navigation = () => {
       await signOutUser();
 
       setCurrentUser(null);
+      setName([]);
     } catch (err) {
       console.log(err);
     }
   };
-  console.log(currentUser);
+  useEffect(() => {
+    const ff = async () => {
+      const l = await displayNameFromDatabase(currentUser);
+      console.log(l);
+      setName(l);
+    };
+    ff();
+  }, [currentUser]);
+
   return (
     <Fragment>
       <div className="naviagion-container">
@@ -49,10 +63,12 @@ const Navigation = () => {
                 Statystyki
               </Link>
               <p>
-                {currentUser.displayName?.substring(
-                  0,
-                  currentUser.displayName?.indexOf(" ")
-                )}
+                {currentUser.displayName
+                  ? currentUser.displayName?.substring(
+                      0,
+                      currentUser.displayName?.indexOf(" ")
+                    )
+                  : name}
               </p>
               <Button onClick={signOutHandler}>Wyloguj się</Button>
             </>

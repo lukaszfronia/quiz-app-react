@@ -8,7 +8,16 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
-import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  collection,
+  query,
+  getDocs,
+  where,
+} from "firebase/firestore";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAnBsBYahwY2I1LAb7Fo2Q8B_vbkFqgZOE",
@@ -69,11 +78,12 @@ export const createUserDocumentFromAuth = async (
   const userSnapshot = await getDoc(userDocRef);
 
   if (!userSnapshot.exists()) {
-    const { displayName, email } = userAuth;
+    const { displayName, email, uid } = userAuth;
     const createdAt = new Date();
 
     try {
       await setDoc(userDocRef, {
+        uid,
         displayName,
         email,
         createdAt,
@@ -84,4 +94,31 @@ export const createUserDocumentFromAuth = async (
     }
   }
   return userDocRef;
+};
+
+export const displayNameFromDatabase = async (user) => {
+  if (!user) return;
+  const collectionRef = collection(db, "users");
+  const q = query(collectionRef, where("uid", "==", user.uid));
+  const querySnapshot = await getDocs(q);
+
+  const name = querySnapshot.docs.map((doc) => {
+    const { displayName } = doc.data();
+    return displayName;
+  });
+
+  return name;
+};
+
+export const getCategoriesandDocuments = async () => {
+  const collectionRef = collection(db, "categories");
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data();
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+  return categoryMap;
 };

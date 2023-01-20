@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import Button from "../../components/button/button.component";
 import image from "../sign-in/geometry-g8bc5c6b0e_1280.png";
-
+import { AuthContext } from "../../context/auth.context";
 import {
   createUserAccountWithEmailAndPassword,
   createUserDocumentFromAuth,
@@ -22,6 +22,7 @@ const SignUp = () => {
   const [formFields, setFormFields] = useState(defaultField);
   const { displayName, email, password, confirmPassword } = formFields;
 
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
   //Funkcje
   const resetFields = () => {
     setFormFields(defaultField);
@@ -37,8 +38,10 @@ const SignUp = () => {
         email,
         password
       );
-      await createUserDocumentFromAuth(user, { displayName });
 
+      await createUserDocumentFromAuth(user, { displayName });
+      console.log((user.displayName = displayName));
+      console.log(user);
       resetFields();
       navigate("/zaloguj-sie");
     } catch (error) {
