@@ -13,7 +13,7 @@ const Home = () => {
   const { currentUser } = useContext(AuthContext);
 
   const goToQuizHandler = () => {
-    navigate("quiz/");
+    navigate("category/");
   };
   const goToSignInPageHandler = () => {
     navigate("zaloguj-sie/");
@@ -24,20 +24,16 @@ const Home = () => {
     <Fragment>
       <div className="home-container">
         <div className="text-box">
-          <h1 className="primary-text">Naucz się MATEMATYKI w łatwy sposób</h1>
+          <h1 className="primary-text">
+            Naucz się MATEMATYKI rozwiązując quizy
+          </h1>
           <p className="secondary-text">
             Pomożemy Ci zrozumieć matematykę od zaraz
           </p>
           <div className="button-box">
-            {currentUser ? (
-              <Button buttonType="secondary" onClick={goToQuizHandler}>
-                Zaczynajmy
-              </Button>
-            ) : (
-              <Button buttonType="secondary" onClick={goToSignInPageHandler}>
-                Zaczynajmy
-              </Button>
-            )}
+            <Button buttonType="secondary" onClick={goToQuizHandler}>
+              Zaczynajmy
+            </Button>
           </div>
         </div>
         <div className="img=-box">
@@ -54,3 +50,13 @@ const Home = () => {
 };
 
 export default Home;
+
+// {currentUser ? (
+//   <Button buttonType="secondary" onClick={goToQuizHandler}>
+//     Zaczynajmy
+//   </Button>
+// ) : (
+//   <Button buttonType="secondary" onClick={goToSignInPageHandler}>
+//     Zaczynajmy
+//   </Button>
+// )}
