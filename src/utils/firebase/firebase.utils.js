@@ -17,7 +17,10 @@ import {
   query,
   getDocs,
   where,
+  writeBatch,
 } from "firebase/firestore";
+
+import data from "../../data.js";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAnBsBYahwY2I1LAb7Fo2Q8B_vbkFqgZOE",
@@ -122,3 +125,23 @@ export const getCategoriesandDocuments = async () => {
   }, {});
   return categoryMap;
 };
+
+//Function to add data to firebase
+export const addCollectionAndDocuments = async () => {
+  const batch = writeBatch(db);
+  let docRef;
+
+  data.forEach((object) => {
+    object.quizzes.forEach((quiz) => {
+      quiz.questions.forEach((q) => {
+        docRef = doc(db, "categories", object.name, quiz.quizName, q.question);
+        batch.set(docRef, q);
+      });
+    });
+  });
+
+  await batch.commit();
+  console.log("done");
+};
+
+// addCollectionAndDocuments();
