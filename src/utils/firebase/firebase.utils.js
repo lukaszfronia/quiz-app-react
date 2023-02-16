@@ -69,7 +69,7 @@ export const createUserAccountWithEmailAndPassword = async (
 
 //Add account to database
 
-const db = getFirestore();
+export const db = getFirestore();
 
 export const createUserDocumentFromAuth = async (
   userAuth,
@@ -144,4 +144,21 @@ export const addCollectionAndDocuments = async () => {
   console.log("done");
 };
 
-// addCollectionAndDocuments();
+//addCollectionAndDocuments();
+
+export const displayCategoryNameDatabase = async () => {
+  const collectionRef = collection(db, "test7/Klasa13/Quiz 1");
+  // const q = query(collectionRef, where("uid", "==", user.uid));
+  const querySnapshot = await getDocs(collectionRef);
+
+  console.log(querySnapshot);
+  const name = querySnapshot.docs.map((doc) => {
+    const { answer } = doc.data();
+    const ans = answer.map((a) => console.log(a.text));
+    return ans;
+  });
+
+  console.log(name);
+};
+
+displayCategoryNameDatabase();
