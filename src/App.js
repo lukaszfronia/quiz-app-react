@@ -30,7 +30,7 @@ function App() {
           />
           <Route path="zaloguj-sie/" element={<SignIn />} />
           <Route path="zarejestruj-sie/" element={<SignUp />} />
-          <Route path="category/" element={<Category />} />
+          <Route path="category/*" element={<Category />} />
         </Route>
       </Routes>
       {/*<Footer />*/}

@@ -113,30 +113,27 @@ export const displayNameFromDatabase = async (user) => {
   return name;
 };
 
-export const getCategoriesandDocuments = async () => {
-  const collectionRef = collection(db, "categories");
+export const getQuizzesandDocuments = async (col) => {
+  const collectionRef = collection(db, col);
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
+  const quizMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { quizName, questions } = docSnapshot.data();
+    acc[quizName] = questions;
     return acc;
   }, {});
-  return categoryMap;
+  return quizMap;
 };
 
-//Function to add data to firebase
 export const addCollectionAndDocuments = async () => {
   const batch = writeBatch(db);
   let docRef;
 
   data.forEach((object) => {
     object.quizzes.forEach((quiz) => {
-      quiz.questions.forEach((q) => {
-        docRef = doc(db, "categories", object.name, quiz.quizName, q.question);
-        batch.set(docRef, q);
-      });
+      docRef = doc(db, "Klasa 4 - 8", quiz.quizName);
+      batch.set(docRef, quiz);
     });
   });
 
@@ -145,20 +142,3 @@ export const addCollectionAndDocuments = async () => {
 };
 
 //addCollectionAndDocuments();
-
-export const displayCategoryNameDatabase = async () => {
-  const collectionRef = collection(db, "test7/Klasa13/Quiz 1");
-  // const q = query(collectionRef, where("uid", "==", user.uid));
-  const querySnapshot = await getDocs(collectionRef);
-
-  console.log(querySnapshot);
-  const name = querySnapshot.docs.map((doc) => {
-    const { answer } = doc.data();
-    const ans = answer.map((a) => console.log(a.text));
-    return ans;
-  });
-
-  console.log(name);
-};
-
-displayCategoryNameDatabase();
