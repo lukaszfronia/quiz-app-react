@@ -2,19 +2,19 @@ import { createContext, useState, useEffect } from "react";
 import { getQuizzesandDocuments } from "../utils/firebase/firebase.utils";
 
 export const QuizContext = createContext({
-  quizzes: [],
+  quizzes: {},
   collection: "t3s",
   setCollection: () => {},
 });
 
 export const QuizProvider = ({ children }) => {
-  const [quizzes, setQuizzes] = useState([]);
+  const [quizzes, setQuizzes] = useState({});
   const [collection, setCollection] = useState("t3s");
 
   useEffect(() => {
     const getQuizMap = async () => {
       const quizMap = await getQuizzesandDocuments(collection);
-      console.log(quizMap);
+      setQuizzes(quizMap);
     };
     getQuizMap();
   }, [collection]);

@@ -12,7 +12,7 @@ const CategoryMenu = ({ category }) => {
   const navigate = useNavigate();
 
   const onNavigateHandler = () => {
-    navigate(route);
+    navigate(name);
     setCollection((collection = name));
   };
 

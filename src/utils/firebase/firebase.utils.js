@@ -132,7 +132,7 @@ export const addCollectionAndDocuments = async () => {
 
   data.forEach((object) => {
     object.quizzes.forEach((quiz) => {
-      docRef = doc(db, "Klasa 4 - 8", quiz.quizName);
+      docRef = doc(db, "Klasa 1 - 3", quiz.quizName);
       batch.set(docRef, quiz);
     });
   });
