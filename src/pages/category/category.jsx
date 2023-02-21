@@ -6,7 +6,7 @@ const Category = () => {
   return (
     <Routes>
       <Route index element={<CategoryPreview />} />
-      <Route path=":klasa" element={<Klasa />} />
+      <Route path=":klasa/*" element={<Klasa />} />
     </Routes>
   );
 };
