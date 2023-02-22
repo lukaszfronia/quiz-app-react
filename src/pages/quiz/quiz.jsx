@@ -5,6 +5,8 @@ import { QuizContext } from "../../context/quiz.context";
 import CurrentQuiz from "../../components/quiz.component/quiz.component";
 import Button from "../../components/button/button.component";
 
+import "./quiz.styles.css";
+
 const Quiz = () => {
   const { quiz } = useParams();
   const { quizzes } = useContext(QuizContext);
@@ -20,18 +22,24 @@ const Quiz = () => {
     setQuestion(currentQuiz[currentQuestion]);
   }, [currentQuiz, currentQuestion]);
 
-  const nextQuestionHandler = () => {
-    setCurrentQuestion(currentQuestion + 1);
-    if (currentQuestion >= currentQuiz.length - 1) {
-      setCurrentQuestion(0);
-    }
-  };
-
   return (
     <>
-      <div>
-        {question && <CurrentQuiz quiz={question} />}
-        <Button onClick={nextQuestionHandler}>Dalej</Button>
+      <div className="quiz-container">
+        {question && (
+          <CurrentQuiz
+            quiz={question}
+            currentQuestion={currentQuestion}
+            currentQuiz={currentQuiz}
+            setCurrentQuestion={setCurrentQuestion}
+            setCurrentQuiz={setCurrentQuiz}
+          />
+        )}
+      </div>
+      <div className="timer-box">
+        <h1 className="timer">
+          Czas:
+          <span> 01:30</span>
+        </h1>
       </div>
     </>
   );

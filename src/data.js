@@ -7,7 +7,7 @@ const data = [
         questions: [
           {
             question: "Pytanie 1",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -29,7 +29,7 @@ const data = [
           },
           {
             question: "Pytanie 2",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -50,7 +50,7 @@ const data = [
           },
           {
             question: "Pytanie 3",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -71,7 +71,7 @@ const data = [
           },
           {
             question: "Pytanie 4",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -97,7 +97,7 @@ const data = [
         questions: [
           {
             question: "Pytanie 5",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -118,7 +118,7 @@ const data = [
           },
           {
             question: "Pytanie 6",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -139,7 +139,7 @@ const data = [
           },
           {
             question: "Pytanie 7",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -160,7 +160,7 @@ const data = [
           },
           {
             question: "Pytanie 8",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -186,7 +186,7 @@ const data = [
         questions: [
           {
             question: "Pytanie 5",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -207,7 +207,7 @@ const data = [
           },
           {
             question: "Pytanie 6",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -228,7 +228,7 @@ const data = [
           },
           {
             question: "Pytanie 7",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -249,7 +249,7 @@ const data = [
           },
           {
             question: "Pytanie 8",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -275,7 +275,7 @@ const data = [
         questions: [
           {
             question: "Pytanie 5",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -296,7 +296,7 @@ const data = [
           },
           {
             question: "Pytanie 6",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -317,7 +317,7 @@ const data = [
           },
           {
             question: "Pytanie 7",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -338,7 +338,7 @@ const data = [
           },
           {
             question: "Pytanie 8",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -364,7 +364,7 @@ const data = [
         questions: [
           {
             question: "Pytanie 5",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -385,7 +385,7 @@ const data = [
           },
           {
             question: "Pytanie 6",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -406,7 +406,7 @@ const data = [
           },
           {
             question: "Pytanie 7",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -427,7 +427,7 @@ const data = [
           },
           {
             question: "Pytanie 8",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -453,7 +453,7 @@ const data = [
         questions: [
           {
             question: "Pytanie 5",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -474,7 +474,7 @@ const data = [
           },
           {
             question: "Pytanie 6",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -495,7 +495,7 @@ const data = [
           },
           {
             question: "Pytanie 7",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -516,7 +516,7 @@ const data = [
           },
           {
             question: "Pytanie 8",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -542,7 +542,7 @@ const data = [
         questions: [
           {
             question: "Pytanie 5",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -563,7 +563,7 @@ const data = [
           },
           {
             question: "Pytanie 6",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -584,7 +584,7 @@ const data = [
           },
           {
             question: "Pytanie 7",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -605,7 +605,7 @@ const data = [
           },
           {
             question: "Pytanie 8",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -631,7 +631,7 @@ const data = [
         questions: [
           {
             question: "Pytanie 5",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -652,7 +652,7 @@ const data = [
           },
           {
             question: "Pytanie 6",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -673,7 +673,7 @@ const data = [
           },
           {
             question: "Pytanie 7",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -694,7 +694,7 @@ const data = [
           },
           {
             question: "Pytanie 8",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -720,7 +720,7 @@ const data = [
         questions: [
           {
             question: "Pytanie 5",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -741,7 +741,7 @@ const data = [
           },
           {
             question: "Pytanie 6",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -762,7 +762,7 @@ const data = [
           },
           {
             question: "Pytanie 7",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,
@@ -783,96 +783,7 @@ const data = [
           },
           {
             question: "Pytanie 8",
-            answer: [
-              {
-                text: "A: <script>",
-                correct: true,
-              },
-              {
-                text: "B: <javascript>",
-                correct: false,
-              },
-              {
-                text: "C: <source>",
-                correct: false,
-              },
-              {
-                text: "D: <src>",
-                correct: false,
-              },
-            ],
-          },
-        ],
-      },
-      {
-        quizName: "Quiz 20",
-        questions: [
-          {
-            question: "Pytanie 50",
-            answer: [
-              {
-                text: "A: <script>",
-                correct: true,
-              },
-              {
-                text: "B: <javascript>",
-                correct: false,
-              },
-              {
-                text: "C: <source>",
-                correct: false,
-              },
-              {
-                text: "D: <src>",
-                correct: false,
-              },
-            ],
-          },
-          {
-            question: "Pytanie 60",
-            answer: [
-              {
-                text: "A: <script>",
-                correct: true,
-              },
-              {
-                text: "B: <javascript>",
-                correct: false,
-              },
-              {
-                text: "C: <source>",
-                correct: false,
-              },
-              {
-                text: "D: <src>",
-                correct: false,
-              },
-            ],
-          },
-          {
-            question: "Pytanie 70",
-            answer: [
-              {
-                text: "A: <script>",
-                correct: true,
-              },
-              {
-                text: "B: <javascript>",
-                correct: false,
-              },
-              {
-                text: "C: <source>",
-                correct: false,
-              },
-              {
-                text: "D: <src>",
-                correct: false,
-              },
-            ],
-          },
-          {
-            question: "Pytanie 80",
-            answer: [
+            answers: [
               {
                 text: "A: <script>",
                 correct: true,

@@ -1,0 +1,27 @@
+.quiz-question {
+  font-size: 2.4rem;
+}
+
+.quiz-answer-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 3rem;
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+  padding: 2rem;
+  width: 65rem;
+}
+
+.quiz-answer-box {
+  border: 2px solid #fcc822;
+  border-radius: 1rem;
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s ease-in;
+}
+
+.quiz-answer-box:hover {
+  background-color: #fcc822;
+  color: #fff;
+}
