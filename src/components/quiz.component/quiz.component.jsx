@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import nextQuestion from "../../helper/nextQuestionFunc";
 import "./quiz.component.styles.css";
 
 const CurrentQuiz = ({
@@ -6,13 +7,15 @@ const CurrentQuiz = ({
   currentQuestion,
   currentQuiz,
   setCurrentQuestion,
-  setCurrentQuiz,
+  setResult,
 }) => {
   const nextQuestionHandler = () => {
-    setCurrentQuestion(currentQuestion + 1);
-    if (currentQuestion >= currentQuiz.length - 1) {
-      setCurrentQuestion(0);
-    }
+    return nextQuestion(
+      currentQuestion,
+      currentQuiz,
+      setCurrentQuestion,
+      setResult
+    );
   };
   return (
     <>
