@@ -16,14 +16,17 @@ const data = [
               {
                 text: "B: <javascript>",
                 correct: false,
+                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
+                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
+                score: 0,
               },
             ],
           },
@@ -33,18 +36,22 @@ const data = [
               {
                 text: "A: <script>",
                 correct: true,
+                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
+                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
+                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
+                score: 0,
               },
             ],
           },
@@ -54,18 +61,22 @@ const data = [
               {
                 text: "A: <script>",
                 correct: true,
+                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
+                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
+                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
+                score: 0,
               },
             ],
           },
@@ -75,18 +86,22 @@ const data = [
               {
                 text: "A: <script>",
                 correct: true,
+                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
+                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
+                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
+                score: 0,
               },
             ],
           },

@@ -16,7 +16,8 @@ const Quiz = () => {
   const [question, setQuestion] = useState("");
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [result, setResult] = useState(false);
-  const [score, setScore] = useState(0); // Czy to tu potrzebne , może byc w innym komponencie :)
+  const [score, setScore] = useState(0);
+  console.log(score);
 
   useEffect(() => {
     setCurrentQuiz(quizzes[quiz]);
@@ -37,10 +38,11 @@ const Quiz = () => {
               currentQuiz={currentQuiz}
               setCurrentQuestion={setCurrentQuestion}
               setResult={setResult}
+              setScore={setScore}
             />
           )
         ) : (
-          <Result />
+          <Result score={score} currentQuiz={currentQuiz} />
         )}
       </div>
       <CountDwownTimer

@@ -8,21 +8,29 @@ const CurrentQuiz = ({
   currentQuiz,
   setCurrentQuestion,
   setResult,
+  setScore,
 }) => {
-  const nextQuestionHandler = () => {
+  const nextQuestionHandler = (e, i, answer) => {
     return nextQuestion(
       currentQuestion,
       currentQuiz,
       setCurrentQuestion,
-      setResult
+      setResult,
+      answer,
+      i,
+      setScore
     );
   };
+
   return (
     <>
       <div className="quiz-question">{quiz.question}</div>;
       <div className="quiz-answer-container">
-        {quiz.answers.map((answer) => (
-          <div className="quiz-answer-box" onClick={nextQuestionHandler}>
+        {quiz.answers.map((answer, i) => (
+          <div
+            className="quiz-answer-box"
+            onClick={(e) => nextQuestionHandler(e, i, answer)}
+          >
             {answer.text}
           </div>
         ))}

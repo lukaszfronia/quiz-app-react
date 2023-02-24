@@ -21,7 +21,6 @@ const CountDwownTimer = ({
       const timer = setInterval(() => {
         setTime((prevTime) => prevTime - 1);
       }, TICK);
-      console.log(time);
       return () => clearInterval(timer);
     }
   }, [time]);
