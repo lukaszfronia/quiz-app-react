@@ -42,7 +42,13 @@ const Quiz = () => {
             />
           )
         ) : (
-          <Result score={score} currentQuiz={currentQuiz} />
+          <Result
+            score={score}
+            currentQuiz={currentQuiz}
+            setResult={setResult}
+            setCurrentQuestion={setCurrentQuestion}
+            setScore={setScore}
+          />
         )}
       </div>
       <CountDwownTimer
