@@ -11,9 +11,6 @@ import {
 
 import "./navigation.styles.css";
 
-{
-  /* Dodac helperFunction która przeniesie nas do Strony logowania */
-}
 const Navigation = () => {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(AuthContext);

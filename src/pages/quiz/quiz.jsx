@@ -9,15 +9,15 @@ import "./quiz.styles.css";
 import CountDwownTimer from "../../components/timer/countdowntime.component";
 import Result from "../../components/result/result.component";
 
-const Quiz = () => {
+const Quiz = ({ klasa }) => {
   const { quiz } = useParams();
+  const currentQuizNumber = +quiz.slice(5, 6);
   const { quizzes } = useContext(QuizContext);
   const [currentQuiz, setCurrentQuiz] = useState(quizzes[quiz]);
   const [question, setQuestion] = useState("");
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [result, setResult] = useState(false);
   const [score, setScore] = useState(0);
-  console.log(score);
 
   useEffect(() => {
     setCurrentQuiz(quizzes[quiz]);
@@ -48,6 +48,8 @@ const Quiz = () => {
             setResult={setResult}
             setCurrentQuestion={setCurrentQuestion}
             setScore={setScore}
+            currentQuizNumber={currentQuizNumber}
+            klasa={klasa}
           />
         )}
       </div>

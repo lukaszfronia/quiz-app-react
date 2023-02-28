@@ -7,6 +7,7 @@ import { AuthContext } from "../../context/auth.context";
 import {
   createUserAccountWithEmailAndPassword,
   createUserDocumentFromAuth,
+  addCollectionAndDocumentsToUser,
 } from "../../utils/firebase/firebase.utils";
 
 import "./sign-up.styles.css";
@@ -40,6 +41,7 @@ const SignUp = () => {
       );
 
       await createUserDocumentFromAuth(user, { displayName });
+      await addCollectionAndDocumentsToUser(user);
       console.log((user.displayName = displayName));
       console.log(user);
       resetFields();
