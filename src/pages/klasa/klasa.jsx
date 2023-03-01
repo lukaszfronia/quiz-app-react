@@ -14,10 +14,10 @@ const Klasa = () => {
   const { userQuiz, setClassCategory } = useContext(AuthContext);
 
   // const [currentUserQuiz, setCurrentUserQuiz] = useState(userQuiz[klasa]);
-  console.log(userQuiz);
+
   useEffect(() => {
     setClassCategory(klasa);
-  }, [klasa]);
+  }, [klasa, setClassCategory]);
 
   // useEffect(() => {
   //   setCurrentUserQuiz(userQuiz[klasa]);

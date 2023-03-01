@@ -31,9 +31,15 @@ const Home = () => {
             Pomożemy Ci zrozumieć matematykę od zaraz
           </p>
           <div className="button-box">
-            <Button buttonType="secondary" onClick={goToQuizHandler}>
-              Zaczynajmy
-            </Button>
+            {currentUser ? (
+              <Button buttonType="secondary" onClick={goToQuizHandler}>
+                Zaczynajmy
+              </Button>
+            ) : (
+              <Button buttonType="secondary" onClick={goToSignInPageHandler}>
+                Zaczynajmy
+              </Button>
+            )}
           </div>
         </div>
         <div className="img=-box">
@@ -50,13 +56,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// {currentUser ? (
-//   <Button buttonType="secondary" onClick={goToQuizHandler}>
-//     Zaczynajmy
-//   </Button>
-// ) : (
-//   <Button buttonType="secondary" onClick={goToSignInPageHandler}>
-//     Zaczynajmy
-//   </Button>
-// )}

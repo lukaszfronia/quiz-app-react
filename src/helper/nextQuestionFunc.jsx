@@ -10,7 +10,7 @@ const nextQuestion = (
   setScore
 ) => {
   console.log(answer.correct);
-  if (answer.correct === true) {
+  if (answer?.correct === true) {
     setScore((prevScore) => prevScore + answer.score);
   }
   if (currentQuestion + 1 < currentQuiz.length) {

@@ -10,6 +10,10 @@ import image from "./geometry-g8bc5c6b0e_1280.png";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
+import {
+  createUserDocumentFromAuth,
+  addCollectionAndDocumentsToUser,
+} from "../../utils/firebase/firebase.utils";
 
 import "./sign-in.styles.css";
 import { async } from "@firebase/util";
@@ -35,6 +39,8 @@ const SignIn = () => {
     try {
       const { user } = await signInWithGooglePopup();
       setCurrentUser(user);
+      await createUserDocumentFromAuth(user);
+      await addCollectionAndDocumentsToUser(user);
     } catch (err) {
       console.log(err);
     }

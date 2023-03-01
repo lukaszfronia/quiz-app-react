@@ -1,9 +1,13 @@
 import Button from "../button/button.component";
-import { updateDataUser } from "../../utils/firebase/firebase.utils";
+import {
+  updateLockedQuizUser,
+  updateFinalResultUser,
+  updatePassesQuizUser,
+} from "../../utils/firebase/firebase.utils";
 import { AuthContext } from "../../context/auth.context";
 
 import { useNavigate } from "react-router-dom";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 
 const Result = ({
   score,
@@ -13,12 +17,19 @@ const Result = ({
   setScore,
   currentQuizNumber,
   klasa,
+  passes,
 }) => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, userQuiz } = useContext(AuthContext);
+
+  const [finalResult, setFinalResult] = useState(
+    userQuiz[currentQuizNumber].finalScore
+  );
+  const [locked, setLocked] = useState(null); //??????????????????
+
   const navigate = useNavigate();
   const closeQuizHandle = () => {
     navigate("../");
-    window.location.reload(true);
+    navigate(0);
   };
 
   const againDoQuizHandle = () => {
@@ -28,22 +39,56 @@ const Result = ({
   };
 
   const finalScore = (score / currentQuiz.length) * 100;
+
+  useEffect(() => {
+    setFinalResult(userQuiz[currentQuizNumber].finalScore);
+  }, [currentQuizNumber, userQuiz]);
+
   useEffect(() => {
     if (finalScore >= 50) {
-      updateDataUser(currentUser.uid, klasa, `Quiz ${currentQuizNumber + 1}`);
+      updateLockedQuizUser(
+        currentUser.uid,
+        klasa,
+        `Quiz ${currentQuizNumber + 1}`
+      );
     }
   }, []);
-  console.log(currentQuiz);
+
+  useEffect(() => {
+    if (finalScore > finalResult) {
+      updateFinalResultUser(
+        currentUser.uid,
+        klasa,
+        `Quiz ${currentQuizNumber}`,
+        finalScore
+      );
+    }
+  }, [finalScore]);
+
+  useEffect(() => {
+    if (finalScore === 100 && !passes) {
+      updatePassesQuizUser(currentUser.uid, klasa, `Quiz ${currentQuizNumber}`);
+    }
+  }, []);
 
   return (
     <>
-      <h1>Wynik: {finalScore}%</h1>
-      <Button onClick={closeQuizHandle}>Zakończ</Button>
-
-      {finalScore < 50 ? (
-        <Button onClick={againDoQuizHandle}>Jeszcze raz</Button>
+      {passes ? (
+        <>
+          <h1>Rozwiązałeś poprawnie cały quiz</h1>
+          <Button onClick={closeQuizHandle}>Zakończ</Button>
+        </>
       ) : (
-        ""
+        <>
+          <h1>Wynik: {finalScore}%</h1>
+          <Button onClick={closeQuizHandle}>Zakończ</Button>
+
+          {finalScore < 50 ? (
+            <Button onClick={againDoQuizHandle}>Jeszcze raz</Button>
+          ) : (
+            ""
+          )}
+        </>
       )}
     </>
   );

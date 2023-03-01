@@ -1,3 +1,4 @@
+// Dodać id, pytania, odpowiedzi, podpowiedź
 const data = [
   {
     name: "Klasa 1 -3",

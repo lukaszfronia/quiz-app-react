@@ -27,17 +27,18 @@ const Navigation = () => {
 
       setCurrentUser(null);
       setName([]);
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
   };
   useEffect(() => {
-    const ff = async () => {
-      const l = await displayNameFromDatabase(currentUser);
-      console.log(l);
-      setName(l);
+    const displayNameUser = async () => {
+      const nameUser = await displayNameFromDatabase(currentUser);
+
+      setName(nameUser);
     };
-    ff();
+    displayNameUser();
   }, [currentUser]);
 
   return (

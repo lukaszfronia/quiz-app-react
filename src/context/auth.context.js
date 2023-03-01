@@ -17,7 +17,7 @@ export const AuthContext = createContext({
 export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [userQuiz, setUserQuiz] = useState(null);
-  const [classCategory, setClassCategory] = useState(null);
+  const [classCategory, setClassCategory] = useState("Klasa 1 - 3");
 
   useEffect(() => {
     const getQuizMap = async () => {
@@ -40,9 +40,13 @@ export const AuthContextProvider = ({ children }) => {
 
     return unsubscribe;
   }, []);
-  console.log(userQuiz);
 
-  const value = { currentUser, setCurrentUser, userQuiz, setClassCategory };
+  const value = {
+    currentUser,
+    setCurrentUser,
+    userQuiz,
+    setClassCategory,
+  };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

@@ -5,8 +5,7 @@ import { useEffect, useState } from "react";
 const QuizCategory = ({ quiz, i, userQuiz }) => {
   const [currentUserQuizData, setCurrentUserData] = useState("");
   const [currentNumber, setCurrentNumber] = useState(0);
-  const [quizLocked, setQuizLocked] = useState(true);
-  const [quizz, setQuiz] = useState(quiz);
+  // const [quizLocked, setQuizLocked] = useState(true);
 
   const navigate = useNavigate();
 
@@ -18,24 +17,15 @@ const QuizCategory = ({ quiz, i, userQuiz }) => {
     setCurrentNumber(i);
   }, [i, setCurrentNumber]);
 
-  useEffect(() => {
-    setQuiz(quiz);
-  }, [quiz]);
-  console.log(quizz);
-
-  // useEffect(() => {
-  //   setQuizLocked(currentUserQuizData.locked);
-  // }, [currentUserQuizData.locked]);
-
   const gotoQuizHandler = () => navigate(quiz);
   return (
     <div
       className={`quiz-category-box ${
-        !currentUserQuizData.locked ? "disabled" : ""
+        currentUserQuizData?.locked ? "disabled" : ""
       }`}
       onClick={gotoQuizHandler}
     >
-      {currentUserQuizData.locked
+      {!currentUserQuizData?.locked
         ? quiz.slice(0, 5) + (i + 1)
         : "Ten quiz jest jeszcze niedostępny"}
     </div>

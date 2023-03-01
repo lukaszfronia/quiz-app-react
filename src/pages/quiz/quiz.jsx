@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { QuizContext } from "../../context/quiz.context";
+import { AuthContext } from "../../context/auth.context";
 
 import CurrentQuiz from "../../components/quiz.component/quiz.component";
 import Button from "../../components/button/button.component";
@@ -13,11 +14,13 @@ const Quiz = ({ klasa }) => {
   const { quiz } = useParams();
   const currentQuizNumber = +quiz.slice(5, 6);
   const { quizzes } = useContext(QuizContext);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [currentQuiz, setCurrentQuiz] = useState(quizzes[quiz]);
   const [question, setQuestion] = useState("");
-  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [result, setResult] = useState(false);
   const [score, setScore] = useState(0);
+  const { userQuiz } = useContext(AuthContext);
+  const [passes, setPasses] = useState(userQuiz[currentQuizNumber].passes);
 
   useEffect(() => {
     setCurrentQuiz(quizzes[quiz]);
@@ -27,10 +30,15 @@ const Quiz = ({ klasa }) => {
     setQuestion(currentQuiz[currentQuestion]);
   }, [currentQuiz, currentQuestion]);
 
+  useEffect(() => {
+    setPasses(userQuiz[currentQuizNumber].passes);
+  }, [currentQuizNumber, userQuiz]);
+  console.log(passes);
+
   return (
     <>
       <div className="quiz-container">
-        {!result ? (
+        {!result & !passes ? (
           question && (
             <CurrentQuiz
               quiz={question}
@@ -50,16 +58,19 @@ const Quiz = ({ klasa }) => {
             setScore={setScore}
             currentQuizNumber={currentQuizNumber}
             klasa={klasa}
+            passes={passes}
           />
         )}
       </div>
-      <CountDwownTimer
-        currentQuestion={currentQuestion}
-        currentQuiz={currentQuiz}
-        setCurrentQuestion={setCurrentQuestion}
-        result={result}
-        setResult={setResult}
-      />
+      {!result & !passes && (
+        <CountDwownTimer
+          currentQuestion={currentQuestion}
+          currentQuiz={currentQuiz}
+          setCurrentQuestion={setCurrentQuestion}
+          result={result}
+          setResult={setResult}
+        />
+      )}
     </>
   );
 };
