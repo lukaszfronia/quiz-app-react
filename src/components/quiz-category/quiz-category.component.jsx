@@ -6,6 +6,7 @@ const QuizCategory = ({ quiz, i, userQuiz }) => {
   const [currentUserQuizData, setCurrentUserData] = useState("");
   const [currentNumber, setCurrentNumber] = useState(0);
   const [quizLocked, setQuizLocked] = useState(true);
+  const [quizz, setQuiz] = useState(quiz);
 
   const navigate = useNavigate();
 
@@ -16,6 +17,11 @@ const QuizCategory = ({ quiz, i, userQuiz }) => {
   useEffect(() => {
     setCurrentNumber(i);
   }, [i, setCurrentNumber]);
+
+  useEffect(() => {
+    setQuiz(quiz);
+  }, [quiz]);
+  console.log(quizz);
 
   // useEffect(() => {
   //   setQuizLocked(currentUserQuizData.locked);

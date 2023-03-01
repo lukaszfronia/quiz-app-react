@@ -1,6 +1,10 @@
 import { createContext, useState, useEffect } from "react";
 
-import { getDataFromUserToCurrentQuiz } from "../utils/firebase/firebase.utils";
+import {
+  getDataFromUserToCurrentQuiz,
+  onAuthStateChangedListener,
+  createUserDocumentFromAuth,
+} from "../utils/firebase/firebase.utils";
 
 export const AuthContext = createContext({
   currentUser: null,
@@ -25,6 +29,17 @@ export const AuthContextProvider = ({ children }) => {
     };
     getQuizMap();
   }, [currentUser?.uid, classCategory]);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener((user) => {
+      if (user) {
+        createUserDocumentFromAuth(user);
+      }
+      setCurrentUser(user);
+    });
+
+    return unsubscribe;
+  }, []);
   console.log(userQuiz);
 
   const value = { currentUser, setCurrentUser, userQuiz, setClassCategory };

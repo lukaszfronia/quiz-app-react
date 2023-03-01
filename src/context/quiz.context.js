@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import { getQuizzesandDocuments } from "../utils/firebase/firebase.utils";
 
 export const QuizContext = createContext({
-  quizzes: {},
+  quizzes: null,
   collection: "t3s",
   setCollection: () => {},
   quizLocked: true,
@@ -10,8 +10,8 @@ export const QuizContext = createContext({
 });
 
 export const QuizProvider = ({ children }) => {
-  const [quizzes, setQuizzes] = useState({});
-  const [collection, setCollection] = useState("t3s");
+  const [quizzes, setQuizzes] = useState(null);
+  const [collection, setCollection] = useState("Klasa 1 - 3");
   const [quizLocked, setQuizLocked] = useState(true);
 
   useEffect(() => {

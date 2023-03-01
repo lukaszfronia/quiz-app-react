@@ -32,18 +32,19 @@ const Klasa = () => {
         element={
           <>
             <div className="quiz-category">
-              {Object.keys(quizzes).map((quiz, i) => {
-                return (
-                  <QuizCategory
-                    key={quiz}
-                    quiz={quiz}
-                    i={i}
-                    userQuiz={userQuiz}
-                    quizLocked={quizLocked}
-                    setQuizLocked={setQuizLocked}
-                  />
-                );
-              })}
+              {quizzes &&
+                Object.keys(quizzes).map((quiz, i) => {
+                  return (
+                    <QuizCategory
+                      key={quiz}
+                      quiz={quiz}
+                      i={i}
+                      userQuiz={userQuiz}
+                      quizLocked={quizLocked}
+                      setQuizLocked={setQuizLocked}
+                    />
+                  );
+                })}
             </div>
           </>
         }

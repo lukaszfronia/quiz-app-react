@@ -16,7 +16,10 @@ const Result = ({
 }) => {
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
-  const closeQuizHandle = () => navigate(-1);
+  const closeQuizHandle = () => {
+    navigate("../");
+    window.location.reload(true);
+  };
 
   const againDoQuizHandle = () => {
     setResult(false);
