@@ -28,7 +28,7 @@ const SignIn = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
   const [formFields, setFormFields] = useState(defaultField);
   const { email, password } = formFields;
-  const [googleUser, setGoogleUser] = useState("");
+  const [googleUser, setGoogleUser] = useState(currentUser?.displayName);
 
   //Funkcje
 
@@ -41,13 +41,20 @@ const SignIn = () => {
       const { user } = await signInWithGooglePopup();
       setCurrentUser(user);
       await createUserDocumentFromAuth(user);
-      user.displayName !== googleUser
-        ? await addCollectionAndDocumentsToUser(user)
-        : setGoogleUser(user.displayName);
+      console.log(googleUser);
+      if (user.displayName !== googleUser) {
+        await addCollectionAndDocumentsToUser(user);
+        console.log(user.displayName);
+      } else {
+      }
     } catch (err) {
       console.log(err);
     }
   };
+  useEffect(() => {
+    setGoogleUser(currentUser?.displayName);
+    console.log(googleUser);
+  }, [currentUser]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

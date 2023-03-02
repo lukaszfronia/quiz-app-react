@@ -9,7 +9,6 @@ const nextQuestion = (
   i,
   setScore
 ) => {
-  console.log(answer.correct);
   if (answer?.correct === true) {
     setScore((prevScore) => prevScore + answer.score);
   }

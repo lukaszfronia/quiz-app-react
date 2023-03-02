@@ -1,0 +1,12 @@
+.result-btns-box {
+  width: 25rem;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+}
+.result-btn-box {
+  width: 25rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+}

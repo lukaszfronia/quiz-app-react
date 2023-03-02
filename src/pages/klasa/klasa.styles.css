@@ -1,9 +1,23 @@
 .quiz-category {
-  max-width: 110rem;
-  margin: 8rem auto;
+  max-width: 100rem;
+  margin: 2rem auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 0.5rem;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 0.2fr repeat(2, 1fr);
+  column-gap: 0.2rem;
   row-gap: 2rem;
   justify-items: center;
+}
+.name-back-box {
+  grid-column: 1/ -1;
+  grid-row: 1;
+
+  display: grid;
+  width: 100rem;
+  grid-template-columns: 1fr 1.2fr;
+}
+
+.quiz-category-name {
+  font-size: 2rem;
+  font-weight: 700;
 }

@@ -1,10 +1,12 @@
 import { useContext, useState, useEffect } from "react";
-import { Routes, Route, useParams } from "react-router-dom";
+import { Routes, Route, useParams, useNavigate } from "react-router-dom";
 
 import { QuizContext } from "../../context/quiz.context";
 import { AuthContext } from "../../context/auth.context";
 import QuizCategory from "../../components/quiz-category/quiz-category.component";
 import Quiz from "../quiz/quiz";
+
+import BackButton from "../../components/button/back-button.conponent";
 
 import "./klasa.styles.css";
 
@@ -12,18 +14,15 @@ const Klasa = () => {
   const { klasa } = useParams();
   const { quizzes, quizLocked, setQuizLocked } = useContext(QuizContext);
   const { userQuiz, setClassCategory } = useContext(AuthContext);
-
-  // const [currentUserQuiz, setCurrentUserQuiz] = useState(userQuiz[klasa]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setClassCategory(klasa);
   }, [klasa, setClassCategory]);
 
-  // useEffect(() => {
-  //   setCurrentUserQuiz(userQuiz[klasa]);
-  // }, [klasa, userQuiz]);
-  // console.log(currentUserQuiz);
-  // console.log(quizzes);
+  const backToPreviousPage = () => {
+    navigate("../");
+  };
 
   return (
     <Routes>
@@ -32,6 +31,10 @@ const Klasa = () => {
         element={
           <>
             <div className="quiz-category">
+              <div className="name-back-box">
+                <BackButton onClick={backToPreviousPage} />
+                <p className="quiz-category-name">{klasa}</p>
+              </div>
               {quizzes &&
                 Object.keys(quizzes).map((quiz, i) => {
                   return (

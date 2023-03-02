@@ -5,6 +5,9 @@ import categoryimg3 from "./school-g613556511_1280.png";
 import CategoryMenu from "../../components/category-menu/category-menu.component";
 
 import "./category-preview.styles.css";
+import BackButton from "../../components/button/back-button.conponent";
+
+import { useNavigate } from "react-router-dom";
 
 const categories = [
   {
@@ -31,10 +34,15 @@ const categories = [
 ];
 
 const CategoryPreview = () => {
+  const navigate = useNavigate();
+  const backToPreviousPage = () => {
+    navigate("../");
+  };
   return (
     <>
       <div className="category-container">
         <div className="category-box-name">
+          <BackButton onClick={backToPreviousPage} />
           <h1 className="name">Wybierz kategorie:</h1>
         </div>
         <div className="categories-box">

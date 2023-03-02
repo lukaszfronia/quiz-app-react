@@ -28,3 +28,9 @@
   color: #fcc822;
   transform: translateY(2px);
 }
+
+.back-arrow {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}

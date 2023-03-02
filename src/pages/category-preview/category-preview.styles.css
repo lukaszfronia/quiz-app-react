@@ -1,17 +1,19 @@
 .category-container {
-  max-width: 110rem;
-  margin: 3rem auto;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
+  max-width: 100rem;
+  margin: 2rem auto;
+  display: grid;
+  grid-template-rows: 0.2fr 1fr;
+  gap: 9rem;
 }
 
 .category-box-name {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-column: 1/ -1;
+  width: 100rem;
+  grid-template-columns: 1fr 1.5fr;
 }
 .name {
-  font-size: 2.8rem;
+  font-size: 2.4rem;
 }
 .categories-box {
   display: grid;

@@ -9,6 +9,8 @@ import { AuthContext } from "../../context/auth.context";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
 
+import "./result.styles.css";
+
 const Result = ({
   score,
   currentQuiz,
@@ -30,6 +32,9 @@ const Result = ({
   const closeQuizHandle = () => {
     navigate("../");
     navigate(0);
+  };
+  const backToPreviousPage = () => {
+    navigate("../");
   };
 
   const againDoQuizHandle = () => {
@@ -75,19 +80,25 @@ const Result = ({
     <>
       {passes ? (
         <>
-          <h1>Rozwiązałeś poprawnie cały quiz</h1>
-          <Button onClick={closeQuizHandle}>Zakończ</Button>
+          <h1>Rozwiązałeś poprawnie cały quiz!</h1>
+          <div className="result-btn-box">
+            <Button onClick={backToPreviousPage}>Zakończ</Button>
+          </div>
         </>
       ) : (
         <>
           <h1>Wynik: {finalScore}%</h1>
-          <Button onClick={closeQuizHandle}>Zakończ</Button>
+          <div
+            className={`${
+              finalScore < 50 ? "result-btns-box" : "result-btn-box"
+            }`}
+          >
+            <Button onClick={closeQuizHandle}>Zakończ</Button>
 
-          {finalScore < 50 ? (
-            <Button onClick={againDoQuizHandle}>Jeszcze raz</Button>
-          ) : (
-            ""
-          )}
+            {finalScore < 50 && (
+              <Button onClick={againDoQuizHandle}>Jeszcze raz</Button>
+            )}
+          </div>
         </>
       )}
     </>
