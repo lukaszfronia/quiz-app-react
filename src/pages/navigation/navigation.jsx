@@ -2,7 +2,7 @@ import { Fragment, useContext, useState, useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
 import Button from "../../components/button/button.component";
-import Statistic from "../statistic/statistic";
+
 import { AuthContext } from "../../context/auth.context";
 import {
   signOutUser,
@@ -15,8 +15,6 @@ const Navigation = () => {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(AuthContext);
 
-  const [name, setName] = useState([]);
-
   const goToSignInHandler = () => {
     navigate("zaloguj-sie/");
   };
@@ -26,20 +24,11 @@ const Navigation = () => {
       await signOutUser();
 
       setCurrentUser(null);
-      setName([]);
       navigate("/");
     } catch (err) {
       console.log(err);
     }
   };
-  useEffect(() => {
-    const displayNameUser = async () => {
-      const nameUser = await displayNameFromDatabase(currentUser);
-
-      setName(nameUser);
-    };
-    displayNameUser();
-  }, [currentUser]);
 
   return (
     <Fragment>
@@ -60,14 +49,6 @@ const Navigation = () => {
               <Link className="link" to="/statystyki">
                 Statystyki
               </Link>
-              <p>
-                {currentUser.displayName
-                  ? currentUser.displayName?.substring(
-                      0,
-                      currentUser.displayName?.indexOf(" ")
-                    )
-                  : name}
-              </p>
               <Button onClick={signOutHandler}>Wyloguj się</Button>
             </>
           ) : (
