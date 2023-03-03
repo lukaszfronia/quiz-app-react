@@ -30,7 +30,9 @@ const QuizCategory = ({ quiz, i, userQuiz }) => {
                 <p className="quiz-name">{quiz.slice(0, 5) + (i + 1)}</p>
               </div>
             </div>
-            <p className="quiz-finalscore">{currentUserQuizData.finalScore}%</p>
+            <p className="quiz-finalscore">
+              {currentUserQuizData?.finalScore}%
+            </p>
           </div>
         </>
       ) : (

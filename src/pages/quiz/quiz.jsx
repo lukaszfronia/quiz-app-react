@@ -21,6 +21,7 @@ const Quiz = ({ klasa }) => {
   const [score, setScore] = useState(0);
   const { userQuiz } = useContext(AuthContext);
   const [passes, setPasses] = useState(userQuiz[currentQuizNumber].passes);
+  const [restartQuiz, setRestartQuiz] = useState(false);
 
   useEffect(() => {
     setCurrentQuiz(quizzes[quiz]);
@@ -33,7 +34,6 @@ const Quiz = ({ klasa }) => {
   useEffect(() => {
     setPasses(userQuiz[currentQuizNumber].passes);
   }, [currentQuizNumber, userQuiz]);
-  console.log(passes);
 
   return (
     <>
@@ -59,6 +59,9 @@ const Quiz = ({ klasa }) => {
             currentQuizNumber={currentQuizNumber}
             klasa={klasa}
             passes={passes}
+            setPasses={setPasses}
+            restartQuiz={restartQuiz}
+            setRestartQuiz={setRestartQuiz}
           />
         )}
       </div>

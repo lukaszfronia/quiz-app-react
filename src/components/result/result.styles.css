@@ -2,11 +2,29 @@
   width: 25rem;
   display: flex;
   justify-content: space-between;
-  margin-top: 4rem;
 }
 .result-btn-box {
   width: 25rem;
   display: flex;
   justify-content: center;
-  margin-top: 4rem;
+}
+
+.final-result-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.img-achivement {
+  height: 13rem;
+  width: 13rem;
+}
+.quiz-description {
+  font-size: 2.4rem;
+  letter-spacing: 2px;
+}
+.quiz-final-result {
+  font-size: 1.6rem;
+  font-weight: 500;
 }

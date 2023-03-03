@@ -9,6 +9,7 @@ import { AuthContext } from "../../context/auth.context";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
 
+import achivement from "./achievement-g9826017dd_1280.png";
 import "./result.styles.css";
 
 const Result = ({
@@ -20,27 +21,33 @@ const Result = ({
   currentQuizNumber,
   klasa,
   passes,
+  setPasses,
+  restartQuiz,
+  setRestartQuiz,
 }) => {
   const { currentUser, userQuiz } = useContext(AuthContext);
 
   const [finalResult, setFinalResult] = useState(
     userQuiz[currentQuizNumber].finalScore
   );
-  const [locked, setLocked] = useState(null); //??????????????????
 
   const navigate = useNavigate();
   const closeQuizHandle = () => {
     navigate("../");
     navigate(0);
+    setRestartQuiz(false);
   };
   const backToPreviousPage = () => {
     navigate("../");
+    setRestartQuiz(false);
   };
 
   const againDoQuizHandle = () => {
     setResult(false);
     setCurrentQuestion(0);
     setScore(0);
+    setPasses(false);
+    setRestartQuiz(true);
   };
 
   const finalScore = (score / currentQuiz.length) * 100;
@@ -71,35 +78,74 @@ const Result = ({
   }, [finalScore]);
 
   useEffect(() => {
-    if (finalScore === 100 && !passes) {
+    if (finalScore >= 50 && !passes) {
       updatePassesQuizUser(currentUser.uid, klasa, `Quiz ${currentQuizNumber}`);
     }
   }, []);
 
+  console.log(restartQuiz);
+
   return (
     <>
-      {passes ? (
-        <>
-          <h1>Rozwiązałeś poprawnie cały quiz!</h1>
+      {passes & (finalResult === 100) ? (
+        <div className="final-result-box">
+          <img src={achivement} alt="puchar" className="img-achivement" />
+          <h1 className="quiz-description">Rozwiązałeś poprawnie cały quiz!</h1>
+          <p className="quiz-final-result">Twój wynik: {finalResult}%</p>
           <div className="result-btn-box">
-            <Button onClick={backToPreviousPage}>Zakończ</Button>
+            <Button onClick={backToPreviousPage}>Powrót</Button>
           </div>
-        </>
+        </div>
+      ) : passes & ((finalResult >= 50) & (finalResult < 100)) ? (
+        <div className="final-result-box">
+          <h1 className="quiz-description">
+            Możesz spróbować poprawić swój wynik!
+          </h1>
+          <p className="quiz-final-result">Twój wynik: {finalResult}%</p>
+          <div className="result-btns-box">
+            <Button onClick={againDoQuizHandle}>Popraw</Button>
+            <Button onClick={backToPreviousPage}>Powrót</Button>
+          </div>
+        </div>
       ) : (
-        <>
-          <h1>Wynik: {finalScore}%</h1>
+        <div className="final-result-box">
+          {restartQuiz ? (
+            (finalScore <= 100) & restartQuiz && (
+              <>
+                {finalScore < finalResult ? (
+                  <h1 className="quiz-description">
+                    Niestety nie udało Ci się poprawić wyniku
+                  </h1>
+                ) : (
+                  <h1 className="quiz-description">
+                    Gratulacje udało Ci się poprawić poprzedni wynik
+                  </h1>
+                )}
+                <p className="quiz-final-result">
+                  Aktualny wynik: {finalResult}%
+                </p>
+              </>
+            )
+          ) : finalScore >= 50 ? (
+            <>
+              <h1 className="quiz-description">Rozwiązałeś poprawnie quiz</h1>
+              <h2>Gratulacje udało Ci się odblokować kolejny quiz!</h2>
+            </>
+          ) : (
+            <h1 className="quiz-description">
+              Niestety nie udało Ci się rozwiązać quizu
+            </h1>
+          )}
+
+          <p className="quiz-final-result">Twój wynik: {finalScore}%</p>
           <div
-            className={`${
-              finalScore < 50 ? "result-btns-box" : "result-btn-box"
-            }`}
+            className={`
+                 "result-btn-box" 
+              }`}
           >
             <Button onClick={closeQuizHandle}>Zakończ</Button>
-
-            {finalScore < 50 && (
-              <Button onClick={againDoQuizHandle}>Jeszcze raz</Button>
-            )}
           </div>
-        </>
+        </div>
       )}
     </>
   );
