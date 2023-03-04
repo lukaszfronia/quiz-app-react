@@ -28,7 +28,7 @@ const defaultField = {
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const { currentUser, setCurrentUser, allUserUid } = useContext(AuthContext);
   const [formFields, setFormFields] = useState(defaultField);
   const { email, password } = formFields;
   const [googleUser, setGoogleUser] = useState(currentUser?.displayName);
@@ -43,20 +43,18 @@ const SignIn = () => {
     try {
       const { user } = await signInWithGooglePopup();
       setCurrentUser(user);
-      await createUserDocumentFromAuth(user);
 
-      await addCollectionAndDocumentsToUser(user);
-      await addSummaryAllQuizToUser(user);
-      await addGeneralStatsForUser(user);
-      await addUserNameToGeneralStats(user, user.displayName);
+      if (!allUserUid.includes(user.uid)) {
+        await createUserDocumentFromAuth(user);
+        await addCollectionAndDocumentsToUser(user);
+        await addSummaryAllQuizToUser(user);
+        await addGeneralStatsForUser(user);
+        await addUserNameToGeneralStats(user, user.displayName);
+      }
     } catch (err) {
       console.log(err);
     }
   };
-  useEffect(() => {
-    setGoogleUser(currentUser?.displayName);
-    console.log(googleUser);
-  }, [currentUser]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
