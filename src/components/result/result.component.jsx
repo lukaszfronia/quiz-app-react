@@ -2,7 +2,7 @@ import Button from "../button/button.component";
 import {
   updateLockedQuizUser,
   updateFinalResultUser,
-  updatePassesQuizUser,
+  updatePassedQuizUser,
 } from "../../utils/firebase/firebase.utils";
 import { AuthContext } from "../../context/auth.context";
 
@@ -20,8 +20,8 @@ const Result = ({
   setScore,
   currentQuizNumber,
   klasa,
-  passes,
-  setPasses,
+  passed,
+  setPassed,
   restartQuiz,
   setRestartQuiz,
 }) => {
@@ -46,7 +46,7 @@ const Result = ({
     setResult(false);
     setCurrentQuestion(0);
     setScore(0);
-    setPasses(false);
+    setPassed(false);
     setRestartQuiz(true);
   };
 
@@ -78,8 +78,8 @@ const Result = ({
   }, [finalScore]);
 
   useEffect(() => {
-    if (finalScore >= 50 && !passes) {
-      updatePassesQuizUser(currentUser.uid, klasa, `Quiz ${currentQuizNumber}`);
+    if (finalScore >= 50 && !passed) {
+      updatePassedQuizUser(currentUser.uid, klasa, `Quiz ${currentQuizNumber}`);
     }
   }, []);
 
@@ -87,7 +87,7 @@ const Result = ({
 
   return (
     <>
-      {passes & (finalResult === 100) ? (
+      {passed & (finalResult === 100) ? (
         <div className="final-result-box">
           <img src={achivement} alt="puchar" className="img-achivement" />
           <h1 className="quiz-description">Rozwiązałeś poprawnie cały quiz!</h1>
@@ -96,7 +96,7 @@ const Result = ({
             <Button onClick={backToPreviousPage}>Powrót</Button>
           </div>
         </div>
-      ) : passes & ((finalResult >= 50) & (finalResult < 100)) ? (
+      ) : passed & ((finalResult >= 50) & (finalResult < 100)) ? (
         <div className="final-result-box">
           <h1 className="quiz-description">
             Możesz spróbować poprawić swój wynik!

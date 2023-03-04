@@ -20,7 +20,7 @@ const Quiz = ({ klasa }) => {
   const [result, setResult] = useState(false);
   const [score, setScore] = useState(0);
   const { userQuiz } = useContext(AuthContext);
-  const [passes, setPasses] = useState(userQuiz[currentQuizNumber].passes);
+  const [passed, setPassed] = useState(userQuiz[currentQuizNumber].passed);
   const [restartQuiz, setRestartQuiz] = useState(false);
 
   useEffect(() => {
@@ -32,13 +32,13 @@ const Quiz = ({ klasa }) => {
   }, [currentQuiz, currentQuestion]);
 
   useEffect(() => {
-    setPasses(userQuiz[currentQuizNumber].passes);
+    setPassed(userQuiz[currentQuizNumber].passed);
   }, [currentQuizNumber, userQuiz]);
 
   return (
     <>
       <div className="quiz-container">
-        {!result & !passes ? (
+        {!result & !passed ? (
           question && (
             <CurrentQuiz
               quiz={question}
@@ -58,14 +58,14 @@ const Quiz = ({ klasa }) => {
             setScore={setScore}
             currentQuizNumber={currentQuizNumber}
             klasa={klasa}
-            passes={passes}
-            setPasses={setPasses}
+            passed={passed}
+            setPassed={setPassed}
             restartQuiz={restartQuiz}
             setRestartQuiz={setRestartQuiz}
           />
         )}
       </div>
-      {!result & !passes && (
+      {!result & !passed && (
         <CountDwownTimer
           currentQuestion={currentQuestion}
           currentQuiz={currentQuiz}

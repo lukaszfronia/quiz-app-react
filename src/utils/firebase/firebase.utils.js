@@ -22,6 +22,7 @@ import {
 } from "firebase/firestore";
 
 import data from "../../data.js";
+import { summary } from "../../summaryAllQuiz.js";
 import category from "../../statisticQuizData.js";
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -73,6 +74,8 @@ export const createUserAccountWithEmailAndPassword = async (
 
 export const db = getFirestore();
 
+// Add data for user to database
+
 export const addCollectionAndDocumentsToUser = async (user) => {
   const batch = writeBatch(db);
   let docRef;
@@ -81,6 +84,21 @@ export const addCollectionAndDocumentsToUser = async (user) => {
     object.quizzes.forEach((q) => {
       docRef = doc(db, "users", user.uid, object.name, q.quiz);
       batch.set(docRef, q);
+    });
+  });
+
+  await batch.commit();
+  console.log("done");
+};
+
+export const addSummaryAllQuizToUser = async (user) => {
+  const batch = writeBatch(db);
+  let docRef;
+
+  summary.forEach((object) => {
+    object.categories.forEach((c) => {
+      docRef = doc(db, "users", user.uid, object.name, c.category);
+      batch.set(docRef, c);
     });
   });
 
@@ -116,6 +134,23 @@ export const createUserDocumentFromAuth = async (
   return userDocRef;
 };
 
+export const addCollectionAndDocuments = async () => {
+  const batch = writeBatch(db);
+  let docRef;
+
+  data.forEach((object) => {
+    object.quizzes.forEach((quiz) => {
+      docRef = doc(db, "Klasa 4 - 8", quiz.quizName);
+      batch.set(docRef, quiz);
+    });
+  });
+
+  await batch.commit();
+  console.log("done");
+};
+
+// Get data from database
+
 export const displayNameFromDatabase = async (user) => {
   if (!user) return;
   const collectionRef = collection(db, "users");
@@ -137,9 +172,9 @@ export const getDataFromUserToCurrentQuiz = async (uid, classCategory) => {
   const querySnapshot = await getDocs(q);
 
   const quizMap = querySnapshot.docs.map((docSnapshot) => {
-    const { locked, passes, finalScore } = docSnapshot.data();
+    const { locked, passed, finalScore } = docSnapshot.data();
 
-    return { locked, passes, finalScore };
+    return { locked, passed, finalScore };
   }, {});
   return quizMap;
 };
@@ -157,22 +192,20 @@ export const getQuizzesandDocuments = async (col) => {
   return quizMap;
 };
 
-export const addCollectionAndDocuments = async () => {
-  const batch = writeBatch(db);
-  let docRef;
+export const getDataSummaryForUser = async (uid) => {
+  const collectionRef = collection(db, `users/${uid}/Podsumowanie`);
+  const q = query(collectionRef);
 
-  data.forEach((object) => {
-    object.quizzes.forEach((quiz) => {
-      docRef = doc(db, "Klasa 4 - 8", quiz.quizName);
-      batch.set(docRef, quiz);
-    });
-  });
+  const querySnapshot = await getDocs(q);
 
-  await batch.commit();
-  console.log("done");
+  const summaryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { category, generalTime, numberOfApproaches, grade, passedQuizzes } =
+      docSnapshot.data();
+    acc[category] = { generalTime, numberOfApproaches, grade, passedQuizzes };
+    return acc;
+  }, {});
+  return summaryMap;
 };
-
-//addCollectionAndDocuments();
 
 ///////////////////////////////////////////////////////UPDATE FUNCTIONS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -183,8 +216,6 @@ export const updateLockedQuizUser = async (uid, currentClass, quiz) => {
     locked: false,
   });
 };
-
-//updateDataUser();
 
 export const updateFinalResultUser = async (
   uid,
@@ -199,10 +230,10 @@ export const updateFinalResultUser = async (
   });
 };
 
-export const updatePassesQuizUser = async (uid, currentClass, quiz) => {
+export const updatePassedQuizUser = async (uid, currentClass, quiz) => {
   const collectionRef = doc(db, `/users/${uid}/${currentClass}/${quiz}`);
 
   await updateDoc(collectionRef, {
-    passes: true,
+    passed: true,
   });
 };

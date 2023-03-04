@@ -4,6 +4,7 @@ import {
   getDataFromUserToCurrentQuiz,
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
+  getDataSummaryForUser,
 } from "../utils/firebase/firebase.utils";
 
 export const AuthContext = createContext({
@@ -12,12 +13,14 @@ export const AuthContext = createContext({
   userQuiz: null,
   classCategory: null,
   setClassCategory: () => null,
+  summaryQuiz: null,
 });
 
 export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [userQuiz, setUserQuiz] = useState(null);
   const [classCategory, setClassCategory] = useState("Klasa 1 - 3");
+  const [summaryQuiz, setSummaryQuiz] = useState(null);
 
   useEffect(() => {
     const getQuizMap = async () => {
@@ -29,6 +32,14 @@ export const AuthContextProvider = ({ children }) => {
     };
     getQuizMap();
   }, [currentUser?.uid, classCategory]);
+
+  useEffect(() => {
+    const getSummaryMap = async () => {
+      const summaryMap = await getDataSummaryForUser(currentUser?.uid);
+      setSummaryQuiz(summaryMap);
+    };
+    getSummaryMap();
+  }, [currentUser?.uid]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
@@ -46,6 +57,7 @@ export const AuthContextProvider = ({ children }) => {
     setCurrentUser,
     userQuiz,
     setClassCategory,
+    summaryQuiz,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
