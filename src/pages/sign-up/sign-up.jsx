@@ -9,6 +9,8 @@ import {
   createUserDocumentFromAuth,
   addCollectionAndDocumentsToUser,
   addSummaryAllQuizToUser,
+  addGeneralStatsForUser,
+  addUserNameToGeneralStats,
 } from "../../utils/firebase/firebase.utils";
 
 import "./sign-up.styles.css";
@@ -44,6 +46,8 @@ const SignUp = () => {
       await createUserDocumentFromAuth(user, { displayName });
       await addCollectionAndDocumentsToUser(user);
       await addSummaryAllQuizToUser(user);
+      await addGeneralStatsForUser(user);
+      await addUserNameToGeneralStats(user, displayName);
 
       resetFields();
       navigate("/zaloguj-sie");

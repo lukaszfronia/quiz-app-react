@@ -24,6 +24,7 @@ import {
 import data from "../../data.js";
 import { summary } from "../../summaryAllQuiz.js";
 import category from "../../statisticQuizData.js";
+import { generalStats } from "../../generalStatistic.js";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAnBsBYahwY2I1LAb7Fo2Q8B_vbkFqgZOE",
@@ -99,6 +100,20 @@ export const addSummaryAllQuizToUser = async (user) => {
     object.categories.forEach((c) => {
       docRef = doc(db, "users", user.uid, object.name, c.category);
       batch.set(docRef, c);
+    });
+  });
+
+  await batch.commit();
+  console.log("done");
+};
+export const addGeneralStatsForUser = async (user) => {
+  const batch = writeBatch(db);
+  let docRef;
+
+  generalStats.forEach((object) => {
+    object.generalStatistics.forEach((statistic) => {
+      docRef = doc(db, "users", user.uid, object.name, statistic.generalStats);
+      batch.set(docRef, statistic);
     });
   });
 
@@ -199,12 +214,50 @@ export const getDataSummaryForUser = async (uid) => {
   const querySnapshot = await getDocs(q);
 
   const summaryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { category, generalTime, numberOfApproaches, grade, passedQuizzes } =
-      docSnapshot.data();
-    acc[category] = { generalTime, numberOfApproaches, grade, passedQuizzes };
+    const {
+      category,
+      generalTime,
+      numberOfApproaches,
+      grade,
+      passedQuizzes,
+      bestTime,
+    } = docSnapshot.data();
+    acc[category] = {
+      generalTime,
+      numberOfApproaches,
+      grade,
+      passedQuizzes,
+      bestTime,
+    };
     return acc;
   }, {});
   return summaryMap;
+};
+
+export const getAllUsers = async () => {
+  const collectionRef = collection(db, `users/`);
+  const q = query(collectionRef);
+  const querySnapshot = await getDocs(q);
+  const usersMap = querySnapshot.docs.map((docSnapshot) => {
+    const { uid } = docSnapshot.data();
+    return uid;
+  }, {});
+  return usersMap;
+};
+
+export const getGeneralStatsFromCurrentUser = async (uid) => {
+  const collectionRef = collection(db, `users/${uid}/Ranking`);
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+  console.log(querySnapshot);
+
+  const generalStatsMap = querySnapshot.docs.map((docSnapshot) => {
+    const { passedAllQuizzes, bestTime, displayName } = docSnapshot.data();
+
+    return { passedAllQuizzes, bestTime, displayName };
+  }, {});
+  return generalStatsMap;
 };
 
 ///////////////////////////////////////////////////////UPDATE FUNCTIONS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -214,6 +267,13 @@ export const updateLockedQuizUser = async (uid, currentClass, quiz) => {
 
   await updateDoc(collectionRef, {
     locked: false,
+  });
+};
+export const addUserNameToGeneralStats = async (user, displayName) => {
+  const collectionRef = doc(db, `/users/${user.uid}/Ranking/Statystyki ogólne`);
+
+  await updateDoc(collectionRef, {
+    displayName: `${displayName}`,
   });
 };
 

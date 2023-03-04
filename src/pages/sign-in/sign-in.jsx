@@ -3,6 +3,7 @@ import GoogleButton from "react-google-button";
 import {
   signInWithGooglePopup,
   signInUserWithEmailAndPassword,
+  addGeneralStatsForUser,
 } from "../../utils/firebase/firebase.utils";
 import { AuthContext } from "../../context/auth.context";
 
@@ -13,6 +14,8 @@ import { useContext, useEffect, useState } from "react";
 import {
   createUserDocumentFromAuth,
   addCollectionAndDocumentsToUser,
+  addSummaryAllQuizToUser,
+  addUserNameToGeneralStats,
 } from "../../utils/firebase/firebase.utils";
 
 import "./sign-in.styles.css";
@@ -41,12 +44,11 @@ const SignIn = () => {
       const { user } = await signInWithGooglePopup();
       setCurrentUser(user);
       await createUserDocumentFromAuth(user);
-      console.log(googleUser);
-      if (user.displayName !== googleUser) {
-        await addCollectionAndDocumentsToUser(user);
-        console.log(user.displayName);
-      } else {
-      }
+
+      await addCollectionAndDocumentsToUser(user);
+      await addSummaryAllQuizToUser(user);
+      await addGeneralStatsForUser(user);
+      await addUserNameToGeneralStats(user, user.displayName);
     } catch (err) {
       console.log(err);
     }
