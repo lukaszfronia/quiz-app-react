@@ -37,7 +37,6 @@ const CountDwownTimer = ({
         <h1 className="timer">
           Czas:
           <span>
-            {" "}
             {min}:{sec}
           </span>
         </h1>

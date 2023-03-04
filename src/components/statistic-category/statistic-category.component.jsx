@@ -6,8 +6,10 @@ const StatisticCategory = ({ category, summaryQuiz }) => {
   useEffect(() => {
     setCurrentSummary(summaryQuiz[category]);
   }, [summaryQuiz]);
-  const { generalTime, numberOfApproaches, grade, passedQuizzes } =
+  const { generalTime, numberOfApproaches, grade, passedQuizzes, bestTime } =
     currentSummary;
+  const min = `${Math.trunc(bestTime / 60)}`.padStart(2, "0");
+  const sec = String(bestTime % 60).padStart(2, "0");
 
   return (
     <div className="statistic-category-box">
@@ -18,16 +20,15 @@ const StatisticCategory = ({ category, summaryQuiz }) => {
           <p>Zdane Quizy: {passedQuizzes}</p>
         </li>
         <li className="statistic-list-item">
-          <p>Najlepszy czas: 1:20</p>
+          <p>
+            Najlepszy czas: {min}:{sec}
+          </p>
         </li>
         <li className="statistic-list-item">
           <p>Ocena końcowa: {grade}</p>
         </li>
         <li className="statistic-list-item">
           <p>Liczba podejść: {numberOfApproaches}</p>
-        </li>
-        <li className="statistic-list-item">
-          <p>Ogólny czas: 123:30:23</p>
         </li>
       </ul>
     </div>

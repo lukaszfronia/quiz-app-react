@@ -4,7 +4,9 @@ import succes from "./success.png";
 
 const LeaderBoardUser = ({ statistic }) => {
   const { passedAllQuizzes, bestTime, displayName } = statistic;
-  console.log(statistic);
+  const min = `${Math.trunc(bestTime / 60)}`.padStart(2, "0");
+  const sec = String(bestTime % 60).padStart(2, "0");
+
   return (
     <div className="leaderboard-user-box">
       <div className="number-box">1</div>
@@ -24,7 +26,9 @@ const LeaderBoardUser = ({ statistic }) => {
         <div className="box-icon">
           <img src={timer} alt="zegar" className="icon" />
         </div>
-        <p>1:20</p>
+        <p>
+          {min}:{sec}
+        </p>
         <p className="user-stats-description">Najlepszy czas</p>
       </div>
     </div>
