@@ -8,10 +8,17 @@ const Leaderboard = () => {
   const { generalStatistics } = useContext(AuthContext);
   // const [statistics, setStatistics] = useState(null);
 
+  useEffect(() => {
+    generalStatistics.sort(
+      (a, b) => b[0].passedAllQuizzes - a[0].passedAllQuizzes
+    );
+  }, [generalStatistics]);
+
   // useEffect(() => {
   //   setStatistics(generalStatistics);
   // }, [generalStatistics]);
   // console.log(statistics);
+  console.log(generalStatistics[0]);
   return (
     <div className="leaderboard-box">
       <h1 className="leaderboard-title">Ranking</h1>
