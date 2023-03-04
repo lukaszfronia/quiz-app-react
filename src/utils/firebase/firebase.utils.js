@@ -155,7 +155,7 @@ export const addCollectionAndDocuments = async () => {
 
   data.forEach((object) => {
     object.quizzes.forEach((quiz) => {
-      docRef = doc(db, "Klasa 4 - 8", quiz.quizName);
+      docRef = doc(db, "Tech - Liceum", quiz.quizName);
       batch.set(docRef, quiz);
     });
   });
@@ -163,6 +163,7 @@ export const addCollectionAndDocuments = async () => {
   await batch.commit();
   console.log("done");
 };
+// addCollectionAndDocuments();
 
 // Get data from database
 
@@ -250,7 +251,6 @@ export const getGeneralStatsFromCurrentUser = async (uid) => {
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  console.log(querySnapshot);
 
   const generalStatsMap = querySnapshot.docs.map((docSnapshot) => {
     const { passedAllQuizzes, bestTime, displayName } = docSnapshot.data();
@@ -295,5 +295,57 @@ export const updatePassedQuizUser = async (uid, currentClass, quiz) => {
 
   await updateDoc(collectionRef, {
     passed: true,
+  });
+};
+
+export const updateCountPassedCurrentUserQuiz = async (
+  uid,
+  currentClass,
+  passedQuizzes
+) => {
+  const collectionRef = doc(db, `/users/${uid}/Podsumowanie/${currentClass}`);
+
+  await updateDoc(collectionRef, {
+    passedQuizzes: passedQuizzes + 1,
+  });
+};
+
+export const updateCountPassedAllQuizzes = async (uid, passedAllQuizzes) => {
+  const collectionRef = doc(db, `/users/${uid}/Ranking/Statystyki ogólne`);
+
+  await updateDoc(collectionRef, {
+    passedAllQuizzes: passedAllQuizzes + 1,
+  });
+};
+
+export const updateNumbersOfApproachesCurrentUserQuiz = async (
+  uid,
+  currentClass,
+  numberOfApproaches
+) => {
+  const collectionRef = doc(db, `/users/${uid}/Podsumowanie/${currentClass}`);
+
+  await updateDoc(collectionRef, {
+    numberOfApproaches: numberOfApproaches + 1,
+  });
+};
+
+export const updateBestTimeCurrentUserQuiz = async (
+  uid,
+  currentClass,
+  bestTime
+) => {
+  const collectionRef = doc(db, `/users/${uid}/Podsumowanie/${currentClass}`);
+
+  await updateDoc(collectionRef, {
+    bestTime: bestTime,
+  });
+};
+
+export const updateGeneralBestTime = async (uid, bestTime) => {
+  const collectionRef = doc(db, `/users/${uid}/Ranking/Statystyki ogólne`);
+
+  await updateDoc(collectionRef, {
+    bestTime: bestTime,
   });
 };

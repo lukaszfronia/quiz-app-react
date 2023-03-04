@@ -5,7 +5,10 @@ import { AuthContext } from "../../context/auth.context";
 
 import CurrentQuiz from "../../components/quiz.component/quiz.component";
 import Button from "../../components/button/button.component";
-
+import {
+  updateBestTimeCurrentUserQuiz,
+  updateGeneralBestTime,
+} from "../../utils/firebase/firebase.utils";
 import "./quiz.styles.css";
 import CountDwownTimer from "../../components/timer/countdowntime.component";
 import Result from "../../components/result/result.component";
@@ -19,9 +22,32 @@ const Quiz = ({ klasa }) => {
   const [question, setQuestion] = useState("");
   const [result, setResult] = useState(false);
   const [score, setScore] = useState(0);
-  const { userQuiz } = useContext(AuthContext);
+  const { userQuiz, summaryQuiz, currentUser } = useContext(AuthContext);
   const [passed, setPassed] = useState(userQuiz[currentQuizNumber].passed);
   const [restartQuiz, setRestartQuiz] = useState(false);
+  const [startTime, setStartTime] = useState(null);
+  const [endTime, setEndTime] = useState(null);
+  const [bestTime, setBestTime] = useState("");
+
+  const finalScore = (score / currentQuiz.length) * 100;
+  const quizLength = Object.keys(quizzes).length;
+
+  useEffect(() => {
+    setBestTime(Math.floor(endTime - startTime));
+  }, [endTime]);
+
+  useEffect(() => {
+    if (currentQuestion === currentQuiz.length - 1) {
+      console.log(bestTime);
+      if (summaryQuiz[klasa].bestTime >= bestTime) {
+        updateBestTimeCurrentUserQuiz(currentUser.uid, klasa, bestTime);
+        updateGeneralBestTime(currentUser.uid, bestTime);
+      } else if (summaryQuiz[klasa].bestTime === 0) {
+        updateBestTimeCurrentUserQuiz(currentUser.uid, klasa, bestTime);
+        updateGeneralBestTime(currentUser.uid, bestTime);
+      }
+    }
+  }, [bestTime]);
 
   useEffect(() => {
     setCurrentQuiz(quizzes[quiz]);
@@ -47,12 +73,14 @@ const Quiz = ({ klasa }) => {
               setCurrentQuestion={setCurrentQuestion}
               setResult={setResult}
               setScore={setScore}
+              passed={passed}
+              klasa={klasa}
+              setStartTime={setStartTime}
             />
           )
         ) : (
           <Result
-            score={score}
-            currentQuiz={currentQuiz}
+            finalScore={finalScore}
             setResult={setResult}
             setCurrentQuestion={setCurrentQuestion}
             setScore={setScore}
@@ -62,6 +90,8 @@ const Quiz = ({ klasa }) => {
             setPassed={setPassed}
             restartQuiz={restartQuiz}
             setRestartQuiz={setRestartQuiz}
+            setEndTime={setEndTime}
+            quizLength={quizLength}
           />
         )}
       </div>

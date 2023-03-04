@@ -19,6 +19,7 @@ export const AuthContext = createContext({
   summaryQuiz: null,
   allUserUid: null,
   generalStatistics: [],
+  userGeneralStatistics: null,
 });
 
 export const AuthContextProvider = ({ children }) => {
@@ -28,6 +29,7 @@ export const AuthContextProvider = ({ children }) => {
   const [summaryQuiz, setSummaryQuiz] = useState(null);
   const [allUserUid, setAllUserUid] = useState(null);
   const [generalStatistics, setGeneralStatistics] = useState([]);
+  const [userGeneralStatistics, setUserGeneralStatistics] = useState(null);
 
   useEffect(() => {
     const getQuizMap = async () => {
@@ -67,6 +69,14 @@ export const AuthContextProvider = ({ children }) => {
   }, [allUserUid]);
 
   useEffect(() => {
+    const getGeneralStats = async () => {
+      const statsMap = await getGeneralStatsFromCurrentUser(currentUser?.uid);
+      setUserGeneralStatistics(statsMap);
+    };
+    getGeneralStats();
+  }, [currentUser?.uid]);
+
+  useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
       if (user) {
         createUserDocumentFromAuth(user);
@@ -76,6 +86,12 @@ export const AuthContextProvider = ({ children }) => {
 
     return unsubscribe;
   }, []);
+  useEffect(() => {
+    const sortedStatics = generalStatistics.sort(
+      (a, b) => b[0].passedAllQuizzes - a[0].passedAllQuizzes
+    );
+    setGeneralStatistics(sortedStatics);
+  }, [generalStatistics]);
 
   const value = {
     currentUser,
@@ -85,6 +101,7 @@ export const AuthContextProvider = ({ children }) => {
     summaryQuiz,
     allUserUid,
     generalStatistics,
+    userGeneralStatistics,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

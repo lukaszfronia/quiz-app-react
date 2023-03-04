@@ -3,6 +3,11 @@ import {
   updateLockedQuizUser,
   updateFinalResultUser,
   updatePassedQuizUser,
+  updateCountPassedCurrentUserQuiz,
+  updateCountPassedAllQuizzes,
+  updateNumbersOfApproachesCurrentUserQuiz,
+  updateBestTimeCurrentUserQuiz,
+  updateGeneralBestTime,
 } from "../../utils/firebase/firebase.utils";
 import { AuthContext } from "../../context/auth.context";
 
@@ -13,8 +18,7 @@ import achivement from "./achievement-g9826017dd_1280.png";
 import "./result.styles.css";
 
 const Result = ({
-  score,
-  currentQuiz,
+  finalScore,
   setResult,
   setCurrentQuestion,
   setScore,
@@ -24,8 +28,11 @@ const Result = ({
   setPassed,
   restartQuiz,
   setRestartQuiz,
+  setEndTime,
+  quizLength,
 }) => {
-  const { currentUser, userQuiz } = useContext(AuthContext);
+  const { currentUser, userQuiz, summaryQuiz, userGeneralStatistics } =
+    useContext(AuthContext);
 
   const [finalResult, setFinalResult] = useState(
     userQuiz[currentQuizNumber].finalScore
@@ -49,8 +56,6 @@ const Result = ({
     setPassed(false);
     setRestartQuiz(true);
   };
-
-  const finalScore = (score / currentQuiz.length) * 100;
 
   useEffect(() => {
     setFinalResult(userQuiz[currentQuizNumber].finalScore);
@@ -83,7 +88,35 @@ const Result = ({
     }
   }, []);
 
-  console.log(restartQuiz);
+  useEffect(() => {
+    if (finalScore === 100) {
+      updateCountPassedCurrentUserQuiz(
+        currentUser.uid,
+        klasa,
+        summaryQuiz[klasa].passedQuizzes
+      );
+      updateCountPassedAllQuizzes(
+        currentUser.uid,
+        userGeneralStatistics[0].passedAllQuizzes
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    if (restartQuiz) {
+      updateNumbersOfApproachesCurrentUserQuiz(
+        currentUser.uid,
+        klasa,
+        summaryQuiz[klasa].numberOfApproaches
+      );
+    }
+  }, [currentUser.uid, klasa, passed, summaryQuiz, restartQuiz]);
+
+  useEffect(() => {
+    if (!finalResult === 100 || !passed) {
+      setEndTime(new Date().getTime() / 1000);
+    }
+  }, []);
 
   return (
     <>
@@ -129,7 +162,11 @@ const Result = ({
           ) : finalScore >= 50 ? (
             <>
               <h1 className="quiz-description">Rozwiązałeś poprawnie quiz</h1>
-              <h2>Gratulacje udało Ci się odblokować kolejny quiz!</h2>
+              <h2>
+                {currentQuizNumber < quizLength - 1
+                  ? "Gratulacje udało Ci się odblokować kolejny quiz!"
+                  : ""}
+              </h2>
             </>
           ) : (
             <h1 className="quiz-description">
