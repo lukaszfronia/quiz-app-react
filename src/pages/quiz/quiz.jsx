@@ -37,7 +37,11 @@ const Quiz = ({ klasa }) => {
   }, [endTime]);
 
   useEffect(() => {
-    if (currentQuestion === currentQuiz.length - 1) {
+    if (
+      (currentQuestion === currentQuiz.length - 1) &
+      ((finalScore === 100) & userQuiz[currentQuizNumber].isFirstOpen ||
+        (finalScore === 100) & restartQuiz)
+    ) {
       console.log(bestTime);
       if (summaryQuiz[klasa].bestTime >= bestTime) {
         updateBestTimeCurrentUserQuiz(currentUser.uid, klasa, bestTime);
@@ -69,6 +73,7 @@ const Quiz = ({ klasa }) => {
             <CurrentQuiz
               quiz={question}
               currentQuestion={currentQuestion}
+              currentQuizNumber={currentQuizNumber}
               currentQuiz={currentQuiz}
               setCurrentQuestion={setCurrentQuestion}
               setResult={setResult}

@@ -3,13 +3,17 @@ import { useEffect, useContext, useState } from "react";
 import nextQuestion from "../../helper/nextQuestionFunc";
 import "./quiz.component.styles.css";
 
-import { updateNumbersOfApproachesCurrentUserQuiz } from "../../utils/firebase/firebase.utils";
+import {
+  updateNumbersOfApproachesCurrentUserQuiz,
+  updateIsFirstOpenQuiz,
+} from "../../utils/firebase/firebase.utils";
 import { AuthContext } from "../../context/auth.context";
 
 const CurrentQuiz = ({
   quiz,
   currentQuestion,
   currentQuiz,
+  currentQuizNumber,
   setCurrentQuestion,
   setResult,
   setScore,
@@ -32,13 +36,19 @@ const CurrentQuiz = ({
   const { currentUser, summaryQuiz } = useContext(AuthContext);
 
   useEffect(() => {
-    !passed &&
+    if (!passed) {
       updateNumbersOfApproachesCurrentUserQuiz(
         currentUser.uid,
         klasa,
         summaryQuiz[klasa].numberOfApproaches
       );
-  }, [currentUser.uid, klasa, passed, summaryQuiz]);
+      updateIsFirstOpenQuiz(
+        currentUser.uid,
+        klasa,
+        `Quiz ${currentQuizNumber}`
+      );
+    }
+  }, [currentUser.uid, klasa, passed, summaryQuiz, currentQuizNumber]);
 
   useEffect(() => {
     setStartTime(new Date().getTime() / 1000);

@@ -6,8 +6,6 @@ import {
   updateCountPassedCurrentUserQuiz,
   updateCountPassedAllQuizzes,
   updateNumbersOfApproachesCurrentUserQuiz,
-  updateBestTimeCurrentUserQuiz,
-  updateGeneralBestTime,
 } from "../../utils/firebase/firebase.utils";
 import { AuthContext } from "../../context/auth.context";
 

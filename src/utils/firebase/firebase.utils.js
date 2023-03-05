@@ -188,9 +188,9 @@ export const getDataFromUserToCurrentQuiz = async (uid, classCategory) => {
   const querySnapshot = await getDocs(q);
 
   const quizMap = querySnapshot.docs.map((docSnapshot) => {
-    const { locked, passed, finalScore } = docSnapshot.data();
+    const { locked, passed, finalScore, isFirstOpen } = docSnapshot.data();
 
-    return { locked, passed, finalScore };
+    return { locked, passed, finalScore, isFirstOpen };
   }, {});
   return quizMap;
 };
@@ -267,6 +267,13 @@ export const updateLockedQuizUser = async (uid, currentClass, quiz) => {
 
   await updateDoc(collectionRef, {
     locked: false,
+  });
+};
+export const updateIsFirstOpenQuiz = async (uid, currentClass, quiz) => {
+  const collectionRef = doc(db, `/users/${uid}/${currentClass}/${quiz}`);
+
+  await updateDoc(collectionRef, {
+    isFirstOpen: false,
   });
 };
 export const addUserNameToGeneralStats = async (user, displayName) => {
