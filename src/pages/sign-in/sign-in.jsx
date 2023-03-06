@@ -9,8 +9,12 @@ import { AuthContext } from "../../context/auth.context";
 
 import image from "./geometry-g8bc5c6b0e_1280.png";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
+
 import {
   createUserDocumentFromAuth,
   addCollectionAndDocumentsToUser,
@@ -65,14 +69,30 @@ const SignIn = () => {
 
       resetFields();
     } catch (error) {
-      // TODO: Ulepszyć wyswitlanie się błędów
       switch (error.code) {
         case "auth/wrong-password":
-          alert("Błędne hasło");
+          toast.error("Błędne hasło", {
+            position: "top-center",
+            autoClose: true,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            theme: "colored",
+          });
+
           resetFields();
           break;
         case "auth/user-not-found":
-          alert("Błędny adres e-mail");
+          toast.error("Błędny adres e-mail", {
+            position: "top-center",
+            autoClose: true,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            theme: "colored",
+          });
           resetFields();
           break;
         default:
@@ -95,6 +115,16 @@ const SignIn = () => {
   // Reszta kodu
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={1000}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        theme="colored"
+      />
       <p>{currentUser?.displayName}</p>
       <div className="log-in-container">
         <div className="log-in-box">

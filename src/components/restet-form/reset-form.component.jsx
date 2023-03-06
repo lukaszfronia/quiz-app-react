@@ -1,5 +1,7 @@
 import { useState, useContext } from "react";
 import { motion } from "framer-motion";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import {
   setNewPassword,
@@ -10,8 +12,6 @@ import Button from "../button/button.component";
 import "./reset-form.styles.css";
 
 const defaultField = {
-  displayName: "",
-  email: "",
   password: "",
   confirmPassword: "",
 };
@@ -27,28 +27,38 @@ const ResetForm = ({ currentUser, setOverlay, setModal, setCurrentUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) return alert("Podane hasła się różnią");
+    if (password !== confirmPassword)
+      return toast.warn("Podane hasła się róźnią", {
+        className: "toast-message",
+        position: "top-center",
+        autoClose: true,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        theme: "colored",
+      });
 
     try {
       await setNewPassword(currentUser, password);
       // await signOutUser();
 
-      setCurrentUser(null);
       resetFields();
       setOverlay(false);
       setModal(false);
-      alert("Hasło zostało zmienione");
+      toast.success("Hasło zostało zmienione", {
+        className: "toast-message",
+        position: "top-center",
+        autoClose: true,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        theme: "colored",
+      });
     } catch (error) {
       // TODO: Ulepszyć wyswitlanie się błędów
-      switch (error.code) {
-        case "auth/wrong-password":
-          alert("Błędne hasło");
-
-          resetFields();
-          break;
-        default:
-          console.log(error);
-      }
+      console.log(error);
     }
   };
   const onChangeHandler = (e) => {
@@ -62,57 +72,59 @@ const ResetForm = ({ currentUser, setOverlay, setModal, setCurrentUser }) => {
   };
 
   return (
-    <motion.div
-      className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
-      initial={{
-        opacity: 0,
-        scale: 0.75,
-      }}
-      animate={{
-        opacity: 1,
-        scale: 1,
-        transition: {
-          ease: "easeOut",
-          duration: 0.5,
-        },
-      }}
-    >
-      <div className={`reset-container `}>
-        <div className="log-in-box">
-          <div className="log-in-text-box">
-            <h1>Wprowadź nowe hasło</h1>
+    <>
+      <motion.div
+        className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+        initial={{
+          opacity: 0,
+          scale: 0.75,
+        }}
+        animate={{
+          opacity: 1,
+          scale: 1,
+          transition: {
+            ease: "easeOut",
+            duration: 0.5,
+          },
+        }}
+      >
+        <div className={`reset-container `}>
+          <div className="log-in-box">
+            <div className="log-in-text-box">
+              <h1>Wprowadź nowe hasło</h1>
+            </div>
+            <form onSubmit={handleSubmit}>
+              <div className="input-form">
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Podaj hasło"
+                  onChange={onChangeHandler}
+                  value={password}
+                  required
+                />
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Powtórz hasło"
+                  onChange={onChangeHandler}
+                  value={confirmPassword}
+                  required
+                />
+              </div>
+              <div className="btn-box">
+                <Button onClick={setOverlayHandler} buttonType="secondary">
+                  Cofnij
+                </Button>
+                <Button type="submit" buttonType="secondary">
+                  Zapisz
+                </Button>
+              </div>
+            </form>
           </div>
-          <form onSubmit={handleSubmit}>
-            <div className="input-form">
-              <input
-                type="password"
-                name="password"
-                placeholder="Podaj hasło"
-                onChange={onChangeHandler}
-                value={password}
-                required
-              />
-              <input
-                type="password"
-                name="confirmPassword"
-                placeholder="Powtórz hasło"
-                onChange={onChangeHandler}
-                value={confirmPassword}
-                required
-              />
-            </div>
-            <div className="btn-box">
-              <Button onClick={setOverlayHandler} buttonType="secondary">
-                Cofnij
-              </Button>
-              <Button type="submit" buttonType="secondary">
-                Zapisz
-              </Button>
-            </div>
-          </form>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </>
   );
 };
 
