@@ -7,6 +7,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  updatePassword,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -273,7 +274,7 @@ export const updateIsFirstOpenQuiz = async (uid, currentClass, quiz) => {
   const collectionRef = doc(db, `/users/${uid}/${currentClass}/${quiz}`);
 
   await updateDoc(collectionRef, {
-    isFirstOpen: false,
+    isFirstOpen: true,
   });
 };
 export const addUserNameToGeneralStats = async (user, displayName) => {
@@ -356,3 +357,6 @@ export const updateGeneralBestTime = async (uid, bestTime) => {
     bestTime: bestTime,
   });
 };
+
+export const setNewPassword = async (user, newPassword) =>
+  await updatePassword(user, newPassword);

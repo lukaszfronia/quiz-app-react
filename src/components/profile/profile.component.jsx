@@ -4,14 +4,21 @@ import "./profile.styles.css";
 import avatar from "./dog-gffec67af5_1280.png";
 
 import Button from "../../components/button/button.component";
+import Modal from "../modal/modal.component";
+import ResetForm from "../restet-form/reset-form.component";
 import StatisticCategory from "../../components/statistic-category/statistic-category.component";
 import { AuthContext } from "../../context/auth.context";
-import { displayNameFromDatabase } from "../../utils/firebase/firebase.utils";
+import {
+  displayNameFromDatabase,
+  setNewPassword,
+} from "../../utils/firebase/firebase.utils";
 
 const Profile = () => {
-  const { currentUser, summaryQuiz } = useContext(AuthContext);
+  const { currentUser, summaryQuiz, setCurrentUser } = useContext(AuthContext);
 
   const [name, setName] = useState([]);
+  const [overlay, setOverlay] = useState(false);
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     const displayNameUser = async () => {
@@ -22,8 +29,26 @@ const Profile = () => {
     displayNameUser();
   }, [currentUser]);
 
+  const changeCurrentUserPasswordHandler = () => {
+    setModal(true);
+    setOverlay(true);
+  };
+
   return (
-    <div className="statistic-box">
+    <div className="statistic-box ">
+      {modal && (
+        <Modal
+          children={
+            <ResetForm
+              currentUser={currentUser}
+              setOverlay={setOverlay}
+              setModal={setModal}
+              setCurrentUser={setCurrentUser}
+            />
+          }
+          overlay={overlay}
+        />
+      )}
       <div className="statistic-profil-container">
         <div className="avatar-box">
           <img src={avatar} alt="pies" className="avatar" />
@@ -38,7 +63,12 @@ const Profile = () => {
                 )
               : name}
           </p>
-          <Button buttonType="secondary">Zmień hasło</Button>
+          <Button
+            buttonType="secondary"
+            onClick={changeCurrentUserPasswordHandler}
+          >
+            Zmień hasło
+          </Button>
         </div>
       </div>
 

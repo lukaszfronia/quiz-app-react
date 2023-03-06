@@ -37,16 +37,7 @@ const Klasa = () => {
               </div>
               {quizzes &&
                 Object.keys(quizzes).map((quiz, i) => {
-                  return (
-                    <QuizCategory
-                      key={quiz}
-                      quiz={quiz}
-                      i={i}
-                      userQuiz={userQuiz}
-                      quizLocked={quizLocked}
-                      setQuizLocked={setQuizLocked}
-                    />
-                  );
+                  return <QuizCategory quiz={quiz} i={i} userQuiz={userQuiz} />;
                 })}
             </div>
           </>

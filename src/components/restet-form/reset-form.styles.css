@@ -1,0 +1,17 @@
+.reset-container {
+  display: flex;
+  position: fixed;
+  transform: translate(50%, 50%);
+
+  border-bottom: 5px solid #fcc822;
+  border-top: 5px solid #fcc822;
+  border-radius: 2rem;
+
+  padding: 2.4rem 2.4rem 0 2.4rem;
+  justify-content: center;
+
+  color: #000;
+  background-color: #f7f7f7;
+  max-width: auto;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+}

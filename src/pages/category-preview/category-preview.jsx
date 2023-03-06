@@ -3,11 +3,11 @@ import categoryimg2 from "./school-g926b41339_1280.png";
 import categoryimg3 from "./school-g613556511_1280.png";
 
 import CategoryMenu from "../../components/category-menu/category-menu.component";
-
 import "./category-preview.styles.css";
 import BackButton from "../../components/button/back-button.conponent";
 
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const categories = [
   {

@@ -81,7 +81,7 @@ const Result = ({
   }, [finalScore]);
 
   useEffect(() => {
-    if (finalScore >= 50 && !passed) {
+    if (finalScore < 100 && !passed) {
       updatePassedQuizUser(currentUser.uid, klasa, `Quiz ${currentQuizNumber}`);
     }
   }, []);
@@ -127,7 +127,7 @@ const Result = ({
             <Button onClick={backToPreviousPage}>Powrót</Button>
           </div>
         </div>
-      ) : passed & ((finalResult >= 50) & (finalResult < 100)) ? (
+      ) : passed & (finalResult < 100) ? (
         <div className="final-result-box">
           <h1 className="quiz-description">
             Możesz spróbować poprawić swój wynik!
@@ -148,9 +148,18 @@ const Result = ({
                     Niestety nie udało Ci się poprawić wyniku
                   </h1>
                 ) : (
-                  <h1 className="quiz-description">
-                    Gratulacje udało Ci się poprawić poprzedni wynik
-                  </h1>
+                  <>
+                    <h1 className="quiz-description">
+                      Gratulacje udało Ci się poprawić poprzedni wynik!
+                    </h1>
+                    {finalScore >= 50 && (
+                      <h2>
+                        {currentQuizNumber < quizLength - 1
+                          ? "Gratulacje udało Ci się odblokować kolejny quiz!"
+                          : ""}
+                      </h2>
+                    )}
+                  </>
                 )}
                 <p className="quiz-final-result">
                   Aktualny wynik: {finalResult}%
