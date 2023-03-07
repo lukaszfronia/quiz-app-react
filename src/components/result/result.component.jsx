@@ -21,7 +21,7 @@ const Result = ({
   setCurrentQuestion,
   setScore,
   currentQuizNumber,
-  klasa,
+  currentClass,
   passed,
   setPassed,
   restartQuiz,
@@ -29,17 +29,21 @@ const Result = ({
   setEndTime,
   quizLength,
 }) => {
-  const { currentUser, userQuiz, summaryQuiz, userGeneralStatistics } =
-    useContext(AuthContext);
+  const {
+    currentUser,
+    quizInformationFromCurrentUser,
+    summaryQuiz,
+    userGeneralStatistics,
+  } = useContext(AuthContext);
 
   const [finalResult, setFinalResult] = useState(
-    userQuiz[currentQuizNumber].finalScore
+    quizInformationFromCurrentUser[currentQuizNumber].finalScore
   );
 
   const navigate = useNavigate();
   const closeQuizHandle = () => {
     navigate("../");
-    navigate(0);
+    // navigate(0);
     setRestartQuiz(false);
   };
   const backToPreviousPage = () => {
@@ -56,14 +60,16 @@ const Result = ({
   };
 
   useEffect(() => {
-    setFinalResult(userQuiz[currentQuizNumber].finalScore);
-  }, [currentQuizNumber, userQuiz]);
+    setFinalResult(
+      quizInformationFromCurrentUser[currentQuizNumber].finalScore
+    );
+  }, [currentQuizNumber, quizInformationFromCurrentUser]);
 
   useEffect(() => {
     if (finalScore >= 50) {
       updateLockedQuizUser(
         currentUser.uid,
-        klasa,
+        currentClass,
         `Quiz ${currentQuizNumber + 1}`
       );
     }
@@ -73,7 +79,7 @@ const Result = ({
     if (finalScore > finalResult) {
       updateFinalResultUser(
         currentUser.uid,
-        klasa,
+        currentClass,
         `Quiz ${currentQuizNumber}`,
         finalScore
       );
@@ -81,34 +87,24 @@ const Result = ({
   }, [finalScore]);
 
   useEffect(() => {
-    if (finalScore < 100 && !passed) {
-      updatePassedQuizUser(currentUser.uid, klasa, `Quiz ${currentQuizNumber}`);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (finalScore === 100) {
-      updateCountPassedCurrentUserQuiz(
+    if (finalScore <= 100 && !passed) {
+      updatePassedQuizUser(
         currentUser.uid,
-        klasa,
-        summaryQuiz[klasa].passedQuizzes
-      );
-      updateCountPassedAllQuizzes(
-        currentUser.uid,
-        userGeneralStatistics[0].passedAllQuizzes
+        currentClass,
+        `Quiz ${currentQuizNumber}`
       );
     }
   }, []);
 
   useEffect(() => {
-    if (restartQuiz) {
+    if (passed & restartQuiz) {
       updateNumbersOfApproachesCurrentUserQuiz(
         currentUser.uid,
-        klasa,
-        summaryQuiz[klasa].numberOfApproaches
+        currentClass,
+        summaryQuiz[currentClass].numberOfApproaches
       );
     }
-  }, [currentUser.uid, klasa, passed, summaryQuiz, restartQuiz]);
+  }, [currentUser.uid, currentClass, restartQuiz]);
 
   useEffect(() => {
     if (!finalResult === 100 || !passed) {

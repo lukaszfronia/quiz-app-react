@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import CategoryPreview from "../category-preview/category-preview";
-import Klasa from "../klasa/klasa";
+import CategoryClass from "../category-class/category-class";
 
 const Category = () => {
   return (
     <Routes>
       <Route index element={<CategoryPreview />} />
-      <Route path=":klasa/*" element={<Klasa />} />
+      <Route path=":currentClass/*" element={<CategoryClass />} />
     </Routes>
   );
 };

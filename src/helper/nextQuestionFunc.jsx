@@ -2,7 +2,7 @@ import Result from "../components/result/result.component";
 
 const nextQuestion = (
   currentQuestion,
-  currentQuiz,
+  questions,
   setCurrentQuestion,
   setResult,
   answer,
@@ -12,7 +12,7 @@ const nextQuestion = (
   if (answer?.correct === true) {
     setScore((prevScore) => prevScore + answer.score);
   }
-  if (currentQuestion + 1 < currentQuiz.length) {
+  if (currentQuestion + 1 < questions.length) {
     setCurrentQuestion((prevQuestion) => prevQuestion + 1);
   } else {
     setResult(true);

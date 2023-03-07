@@ -1,12 +1,7 @@
-export const generalStats = [
+const generalStats = [
   {
-    name: "Ranking",
-    generalStatistics: [
-      {
-        generalStats: "Statystyki ogólne",
-        passedAllQuizzes: 0,
-        bestTime: 0,
-      },
-    ],
+    passedAllQuizzes: 0,
+    bestTime: 0,
   },
 ];
+export default generalStats;

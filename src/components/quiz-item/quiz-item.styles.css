@@ -14,6 +14,9 @@
 .quiz-category-box:hover {
   transform: scale(1.1);
 }
+.locked {
+  pointer-events: none;
+}
 
 .circle-1 {
   background-color: #ffffff;

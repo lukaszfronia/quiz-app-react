@@ -73,11 +73,15 @@ const Profile = () => {
       </div>
 
       <div className="statistic-categroy-container">
-        <h1 className="statistic-category-description">Podsumowanie</h1>
+        <h1 className="statistic-category-description">Statystyki ogólne</h1>
 
         {Object.keys(summaryQuiz).map((category, i) => {
           return (
-            <StatisticCategory category={category} summaryQuiz={summaryQuiz} />
+            <StatisticCategory
+              key={Math.floor(Math.random() * 10000)}
+              category={category}
+              summaryQuiz={summaryQuiz}
+            />
           );
         })}
       </div>

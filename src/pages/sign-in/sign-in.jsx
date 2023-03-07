@@ -20,6 +20,7 @@ import {
   addCollectionAndDocumentsToUser,
   addSummaryAllQuizToUser,
   addUserNameToGeneralStats,
+  createRankingDocument,
 } from "../../utils/firebase/firebase.utils";
 
 import "./sign-in.styles.css";
@@ -35,7 +36,6 @@ const SignIn = () => {
   const { currentUser, setCurrentUser, allUserUid } = useContext(AuthContext);
   const [formFields, setFormFields] = useState(defaultField);
   const { email, password } = formFields;
-  const [googleUser, setGoogleUser] = useState(currentUser?.displayName);
 
   //Funkcje
 
@@ -50,6 +50,7 @@ const SignIn = () => {
 
       if (!allUserUid.includes(user.uid)) {
         await createUserDocumentFromAuth(user);
+        await createRankingDocument(user);
         await addCollectionAndDocumentsToUser(user);
         await addSummaryAllQuizToUser(user);
         await addGeneralStatsForUser(user);

@@ -3,6 +3,7 @@ import timer from "./timer.png";
 import succes from "./success.png";
 
 const LeaderBoardUser = ({ statistic, i }) => {
+  console.log(statistic);
   const { passedAllQuizzes, bestTime, displayName } = statistic;
   const min = `${Math.trunc(bestTime / 60)}`.padStart(2, "0");
   const sec = String(bestTime % 60).padStart(2, "0");
@@ -11,7 +12,7 @@ const LeaderBoardUser = ({ statistic, i }) => {
     <div className="leaderboard-user-box">
       <div className="number-box">{i + 1}</div>
       <h1 className="leaderboard-user-name">
-        {displayName.includes(" ")
+        {displayName?.includes(" ")
           ? displayName?.substring(0, displayName?.indexOf(" "))
           : displayName}
       </h1>

@@ -20,20 +20,21 @@ import {
   where,
   writeBatch,
   updateDoc,
+  onSnapshot,
 } from "firebase/firestore";
 
 import data from "../../data.js";
 import { summary } from "../../summaryAllQuiz.js";
 import category from "../../statisticQuizData.js";
-import { generalStats } from "../../generalStatistic.js";
+import generalStats from "../../generalStatistic.js";
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAnBsBYahwY2I1LAb7Fo2Q8B_vbkFqgZOE",
-  authDomain: "quiz-math-db.firebaseapp.com",
-  projectId: "quiz-math-db",
-  storageBucket: "quiz-math-db.appspot.com",
-  messagingSenderId: "502334601890",
-  appId: "1:502334601890:web:10bd9ea10ef6379a71b5fb",
+  apiKey: "AIzaSyDMF9SBtUkqUCUCYyeMm8UorJuAhiii3rA",
+  authDomain: "math-app-12d88.firebaseapp.com",
+  projectId: "math-app-12d88",
+  storageBucket: "math-app-12d88.appspot.com",
+  messagingSenderId: "1037781149514",
+  appId: "1:1037781149514:web:55cba5fed6cfc6eb6f43b3",
 };
 
 // Initialize Firebase
@@ -109,13 +110,10 @@ export const addSummaryAllQuizToUser = async (user) => {
 };
 export const addGeneralStatsForUser = async (user) => {
   const batch = writeBatch(db);
-  let docRef;
 
+  const docRef = doc(db, "Ranking", user.uid);
   generalStats.forEach((object) => {
-    object.generalStatistics.forEach((statistic) => {
-      docRef = doc(db, "users", user.uid, object.name, statistic.generalStats);
-      batch.set(docRef, statistic);
-    });
+    batch.set(docRef, object);
   });
 
   await batch.commit();
@@ -142,6 +140,25 @@ export const createUserDocumentFromAuth = async (
         email,
         createdAt,
         ...userAdditionalInformation,
+      });
+    } catch (error) {
+      console.log("error creating the user", error.message);
+    }
+  }
+  return userDocRef;
+};
+
+export const createRankingDocument = async (userAuth) => {
+  if (!userAuth) return;
+  const userDocRef = doc(db, "Ranking", userAuth.uid);
+  const userSnapshot = await getDoc(userDocRef);
+
+  if (!userSnapshot.exists()) {
+    const { displayName } = userAuth;
+
+    try {
+      await setDoc(userDocRef, {
+        displayName,
       });
     } catch (error) {
       console.log("error creating the user", error.message);
@@ -182,85 +199,83 @@ export const displayNameFromDatabase = async (user) => {
   return name;
 };
 
-export const getDataFromUserToCurrentQuiz = async (uid, classCategory) => {
+export const getQuizzesInformationForAllUser = (
+  uid,
+  classCategory,
+  setQuizInformationFromCurrentUser
+) => {
   const collectionRef = collection(db, `users/${uid}/${classCategory}`);
-  const q = query(collectionRef);
 
-  const querySnapshot = await getDocs(q);
-
-  const quizMap = querySnapshot.docs.map((docSnapshot) => {
-    const { locked, passed, finalScore, isFirstOpen } = docSnapshot.data();
-
-    return { locked, passed, finalScore, isFirstOpen };
-  }, {});
-  return quizMap;
+  onSnapshot(collectionRef, (snapshot) => {
+    let items = [];
+    snapshot.docs.map((doc) => {
+      items.push({ ...doc.data() });
+    });
+    setQuizInformationFromCurrentUser(items);
+  });
 };
 
-export const getQuizzesandDocuments = async (col) => {
-  const collectionRef = collection(db, col);
-  const q = query(collectionRef);
+export const getAllQuizzesWithItems = (col, setQizzes) => {
+  const collectionRef = collection(db, "Klasa 1 - 3");
 
-  const querySnapshot = await getDocs(q);
-  const quizMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { quizName, questions } = docSnapshot.data();
-    acc[quizName] = questions;
-    return acc;
-  }, {});
-  return quizMap;
+  onSnapshot(collectionRef, (snapshot) => {
+    let items = {};
+    snapshot.docs.reduce((acc, doc) => {
+      acc = { questions: doc.data().questions };
+      items[doc.data().quizName] = acc;
+    }, {});
+    setQizzes(items);
+  });
 };
 
-export const getDataSummaryForUser = async (uid) => {
+export const getDataSummaryForUser = (uid, setSummaryQuiz) => {
   const collectionRef = collection(db, `users/${uid}/Podsumowanie`);
-  const q = query(collectionRef);
 
-  const querySnapshot = await getDocs(q);
-
-  const summaryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const {
-      category,
-      generalTime,
-      numberOfApproaches,
-      grade,
-      passedQuizzes,
-      bestTime,
-    } = docSnapshot.data();
-    acc[category] = {
-      generalTime,
-      numberOfApproaches,
-      grade,
-      passedQuizzes,
-      bestTime,
-    };
-    return acc;
-  }, {});
-  return summaryMap;
+  onSnapshot(collectionRef, (snapshot) => {
+    let items = {};
+    snapshot.docs.reduce((acc, doc) => {
+      acc = { ...doc.data() };
+      items[doc.data().category] = acc;
+    }, {});
+    setSummaryQuiz(items);
+  });
 };
 
-export const getAllUsers = async () => {
-  const collectionRef = collection(db, `users/`);
-  const q = query(collectionRef);
-  const querySnapshot = await getDocs(q);
-  const usersMap = querySnapshot.docs.map((docSnapshot) => {
-    const { uid } = docSnapshot.data();
-    return uid;
-  }, {});
-  return usersMap;
+export const getAllUsers = (setAllUserUid) => {
+  const collectionRef = collection(db, `users`);
+
+  onSnapshot(collectionRef, (snapshot) => {
+    let items = [];
+    snapshot.docs.map((doc) => {
+      items.push({ uid: doc.data().uid });
+    });
+    setAllUserUid(items);
+  });
 };
 
-export const getGeneralStatsFromCurrentUser = async (uid) => {
-  const collectionRef = collection(db, `users/${uid}/Ranking`);
-  const q = query(collectionRef);
+export const getGeneralStatsForAllUsers = (setGeneralStatistics) => {
+  const collectionRef = collection(db, `Ranking/`);
 
-  const querySnapshot = await getDocs(q);
-
-  const generalStatsMap = querySnapshot.docs.map((docSnapshot) => {
-    const { passedAllQuizzes, bestTime, displayName } = docSnapshot.data();
-
-    return { passedAllQuizzes, bestTime, displayName };
-  }, {});
-  return generalStatsMap;
+  onSnapshot(collectionRef, (snapshot) => {
+    let items = [];
+    snapshot.docs.map((doc) => {
+      items.push({ ...doc.data() });
+    });
+    setGeneralStatistics(items);
+  });
 };
+export const getGeneralStatsForCurrentUser = (
+  uid,
+  setUserGeneralStatistics
+) => {
+  const collectionRef = doc(db, `Ranking/${uid}`);
 
+  onSnapshot(collectionRef, (snapshot) => {
+    let items = [];
+    items.push({ ...snapshot.data() });
+    setUserGeneralStatistics(items);
+  });
+};
 ///////////////////////////////////////////////////////UPDATE FUNCTIONS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 export const updateLockedQuizUser = async (uid, currentClass, quiz) => {
@@ -278,7 +293,7 @@ export const updateIsFirstOpenQuiz = async (uid, currentClass, quiz) => {
   });
 };
 export const addUserNameToGeneralStats = async (user, displayName) => {
-  const collectionRef = doc(db, `/users/${user.uid}/Ranking/Statystyki ogólne`);
+  const collectionRef = doc(db, `/Ranking/${user.uid}`);
 
   await updateDoc(collectionRef, {
     displayName: `${displayName}`,
@@ -319,7 +334,7 @@ export const updateCountPassedCurrentUserQuiz = async (
 };
 
 export const updateCountPassedAllQuizzes = async (uid, passedAllQuizzes) => {
-  const collectionRef = doc(db, `/users/${uid}/Ranking/Statystyki ogólne`);
+  const collectionRef = doc(db, `/Ranking/${uid}`);
 
   await updateDoc(collectionRef, {
     passedAllQuizzes: passedAllQuizzes + 1,
@@ -351,7 +366,7 @@ export const updateBestTimeCurrentUserQuiz = async (
 };
 
 export const updateGeneralBestTime = async (uid, bestTime) => {
-  const collectionRef = doc(db, `/users/${uid}/Ranking/Statystyki ogólne`);
+  const collectionRef = doc(db, `/Ranking/${uid}`);
 
   await updateDoc(collectionRef, {
     bestTime: bestTime,

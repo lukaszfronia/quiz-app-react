@@ -13,6 +13,7 @@ import {
   addSummaryAllQuizToUser,
   addGeneralStatsForUser,
   addUserNameToGeneralStats,
+  createRankingDocument,
 } from "../../utils/firebase/firebase.utils";
 
 import "./sign-up.styles.css";
@@ -55,6 +56,7 @@ const SignUp = () => {
       );
 
       await createUserDocumentFromAuth(user, { displayName });
+      await createRankingDocument(user);
       await addCollectionAndDocumentsToUser(user);
       await addSummaryAllQuizToUser(user);
       await addGeneralStatsForUser(user);

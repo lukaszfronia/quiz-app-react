@@ -7,14 +7,17 @@ import LeaderBoardUser from "../leaderboard-user/leaderboard-user.component";
 const Leaderboard = () => {
   const { generalStatistics } = useContext(AuthContext);
 
-  console.log(generalStatistics[0]);
   return (
     <div className="leaderboard-box">
       <h1 className="leaderboard-title">Ranking</h1>
-      {generalStatistics.map((statistics, i) => {
-        return statistics.map((statistic) => {
-          return <LeaderBoardUser statistic={statistic} i={i} />;
-        });
+      {generalStatistics.map((statistic, i) => {
+        return (
+          <LeaderBoardUser
+            key={Math.floor(Math.random() * 10000)}
+            statistic={statistic}
+            i={i}
+          />
+        );
       })}
     </div>
   );

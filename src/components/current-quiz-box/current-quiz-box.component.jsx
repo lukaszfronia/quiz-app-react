@@ -1,30 +1,29 @@
 import { useEffect, useContext, useState } from "react";
 
 import nextQuestion from "../../helper/nextQuestionFunc";
-import "./quiz.component.styles.css";
-
+import "./currnet-quiz-box.styles.css";
 import {
   updateNumbersOfApproachesCurrentUserQuiz,
   updateIsFirstOpenQuiz,
 } from "../../utils/firebase/firebase.utils";
 import { AuthContext } from "../../context/auth.context";
 
-const CurrentQuiz = ({
-  quiz,
+const CurrentQuizBox = ({
+  question,
   currentQuestion,
-  currentQuiz,
+  questions,
   currentQuizNumber,
   setCurrentQuestion,
   setResult,
   setScore,
   passed,
-  klasa,
+  currentClass,
   setStartTime,
 }) => {
   const nextQuestionHandler = (e, i, answer) => {
     return nextQuestion(
       currentQuestion,
-      currentQuiz,
+      questions,
       setCurrentQuestion,
       setResult,
       answer,
@@ -39,16 +38,16 @@ const CurrentQuiz = ({
     if (!passed) {
       updateNumbersOfApproachesCurrentUserQuiz(
         currentUser.uid,
-        klasa,
-        summaryQuiz[klasa].numberOfApproaches
+        currentClass,
+        summaryQuiz[currentClass].numberOfApproaches
       );
       updateIsFirstOpenQuiz(
         currentUser.uid,
-        klasa,
+        currentClass,
         `Quiz ${currentQuizNumber}`
       );
     }
-  }, [currentUser.uid, klasa, passed, summaryQuiz, currentQuizNumber]);
+  }, [currentClass, currentQuizNumber]);
 
   useEffect(() => {
     setStartTime(new Date().getTime() / 1000);
@@ -56,10 +55,11 @@ const CurrentQuiz = ({
 
   return (
     <>
-      <div className="quiz-question">{quiz.question}</div>;
+      <div className="quiz-question">{question.question}</div>;
       <div className="quiz-answer-container">
-        {quiz.answers.map((answer, i) => (
+        {question.answers.map((answer, i) => (
           <div
+            key={Math.floor(Math.random() * 10000)}
             className="quiz-answer-box"
             onClick={(e) => {
               nextQuestionHandler(e, i, answer);
@@ -73,4 +73,4 @@ const CurrentQuiz = ({
   );
 };
 
-export default CurrentQuiz;
+export default CurrentQuizBox;

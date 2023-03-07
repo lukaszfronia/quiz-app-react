@@ -2,18 +2,19 @@ import { createContext, useState, useEffect } from "react";
 import { generalStats } from "../generalStatistic";
 
 import {
-  getDataFromUserToCurrentQuiz,
+  getQuizzesInformationForAllUser,
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
   getDataSummaryForUser,
   getAllUsers,
-  getGeneralStatsFromCurrentUser,
+  getGeneralStatsForAllUsers,
+  getGeneralStatsForCurrentUser,
 } from "../utils/firebase/firebase.utils";
 
 export const AuthContext = createContext({
   currentUser: null,
   setCurrentUser: () => null,
-  userQuiz: null,
+  quizInformationFromCurrentUser: null,
   classCategory: null,
   setClassCategory: () => null,
   summaryQuiz: null,
@@ -24,56 +25,43 @@ export const AuthContext = createContext({
 
 export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
-  const [userQuiz, setUserQuiz] = useState(null);
+  const [quizInformationFromCurrentUser, setQuizInformationFromCurrentUser] =
+    useState(null);
   const [classCategory, setClassCategory] = useState("Klasa 1 - 3");
   const [summaryQuiz, setSummaryQuiz] = useState(null);
-  const [allUserUid, setAllUserUid] = useState(null);
+  const [allUserUid, setAllUserUid] = useState([]);
   const [generalStatistics, setGeneralStatistics] = useState([]);
   const [userGeneralStatistics, setUserGeneralStatistics] = useState(null);
-
+  const [uid, setUid] = useState([]);
   useEffect(() => {
-    const getQuizMap = async () => {
-      const quizMap = await getDataFromUserToCurrentQuiz(
-        currentUser?.uid,
-        classCategory
-      );
-      setUserQuiz(quizMap);
-    };
-    getQuizMap();
+    getQuizzesInformationForAllUser(
+      currentUser?.uid,
+      classCategory,
+      setQuizInformationFromCurrentUser
+    );
   }, [currentUser?.uid, classCategory]);
 
   useEffect(() => {
-    const getSummaryMap = async () => {
-      const summaryMap = await getDataSummaryForUser(currentUser?.uid);
-      setSummaryQuiz(summaryMap);
-    };
-    getSummaryMap();
+    getDataSummaryForUser(currentUser?.uid, setSummaryQuiz);
   }, [currentUser?.uid]);
 
   useEffect(() => {
-    const getAllUsersUid = async () => {
-      const usersMap = await getAllUsers();
-      setAllUserUid(usersMap);
-    };
-    getAllUsersUid();
+    getAllUsers(setAllUserUid);
   }, []);
 
   useEffect(() => {
-    allUserUid?.forEach((uid) => {
-      const getGeneralStats = async (uid) => {
-        const statsMap = await getGeneralStatsFromCurrentUser(uid);
-        setGeneralStatistics((oldArray) => [...oldArray, statsMap]);
-      };
-      getGeneralStats(uid);
+    allUserUid.forEach((id) => {
+      const { uid } = id;
+      setUid((prev) => [...prev, uid]);
     });
   }, [allUserUid]);
 
   useEffect(() => {
-    const getGeneralStats = async () => {
-      const statsMap = await getGeneralStatsFromCurrentUser(currentUser?.uid);
-      setUserGeneralStatistics(statsMap);
-    };
-    getGeneralStats();
+    getGeneralStatsForAllUsers(setGeneralStatistics);
+  }, []);
+
+  useEffect(() => {
+    getGeneralStatsForCurrentUser(currentUser?.uid, setUserGeneralStatistics);
   }, [currentUser?.uid]);
 
   useEffect(() => {
@@ -87,8 +75,8 @@ export const AuthContextProvider = ({ children }) => {
     return unsubscribe;
   }, []);
   useEffect(() => {
-    const sortedStatics = generalStatistics.sort(
-      (a, b) => b[0].passedAllQuizzes - a[0].passedAllQuizzes
+    const sortedStatics = generalStatistics?.sort(
+      (a, b) => b[0]?.passedAllQuizzes - a[0]?.passedAllQuizzes
     );
     setGeneralStatistics(sortedStatics);
   }, [generalStatistics]);
@@ -96,7 +84,7 @@ export const AuthContextProvider = ({ children }) => {
   const value = {
     currentUser,
     setCurrentUser,
-    userQuiz,
+    quizInformationFromCurrentUser,
     setClassCategory,
     summaryQuiz,
     allUserUid,
