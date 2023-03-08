@@ -9,6 +9,7 @@ import {
   getAllUsers,
   getGeneralStatsForAllUsers,
   getGeneralStatsForCurrentUser,
+  getCurrentQuizshowHint,
 } from "../utils/firebase/firebase.utils";
 
 export const AuthContext = createContext({
@@ -32,7 +33,14 @@ export const AuthContextProvider = ({ children }) => {
   const [allUserUid, setAllUserUid] = useState([]);
   const [generalStatistics, setGeneralStatistics] = useState([]);
   const [userGeneralStatistics, setUserGeneralStatistics] = useState(null);
-  const [uid, setUid] = useState([]);
+  const [currentUsershowHint, setCurrentshowHint] = useState();
+
+  // useEffect(() => {
+  //   getCurrentQuizshowHint(currentUser?.uid, setCurrentshowHint);
+  // }, [currentUser?.uid]);
+
+  // console.log(quizInformationFromCurrentUser);
+
   useEffect(() => {
     getQuizzesInformationForAllUser(
       currentUser?.uid,
@@ -48,13 +56,6 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     getAllUsers(setAllUserUid);
   }, []);
-
-  useEffect(() => {
-    allUserUid.forEach((id) => {
-      const { uid } = id;
-      setUid((prev) => [...prev, uid]);
-    });
-  }, [allUserUid]);
 
   useEffect(() => {
     getGeneralStatsForAllUsers(setGeneralStatistics);

@@ -5,6 +5,7 @@ import "./currnet-quiz-box.styles.css";
 import {
   updateNumbersOfApproachesCurrentUserQuiz,
   updateIsFirstOpenQuiz,
+  updadateCurrentQuestionHint,
 } from "../../utils/firebase/firebase.utils";
 import { AuthContext } from "../../context/auth.context";
 
@@ -19,6 +20,12 @@ const CurrentQuizBox = ({
   passed,
   currentClass,
   setStartTime,
+  setIsFirstOpen,
+  setShowHint,
+  showHint,
+  isHint,
+  setCloseHint,
+  setEndAfterHint,
 }) => {
   const nextQuestionHandler = (e, i, answer) => {
     return nextQuestion(
@@ -28,7 +35,12 @@ const CurrentQuizBox = ({
       setResult,
       answer,
       i,
-      setScore
+      setScore,
+      setShowHint,
+      showHint,
+      isHint,
+      setCloseHint,
+      setEndAfterHint
     );
   };
 
@@ -48,6 +60,24 @@ const CurrentQuizBox = ({
       );
     }
   }, [currentClass, currentQuizNumber]);
+
+  // useEffect(() => {
+  //   if (currentQuestion === questions.length) {
+  //     updateIsFirstOpenQuiz(
+  //       currentUser.uid,
+  //       currentClass,
+  //       `Quiz ${currentQuizNumber}`
+  //     );
+  //   }
+  // }, [currentClass, currentQuizNumber, currentQuestion]);
+
+  useEffect(() => {
+    setIsFirstOpen(false);
+  }, []);
+
+  useEffect(() => {
+    setShowHint(false);
+  }, [setShowHint]);
 
   useEffect(() => {
     setStartTime(new Date().getTime() / 1000);

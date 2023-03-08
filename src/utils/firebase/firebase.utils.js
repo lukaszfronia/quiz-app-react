@@ -26,6 +26,7 @@ import {
 import data from "../../data.js";
 import { summary } from "../../summaryAllQuiz.js";
 import category from "../../statisticQuizData.js";
+import hint from "../../hintData.js";
 import generalStats from "../../generalStatistic.js";
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -276,6 +277,7 @@ export const getGeneralStatsForCurrentUser = (
     setUserGeneralStatistics(items);
   });
 };
+
 ///////////////////////////////////////////////////////UPDATE FUNCTIONS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 export const updateLockedQuizUser = async (uid, currentClass, quiz) => {
@@ -370,6 +372,35 @@ export const updateGeneralBestTime = async (uid, bestTime) => {
 
   await updateDoc(collectionRef, {
     bestTime: bestTime,
+  });
+};
+
+export const updadateCurrentQuestionHint = async (
+  uid,
+  currentClass,
+  currentQuiz,
+  currentQuestion
+) => {
+  const collectionRef = doc(db, `/users/${uid}/${currentClass}/${currentQuiz}`);
+
+  await updateDoc(collectionRef, {
+    [`${currentQuestion}`]: { hint: false },
+  });
+};
+
+export const updadateCurrentQuestionHintAll = async (
+  uid,
+  currentClass,
+  currentQuiz,
+  currentQuestion
+) => {
+  const collectionRef = doc(db, `/users/${uid}/${currentClass}/${currentQuiz}`);
+
+  await updateDoc(collectionRef, {
+    [`0`]: { hint: true },
+    [`1`]: { hint: true },
+    [`2`]: { hint: true },
+    [`3`]: { hint: true },
   });
 };
 

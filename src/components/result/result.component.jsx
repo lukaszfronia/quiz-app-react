@@ -6,6 +6,7 @@ import {
   updateCountPassedCurrentUserQuiz,
   updateCountPassedAllQuizzes,
   updateNumbersOfApproachesCurrentUserQuiz,
+  updadateCurrentQuestionHintAll,
 } from "../../utils/firebase/firebase.utils";
 import { AuthContext } from "../../context/auth.context";
 
@@ -28,6 +29,9 @@ const Result = ({
   setRestartQuiz,
   setEndTime,
   quizLength,
+  finalResult,
+  isFirstOpen,
+  setIsFirstOpen,
 }) => {
   const {
     currentUser,
@@ -36,19 +40,18 @@ const Result = ({
     userGeneralStatistics,
   } = useContext(AuthContext);
 
-  const [finalResult, setFinalResult] = useState(
-    quizInformationFromCurrentUser[currentQuizNumber].finalScore
-  );
-
   const navigate = useNavigate();
   const closeQuizHandle = () => {
     navigate("../");
     // navigate(0);
     setRestartQuiz(false);
+    setIsFirstOpen(true);
   };
+
   const backToPreviousPage = () => {
     navigate("../");
     setRestartQuiz(false);
+    setIsFirstOpen(true);
   };
 
   const againDoQuizHandle = () => {
@@ -57,13 +60,8 @@ const Result = ({
     setScore(0);
     setPassed(false);
     setRestartQuiz(true);
+    setIsFirstOpen(true);
   };
-
-  useEffect(() => {
-    setFinalResult(
-      quizInformationFromCurrentUser[currentQuizNumber].finalScore
-    );
-  }, [currentQuizNumber, quizInformationFromCurrentUser]);
 
   useEffect(() => {
     if (finalScore >= 50) {
@@ -104,7 +102,7 @@ const Result = ({
         summaryQuiz[currentClass].numberOfApproaches
       );
     }
-  }, [currentUser.uid, currentClass, restartQuiz]);
+  }, [restartQuiz, passed]);
 
   useEffect(() => {
     if (!finalResult === 100 || !passed) {
@@ -114,7 +112,7 @@ const Result = ({
 
   return (
     <>
-      {passed & (finalResult === 100) ? (
+      {passed & isFirstOpen & (finalResult === 100) ? (
         <div className="final-result-box">
           <img src={achivement} alt="puchar" className="img-achivement" />
           <h1 className="quiz-description">Rozwiązałeś poprawnie cały quiz!</h1>
@@ -123,7 +121,7 @@ const Result = ({
             <Button onClick={backToPreviousPage}>Powrót</Button>
           </div>
         </div>
-      ) : passed & (finalResult < 100) ? (
+      ) : isFirstOpen & passed & (finalResult < 100) ? (
         <div className="final-result-box">
           <h1 className="quiz-description">
             Możesz spróbować poprawić swój wynik!
@@ -136,33 +134,24 @@ const Result = ({
         </div>
       ) : (
         <div className="final-result-box">
-          {restartQuiz ? (
-            (finalScore <= 100) & restartQuiz && (
+          {restartQuiz & !isFirstOpen ? (
+            (finalScore <= 100) & restartQuiz & !isFirstOpen && (
               <>
                 {finalScore < finalResult ? (
                   <h1 className="quiz-description">
                     Niestety nie udało Ci się poprawić wyniku
                   </h1>
                 ) : (
-                  <>
-                    <h1 className="quiz-description">
-                      Gratulacje udało Ci się poprawić poprzedni wynik!
-                    </h1>
-                    {finalScore >= 50 && (
-                      <h2>
-                        {currentQuizNumber < quizLength - 1
-                          ? "Gratulacje udało Ci się odblokować kolejny quiz!"
-                          : ""}
-                      </h2>
-                    )}
-                  </>
+                  <h1 className="quiz-description">
+                    Gratulacje udało Ci się poprawić poprzedni wynik!
+                  </h1>
                 )}
                 <p className="quiz-final-result">
                   Aktualny wynik: {finalResult}%
                 </p>
               </>
             )
-          ) : finalScore >= 50 ? (
+          ) : !isFirstOpen & (finalScore >= 50) ? (
             <>
               <h1 className="quiz-description">Rozwiązałeś poprawnie quiz</h1>
               <h2>
@@ -180,8 +169,8 @@ const Result = ({
           <p className="quiz-final-result">Twój wynik: {finalScore}%</p>
           <div
             className={`
-                 "result-btn-box" 
-              }`}
+                   "result-btn-box"
+                }`}
           >
             <Button onClick={closeQuizHandle}>Zakończ</Button>
           </div>

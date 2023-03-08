@@ -3,20 +3,26 @@ import { useEffect, useState } from "react";
 //Helper function
 import nextQuestion from "../../helper/nextQuestionFunc";
 
-const TIME_FOR_QUIZ = 90; // 1min 30sec
+const TIME_FOR_QUIZ = 2; // 1min 30sec
 const TICK = 1000; // 1 sec
 
 const CountDwownTimer = ({
   currentQuestion,
   currentQuiz,
+  questions,
   setCurrentQuestion,
   result,
   setResult,
+  closeHint,
 }) => {
   const [time, setTime] = useState(TIME_FOR_QUIZ);
   useEffect(() => {
     if (time === 0) {
-      nextQuestion(currentQuestion, currentQuiz, setCurrentQuestion, setResult);
+      if (currentQuestion + 1 < questions.length) {
+        setCurrentQuestion((prevQuestion) => prevQuestion + 1);
+      } else {
+        setResult(true);
+      }
     } else {
       const timer = setInterval(() => {
         setTime((prevTime) => prevTime - 1);
@@ -28,6 +34,10 @@ const CountDwownTimer = ({
     setTime(TIME_FOR_QUIZ);
   }, [currentQuestion]);
 
+  useEffect(() => {
+    setTime(TIME_FOR_QUIZ);
+  }, [closeHint]);
+
   const min = `${Math.trunc(time / 60)}`.padStart(2, "0");
   const sec = String(time % 60).padStart(2, "0");
 
@@ -35,7 +45,7 @@ const CountDwownTimer = ({
     <div className="timer-box">
       {!result && (
         <h1 className="timer">
-          Czas:
+          Czas:{" "}
           <span>
             {min}:{sec}
           </span>

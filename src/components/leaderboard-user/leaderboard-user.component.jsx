@@ -3,7 +3,6 @@ import timer from "./timer.png";
 import succes from "./success.png";
 
 const LeaderBoardUser = ({ statistic, i }) => {
-  console.log(statistic);
   const { passedAllQuizzes, bestTime, displayName } = statistic;
   const min = `${Math.trunc(bestTime / 60)}`.padStart(2, "0");
   const sec = String(bestTime % 60).padStart(2, "0");

@@ -1,13 +1,9 @@
-const category = [
+const hint = [
   {
     name: "Klasa 1 - 3",
     quizzes: [
       {
         quiz: "Quiz 0",
-        passed: false,
-        locked: false,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -15,10 +11,6 @@ const category = [
       },
       {
         quiz: "Quiz 1",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -26,10 +18,6 @@ const category = [
       },
       {
         quiz: "Quiz 2",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -37,10 +25,6 @@ const category = [
       },
       {
         quiz: "Quiz 3",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -48,10 +32,6 @@ const category = [
       },
       {
         quiz: "Quiz 4",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -59,10 +39,6 @@ const category = [
       },
       {
         quiz: "Quiz 5",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -70,10 +46,6 @@ const category = [
       },
       {
         quiz: "Quiz 6",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -81,10 +53,6 @@ const category = [
       },
       {
         quiz: "Quiz 7",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -92,10 +60,6 @@ const category = [
       },
       {
         quiz: "Quiz 8",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -103,10 +67,6 @@ const category = [
       },
       {
         quiz: "Quiz 9",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -119,10 +79,6 @@ const category = [
     quizzes: [
       {
         quiz: "Quiz 0",
-        passed: false,
-        locked: false,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -130,10 +86,6 @@ const category = [
       },
       {
         quiz: "Quiz 1",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -141,10 +93,6 @@ const category = [
       },
       {
         quiz: "Quiz 2",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -152,10 +100,6 @@ const category = [
       },
       {
         quiz: "Quiz 3",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -163,10 +107,6 @@ const category = [
       },
       {
         quiz: "Quiz 4",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -174,10 +114,6 @@ const category = [
       },
       {
         quiz: "Quiz 5",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -185,10 +121,6 @@ const category = [
       },
       {
         quiz: "Quiz 6",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -196,10 +128,6 @@ const category = [
       },
       {
         quiz: "Quiz 7",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -207,10 +135,6 @@ const category = [
       },
       {
         quiz: "Quiz 8",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -218,10 +142,6 @@ const category = [
       },
       {
         quiz: "Quiz 9",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -234,10 +154,6 @@ const category = [
     quizzes: [
       {
         quiz: "Quiz 0",
-        passed: false,
-        locked: false,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -245,10 +161,6 @@ const category = [
       },
       {
         quiz: "Quiz 1",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -256,10 +168,6 @@ const category = [
       },
       {
         quiz: "Quiz 2",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -267,10 +175,6 @@ const category = [
       },
       {
         quiz: "Quiz 3",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -278,10 +182,6 @@ const category = [
       },
       {
         quiz: "Quiz 4",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -289,10 +189,6 @@ const category = [
       },
       {
         quiz: "Quiz 5",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -300,10 +196,6 @@ const category = [
       },
       {
         quiz: "Quiz 6",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -311,10 +203,6 @@ const category = [
       },
       {
         quiz: "Quiz 7",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -322,10 +210,6 @@ const category = [
       },
       {
         quiz: "Quiz 8",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -333,10 +217,6 @@ const category = [
       },
       {
         quiz: "Quiz 9",
-        passed: false,
-        locked: true,
-        finalScore: 0,
-        isFirstOpen: false,
         0: { hint: true },
         1: { hint: true },
         2: { hint: true },
@@ -346,4 +226,4 @@ const category = [
   },
 ];
 
-export default category;
+export default hint;
