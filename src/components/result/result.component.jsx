@@ -3,6 +3,7 @@ import {
   updateLockedQuizUser,
   updateFinalResultUser,
   updatePassedQuizUser,
+  updatePerformedQuizUser,
   updateCountPassedCurrentUserQuiz,
   updateCountPassedAllQuizzes,
   updateNumbersOfApproachesCurrentUserQuiz,
@@ -24,6 +25,7 @@ const Result = ({
   currentQuizNumber,
   currentClass,
   passed,
+  performed,
   setPassed,
   restartQuiz,
   setRestartQuiz,
@@ -32,6 +34,10 @@ const Result = ({
   finalResult,
   isFirstOpen,
   setIsFirstOpen,
+  bestTime,
+  setPerformed,
+  gradeObtained,
+  grade,
 }) => {
   const {
     currentUser,
@@ -41,6 +47,7 @@ const Result = ({
   } = useContext(AuthContext);
 
   const navigate = useNavigate();
+
   const closeQuizHandle = () => {
     navigate("../");
     // navigate(0);
@@ -58,13 +65,13 @@ const Result = ({
     setResult(false);
     setCurrentQuestion(0);
     setScore(0);
-    setPassed(false);
+    setPerformed(false);
     setRestartQuiz(true);
     setIsFirstOpen(true);
   };
 
   useEffect(() => {
-    if (finalScore >= 50) {
+    if ((finalScore >= 50) & (currentQuizNumber < quizLength - 1)) {
       updateLockedQuizUser(
         currentUser.uid,
         currentClass,
@@ -85,7 +92,16 @@ const Result = ({
   }, [finalScore]);
 
   useEffect(() => {
-    if (finalScore <= 100 && !passed) {
+    if (finalScore <= 100 && !performed) {
+      updatePerformedQuizUser(
+        currentUser.uid,
+        currentClass,
+        `Quiz ${currentQuizNumber}`
+      );
+    }
+  }, []);
+  useEffect(() => {
+    if (finalScore === 100) {
       updatePassedQuizUser(
         currentUser.uid,
         currentClass,
@@ -95,14 +111,14 @@ const Result = ({
   }, []);
 
   useEffect(() => {
-    if (passed & restartQuiz) {
+    if (performed & restartQuiz) {
       updateNumbersOfApproachesCurrentUserQuiz(
         currentUser.uid,
         currentClass,
         summaryQuiz[currentClass].numberOfApproaches
       );
     }
-  }, [restartQuiz, passed]);
+  }, [restartQuiz, performed]);
 
   useEffect(() => {
     if (!finalResult === 100 || !passed) {
@@ -110,22 +126,27 @@ const Result = ({
     }
   }, []);
 
+  const min = `${Math.trunc(bestTime / 60)}`.padStart(2, "0");
+  const sec = String(bestTime % 60).padStart(2, "0");
+
   return (
     <>
-      {passed & isFirstOpen & (finalResult === 100) ? (
+      {performed & isFirstOpen & (finalResult === 100) ? (
         <div className="final-result-box">
           <img src={achivement} alt="puchar" className="img-achivement" />
           <h1 className="quiz-description">Rozwiązałeś poprawnie cały quiz!</h1>
-          <p className="quiz-final-result">Twój wynik: {finalResult}%</p>
+          <p className="quiz-final-result">Ocena: {grade}</p>
+
           <div className="result-btn-box">
             <Button onClick={backToPreviousPage}>Powrót</Button>
           </div>
         </div>
-      ) : isFirstOpen & passed & (finalResult < 100) ? (
+      ) : isFirstOpen & performed & (finalResult < 100) ? (
         <div className="final-result-box">
           <h1 className="quiz-description">
             Możesz spróbować poprawić swój wynik!
           </h1>
+          <p className="quiz-final-result">Uzyskana ocena: {grade}</p>
           <p className="quiz-final-result">Twój wynik: {finalResult}%</p>
           <div className="result-btns-box">
             <Button onClick={againDoQuizHandle}>Popraw</Button>
@@ -146,8 +167,9 @@ const Result = ({
                     Gratulacje udało Ci się poprawić poprzedni wynik!
                   </h1>
                 )}
+
                 <p className="quiz-final-result">
-                  Aktualny wynik: {finalResult}%
+                  Poprzedni wynik: {finalResult}%
                 </p>
               </>
             )
@@ -165,8 +187,11 @@ const Result = ({
               Niestety nie udało Ci się rozwiązać quizu
             </h1>
           )}
-
           <p className="quiz-final-result">Twój wynik: {finalScore}%</p>
+          <p className="quiz-final-result">
+            Wykorzystany czas: {min}:{sec}
+          </p>
+          <p className="quiz-final-result">Uzyskana ocena: {grade}</p>
           <div
             className={`
                    "result-btn-box"

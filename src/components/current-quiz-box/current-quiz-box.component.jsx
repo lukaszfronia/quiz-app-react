@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState } from "react";
 
 import nextQuestion from "../../helper/nextQuestionFunc";
+import QuestionItem from "../../components/question-item/question-item.component";
 import "./currnet-quiz-box.styles.css";
 import {
   updateNumbersOfApproachesCurrentUserQuiz,
@@ -17,7 +18,8 @@ const CurrentQuizBox = ({
   setCurrentQuestion,
   setResult,
   setScore,
-  passed,
+
+  performed,
   currentClass,
   setStartTime,
   setIsFirstOpen,
@@ -27,27 +29,12 @@ const CurrentQuizBox = ({
   setCloseHint,
   setEndAfterHint,
 }) => {
-  const nextQuestionHandler = (e, i, answer) => {
-    return nextQuestion(
-      currentQuestion,
-      questions,
-      setCurrentQuestion,
-      setResult,
-      answer,
-      i,
-      setScore,
-      setShowHint,
-      showHint,
-      isHint,
-      setCloseHint,
-      setEndAfterHint
-    );
-  };
+  const nextQuestionHandler = (e, i, answer) => {};
 
   const { currentUser, summaryQuiz } = useContext(AuthContext);
 
   useEffect(() => {
-    if (!passed) {
+    if (!performed) {
       updateNumbersOfApproachesCurrentUserQuiz(
         currentUser.uid,
         currentClass,
@@ -79,24 +66,24 @@ const CurrentQuizBox = ({
     setShowHint(false);
   }, [setShowHint]);
 
-  useEffect(() => {
-    setStartTime(new Date().getTime() / 1000);
-  }, []);
-
   return (
     <>
       <div className="quiz-question">{question.question}</div>;
       <div className="quiz-answer-container">
         {question.answers.map((answer, i) => (
-          <div
-            key={Math.floor(Math.random() * 10000)}
-            className="quiz-answer-box"
-            onClick={(e) => {
-              nextQuestionHandler(e, i, answer);
-            }}
-          >
-            {answer.text}
-          </div>
+          <QuestionItem
+            question={question}
+            answer={answer}
+            currentQuestion={currentQuestion}
+            questions={questions}
+            setCurrentQuestion={setCurrentQuestion}
+            setResult={setResult}
+            isHint={isHint}
+            setScore={setScore}
+            setShowHint={setShowHint}
+            setCloseHint={setCloseHint}
+            setEndAfterHint={setEndAfterHint}
+          />
         ))}
       </div>
     </>

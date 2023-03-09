@@ -291,7 +291,7 @@ export const updateIsFirstOpenQuiz = async (uid, currentClass, quiz) => {
   const collectionRef = doc(db, `/users/${uid}/${currentClass}/${quiz}`);
 
   await updateDoc(collectionRef, {
-    isFirstOpen: true,
+    isFirstOpen: false,
   });
 };
 export const addUserNameToGeneralStats = async (user, displayName) => {
@@ -320,6 +320,34 @@ export const updatePassedQuizUser = async (uid, currentClass, quiz) => {
 
   await updateDoc(collectionRef, {
     passed: true,
+  });
+};
+export const updatePerformedQuizUser = async (uid, currentClass, quiz) => {
+  const collectionRef = doc(db, `/users/${uid}/${currentClass}/${quiz}`);
+
+  await updateDoc(collectionRef, {
+    performed: true,
+  });
+};
+export const updateUsedTimeQuizUser = async (
+  uid,
+  currentClass,
+  quiz,
+  time,
+  usedTime
+) => {
+  const collectionRef = doc(db, `/users/${uid}/${currentClass}/${quiz}`);
+
+  await updateDoc(collectionRef, {
+    usedTime: time + usedTime,
+  });
+};
+
+export const updateGradeQuizUser = async (uid, currentClass, quiz, grade) => {
+  const collectionRef = doc(db, `/users/${uid}/${currentClass}/${quiz}`);
+
+  await updateDoc(collectionRef, {
+    grade: grade,
   });
 };
 

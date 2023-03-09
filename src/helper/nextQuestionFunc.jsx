@@ -6,10 +6,8 @@ const nextQuestion = (
   setCurrentQuestion,
   setResult,
   answer,
-
   setScore,
   setShowHint,
-
   isHint,
   setCloseHint,
   setEndAfterHint
@@ -31,7 +29,7 @@ const nextQuestion = (
 
   /////////////////////////////FALSE\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   if (!isHint & (answer?.correct === false)) {
-    setScore((prevScore) => prevScore - 1);
+    setScore((prevScore) => prevScore - 0);
     if (currentQuestion + 1 < questions.length) {
       setCurrentQuestion((prevQuestion) => prevQuestion + 1);
       setEndAfterHint(new Date().getTime() / 1000);
