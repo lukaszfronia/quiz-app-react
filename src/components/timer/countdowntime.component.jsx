@@ -14,8 +14,12 @@ const CountDwownTimer = ({
   result,
   setResult,
   closeHint,
+  score,
+  setScore,
+  currentAnswer,
 }) => {
   const [time, setTime] = useState(TIME_FOR_QUIZ);
+  const [timeColapsed, setTimeColapsed] = useState(0);
   useEffect(() => {
     if (time === 0) {
       if (currentQuestion + 1 < questions.length) {
@@ -26,10 +30,27 @@ const CountDwownTimer = ({
     } else {
       const timer = setInterval(() => {
         setTime((prevTime) => prevTime - 1);
+        setTimeColapsed((prev) => prev + 1);
       }, TICK);
       return () => clearInterval(timer);
     }
   }, [time]);
+
+  useEffect(() => {
+    if (closeHint) {
+      if (time === 0) {
+        if (currentQuestion + 1 < questions.length) {
+          setCurrentQuestion((prevQuestion) => prevQuestion + 1);
+        } else {
+          setResult(true);
+        }
+      } else {
+        score > 0 && setScore((prev) => prev - 0.01);
+        score < 0 && setScore((prev) => prev - 0.01);
+      }
+    }
+  }, [closeHint, time]);
+
   useEffect(() => {
     setTime(TIME_FOR_QUIZ);
   }, [currentQuestion]);

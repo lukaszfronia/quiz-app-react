@@ -19,6 +19,7 @@ import "./quiz.styles.css";
 import CountDwownTimer from "../../components/timer/countdowntime.component";
 import Result from "../../components/result/result.component";
 import Hint from "../../components/hint/hint.component";
+import nextQuestion from "../../helper/nextQuestionFunc";
 
 const Quiz = ({ currentClass }) => {
   const { quiz } = useParams();
@@ -58,12 +59,13 @@ const Quiz = ({ currentClass }) => {
   const [bestTime, setBestTime] = useState(0);
   const [isFirstOpen, setIsFirstOpen] = useState(false);
   const [showHint, setShowHint] = useState(false);
+  const [currentAnswer, setCurrentAnswer] = useState(null);
 
   const [closeHint, setCloseHint] = useState(false);
   const [startAfterHint, setStartAfterHint] = useState(null);
   const [endAfterHint, setEndAfterHint] = useState(null);
   const [timeAfterHint, setTimeAfterHint] = useState(0);
-  const [time, setTime] = useState(0);
+
   const [scoreWithHint, setScoreWithHint] = useState(0);
 
   const [grade, setGrade] = useState(0);
@@ -75,26 +77,9 @@ const Quiz = ({ currentClass }) => {
     quizInformationFromCurrentUser[currentQuizNumber][currentQuestion]?.hint
   );
 
-  const closeHintHandler = () => {
-    setShowHint(false);
-    setCloseHint(true);
-  };
-
   useEffect(() => {
     setTimeAfterHint(Math.floor(endAfterHint - startAfterHint));
   }, [endAfterHint]);
-
-  useEffect(() => {
-    if ((timeAfterHint > 0) & (timeAfterHint <= 23)) {
-      setScoreWithHint(0.25);
-    } else if ((timeAfterHint >= 23) & (timeAfterHint <= 45)) {
-      setScoreWithHint(0.5);
-    } else if ((timeAfterHint >= 45) & (timeAfterHint <= 68)) {
-      setScoreWithHint(0.75);
-    } else if ((timeAfterHint >= 68) & (timeAfterHint <= 90)) {
-      setScoreWithHint(1);
-    }
-  }, [timeAfterHint, endAfterHint]);
 
   useEffect(() => {
     if (finalScore < 50) {
@@ -109,11 +94,6 @@ const Quiz = ({ currentClass }) => {
       setGrade(5);
     }
   }, [result]);
-
-  console.log(score);
-  useEffect(() => {
-    setScore((prev) => prev - scoreWithHint);
-  }, [scoreWithHint, result]);
 
   useEffect(() => {
     setIsHint(
@@ -146,7 +126,7 @@ const Quiz = ({ currentClass }) => {
       `Quiz ${currentQuizNumber}`,
       grade
     );
-  }, [grade]);
+  }, [result]);
 
   useEffect(() => {
     if (
@@ -245,6 +225,7 @@ const Quiz = ({ currentClass }) => {
   useEffect(() => {
     setStartTime(new Date().getTime() / 1000);
   }, []);
+  console.log(score);
 
   return (
     <div className="quiz-container">
@@ -269,6 +250,7 @@ const Quiz = ({ currentClass }) => {
                 showHint={showHint}
                 isHint={isHint}
                 setEndAfterHint={setEndAfterHint}
+                setCurrentAnswer={setCurrentAnswer}
               />
             )
           ) : (
@@ -277,7 +259,6 @@ const Quiz = ({ currentClass }) => {
               showHint={showHint}
               setStartAfterHint={setStartAfterHint}
               setCloseHint={setCloseHint}
-              closeHintHandler={closeHintHandler}
             />
           )
         ) : (
@@ -312,6 +293,10 @@ const Quiz = ({ currentClass }) => {
           result={result}
           setResult={setResult}
           closeHint={closeHint}
+          score={score}
+          setScore={setScore}
+          question={question}
+          currentAnswer={currentAnswer}
         />
       ) : (
         ""

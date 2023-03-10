@@ -28,9 +28,8 @@ const CurrentQuizBox = ({
   isHint,
   setCloseHint,
   setEndAfterHint,
+  setCurrentAnswer,
 }) => {
-  const nextQuestionHandler = (e, i, answer) => {};
-
   const { currentUser, summaryQuiz } = useContext(AuthContext);
 
   useEffect(() => {
@@ -83,6 +82,7 @@ const CurrentQuizBox = ({
             setShowHint={setShowHint}
             setCloseHint={setCloseHint}
             setEndAfterHint={setEndAfterHint}
+            setCurrentAnswer={setCurrentAnswer}
           />
         ))}
       </div>
