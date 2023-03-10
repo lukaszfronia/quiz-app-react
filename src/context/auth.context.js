@@ -75,9 +75,10 @@ export const AuthContextProvider = ({ children }) => {
 
     return unsubscribe;
   }, []);
+
   useEffect(() => {
     const sortedStatics = generalStatistics?.sort(
-      (a, b) => b[0]?.passedAllQuizzes - a[0]?.passedAllQuizzes
+      (a, b) => b?.passedAllQuizzes - a?.passedAllQuizzes
     );
     setGeneralStatistics(sortedStatics);
   }, [generalStatistics]);
