@@ -48,7 +48,7 @@ const SignIn = () => {
       const { user } = await signInWithGooglePopup();
       setCurrentUser(user);
 
-      if (!allUserUid.includes(user.uid)) {
+      if (allUserUid.includes(user.uid)) {
         await createUserDocumentFromAuth(user);
         await createRankingDocument(user);
         await addCollectionAndDocumentsToUser(user);

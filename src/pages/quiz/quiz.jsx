@@ -111,7 +111,7 @@ const Quiz = ({ currentClass }) => {
         setGradeObtained(5);
       }
     }
-  }, [finalScore]);
+  }, [finalScore, finalResult]);
 
   useEffect(() => {
     setIsHint(

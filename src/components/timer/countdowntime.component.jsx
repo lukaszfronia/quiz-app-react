@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 //Helper function
 import nextQuestion from "../../helper/nextQuestionFunc";
 
-const TIME_FOR_QUIZ = 90; // 1min 30sec
+const TIME_FOR_QUIZ = 100; // 1min 30sec
 const TICK = 1000; // 1 sec
 
 const CountDwownTimer = ({
