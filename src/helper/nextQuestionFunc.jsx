@@ -11,7 +11,8 @@ const nextQuestion = (
   isHint,
   setCloseHint,
   setEndAfterHint,
-  setCurrentAnswer
+  setCurrentAnswer,
+  setOpen
 ) => {
   ////////////////////////////TRUE\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   if ((answer?.correct === true) & isHint) {
@@ -21,6 +22,7 @@ const nextQuestion = (
       setCurrentQuestion((prevQuestion) => prevQuestion + 1);
       setCloseHint(false);
     } else {
+      setOpen(false);
       setResult(true);
       setCloseHint(false);
     }
@@ -50,6 +52,7 @@ const nextQuestion = (
     } else {
       setCloseHint(false);
       setResult(true);
+      setOpen(false);
     }
   }
 
@@ -62,6 +65,7 @@ const nextQuestion = (
     } else {
       setCloseHint(false);
       setResult(true);
+      setOpen(false);
     }
   }
   if (!isHint & (answer?.correct === true)) {
@@ -74,6 +78,7 @@ const nextQuestion = (
     } else {
       setResult(true);
       setCloseHint(false);
+      setOpen(false);
     }
   }
 

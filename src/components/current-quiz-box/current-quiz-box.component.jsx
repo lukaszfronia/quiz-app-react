@@ -29,36 +29,16 @@ const CurrentQuizBox = ({
   setCloseHint,
   setEndAfterHint,
   setCurrentAnswer,
+  setOpen,
 }) => {
   const { currentUser, summaryQuiz } = useContext(AuthContext);
 
   useEffect(() => {
-    if (!performed) {
-      updateNumbersOfApproachesCurrentUserQuiz(
-        currentUser.uid,
-        currentClass,
-        summaryQuiz[currentClass].numberOfApproaches
-      );
-      updateIsFirstOpenQuiz(
-        currentUser.uid,
-        currentClass,
-        `Quiz ${currentQuizNumber}`
-      );
-    }
-  }, [currentClass, currentQuizNumber]);
-
-  // useEffect(() => {
-  //   if (currentQuestion === questions.length) {
-  //     updateIsFirstOpenQuiz(
-  //       currentUser.uid,
-  //       currentClass,
-  //       `Quiz ${currentQuizNumber}`
-  //     );
-  //   }
-  // }, [currentClass, currentQuizNumber, currentQuestion]);
+    setIsFirstOpen(false);
+  }, []);
 
   useEffect(() => {
-    setIsFirstOpen(false);
+    setOpen(true);
   }, []);
 
   useEffect(() => {
@@ -83,6 +63,7 @@ const CurrentQuizBox = ({
             setCloseHint={setCloseHint}
             setEndAfterHint={setEndAfterHint}
             setCurrentAnswer={setCurrentAnswer}
+            setOpen={setOpen}
           />
         ))}
       </div>

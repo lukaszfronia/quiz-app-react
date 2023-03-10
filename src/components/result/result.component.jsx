@@ -37,7 +37,9 @@ const Result = ({
   bestTime,
   setPerformed,
   gradeObtained,
+  scoreBefore,
   grade,
+  setOpen,
 }) => {
   const {
     currentUser,
@@ -53,12 +55,14 @@ const Result = ({
     // navigate(0);
     setRestartQuiz(false);
     setIsFirstOpen(true);
+    setOpen(false);
   };
 
   const backToPreviousPage = () => {
     navigate("../");
     setRestartQuiz(false);
     setIsFirstOpen(true);
+    setOpen(false);
   };
 
   const againDoQuizHandle = () => {
@@ -68,6 +72,7 @@ const Result = ({
     setPerformed(false);
     setRestartQuiz(true);
     setIsFirstOpen(true);
+    setOpen(true);
   };
 
   useEffect(() => {
@@ -135,7 +140,7 @@ const Result = ({
         <div className="final-result-box">
           <img src={achivement} alt="puchar" className="img-achivement" />
           <h1 className="quiz-description">Rozwiązałeś poprawnie cały quiz!</h1>
-          <p className="quiz-final-result">Ocena: {grade}</p>
+          <p className="quiz-final-result">Ocena: {gradeObtained}</p>
 
           <div className="result-btn-box">
             <Button onClick={backToPreviousPage}>Powrót</Button>

@@ -291,7 +291,7 @@ export const updateIsFirstOpenQuiz = async (uid, currentClass, quiz) => {
   const collectionRef = doc(db, `/users/${uid}/${currentClass}/${quiz}`);
 
   await updateDoc(collectionRef, {
-    isFirstOpen: false,
+    isFirstOpen: true,
   });
 };
 export const addUserNameToGeneralStats = async (user, displayName) => {

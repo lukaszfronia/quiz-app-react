@@ -14,6 +14,8 @@ import {
   updadateCurrentQuestionHintAll,
   updateUsedTimeQuizUser,
   updateGradeQuizUser,
+  updateNumbersOfApproachesCurrentUserQuiz,
+  updateIsFirstOpenQuiz,
 } from "../../utils/firebase/firebase.utils";
 import "./quiz.styles.css";
 import CountDwownTimer from "../../components/timer/countdowntime.component";
@@ -68,7 +70,8 @@ const Quiz = ({ currentClass }) => {
 
   const [scoreWithHint, setScoreWithHint] = useState(0);
 
-  const [grade, setGrade] = useState(0);
+  const [scoreBefore, setScoreBefore] = useState(0);
+  const [open, setOpen] = useState(false);
 
   const finalScore = Math.floor((score / questions.length) * 100);
   const quizLength = Object.keys(quizzes).length;
@@ -78,22 +81,37 @@ const Quiz = ({ currentClass }) => {
   );
 
   useEffect(() => {
+    result &&
+      updateIsFirstOpenQuiz(
+        currentUser.uid,
+        currentClass,
+        `Quiz ${currentQuizNumber}`
+      );
+  }, [result]);
+
+  useEffect(() => {
     setTimeAfterHint(Math.floor(endAfterHint - startAfterHint));
   }, [endAfterHint]);
 
   useEffect(() => {
-    if (finalScore < 50) {
-      setGrade(1);
-    } else if ((finalScore >= 50) & (finalScore <= 59)) {
-      setGrade(2);
-    } else if ((finalScore >= 60) & (finalScore <= 74)) {
-      setGrade(3);
-    } else if ((finalScore >= 75) & (finalScore <= 89)) {
-      setGrade(4);
-    } else if ((finalScore >= 90) & (finalScore <= 100)) {
-      setGrade(5);
+    restartQuiz && setScoreBefore(finalResult);
+  }, [restartQuiz]);
+
+  useEffect(() => {
+    if (result & (finalResult < 100)) {
+      if (finalScore < 50) {
+        setGradeObtained(1);
+      } else if ((finalScore >= 50) & (finalScore <= 59)) {
+        setGradeObtained(2);
+      } else if ((finalScore >= 60) & (finalScore <= 74)) {
+        setGradeObtained(3);
+      } else if ((finalScore >= 75) & (finalScore <= 89)) {
+        setGradeObtained(4);
+      } else if ((finalScore >= 90) & (finalScore <= 100)) {
+        setGradeObtained(5);
+      }
     }
-  }, [result]);
+  }, [finalScore]);
 
   useEffect(() => {
     setIsHint(
@@ -124,17 +142,16 @@ const Quiz = ({ currentClass }) => {
       currentUser.uid,
       currentClass,
       `Quiz ${currentQuizNumber}`,
-      grade
+      gradeObtained
     );
-  }, [result]);
+  }, [gradeObtained]);
 
   useEffect(() => {
     if (
       (currentQuestion === questions.length - 1) &
-      ((finalScore === 100) &
-        !quizInformationFromCurrentUser[currentQuizNumber].isFirstOpen ||
-        (finalScore === 100) & restartQuiz)
+      (finalScore === 100 || restartQuiz)
     ) {
+      console.log("wejde tu jak amm 100");
       if (summaryQuiz[currentClass].bestTime >= bestTime) {
         updateBestTimeCurrentUserQuiz(currentUser.uid, currentClass, bestTime);
         updateGeneralBestTime(currentUser.uid, bestTime);
@@ -225,7 +242,16 @@ const Quiz = ({ currentClass }) => {
   useEffect(() => {
     setStartTime(new Date().getTime() / 1000);
   }, []);
-  console.log(score);
+
+  useEffect(() => {
+    if (open) {
+      updateNumbersOfApproachesCurrentUserQuiz(
+        currentUser.uid,
+        currentClass,
+        summaryQuiz[currentClass].numberOfApproaches
+      );
+    }
+  }, [open]);
 
   return (
     <div className="quiz-container">
@@ -251,6 +277,7 @@ const Quiz = ({ currentClass }) => {
                 isHint={isHint}
                 setEndAfterHint={setEndAfterHint}
                 setCurrentAnswer={setCurrentAnswer}
+                setOpen={setOpen}
               />
             )
           ) : (
@@ -279,8 +306,10 @@ const Quiz = ({ currentClass }) => {
             setIsFirstOpen={setIsFirstOpen}
             bestTime={bestTime}
             setPerformed={setPerformed}
-            grade={grade}
+            grade={gradeObtained}
             gradeObtained={gradeObtained}
+            scoreBefore={scoreBefore}
+            setOpen={setOpen}
           />
         )}
       </div>
