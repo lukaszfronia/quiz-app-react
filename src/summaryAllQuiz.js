@@ -8,7 +8,7 @@ export const summary = [
         bestTime: 0,
         grade: 0,
         numberOfApproaches: 0,
-        generalTime: 0,
+        madeQuizzes: 0,
       },
       {
         category: "Klasa 4 - 8",
@@ -16,7 +16,7 @@ export const summary = [
         bestTime: 0,
         grade: 0,
         numberOfApproaches: 0,
-        generalTime: 0,
+        madeQuizzes: 0,
       },
       {
         category: "Tech - Liceum",
@@ -24,7 +24,7 @@ export const summary = [
         bestTime: 0,
         grade: 0,
         numberOfApproaches: 0,
-        generalTime: 0,
+        madeQuizzes: 0,
       },
     ],
   },

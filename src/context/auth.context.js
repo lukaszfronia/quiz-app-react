@@ -22,6 +22,9 @@ export const AuthContext = createContext({
   allUserUid: null,
   generalStatistics: [],
   userGeneralStatistics: null,
+  dataKlasa13: null,
+  dataKlasa48: null,
+  dataTL: null,
 });
 
 export const AuthContextProvider = ({ children }) => {
@@ -33,13 +36,9 @@ export const AuthContextProvider = ({ children }) => {
   const [allUserUid, setAllUserUid] = useState([]);
   const [generalStatistics, setGeneralStatistics] = useState([]);
   const [userGeneralStatistics, setUserGeneralStatistics] = useState(null);
-  const [currentUsershowHint, setCurrentshowHint] = useState();
-
-  // useEffect(() => {
-  //   getCurrentQuizshowHint(currentUser?.uid, setCurrentshowHint);
-  // }, [currentUser?.uid]);
-
-  // console.log(quizInformationFromCurrentUser);
+  const [dataKlasa13, setDataKlasa13] = useState(null);
+  const [dataKlasa48, setDataKlasa48] = useState(null);
+  const [dataTL, setDataTL] = useState(null);
 
   useEffect(() => {
     getQuizzesInformationForAllUser(
@@ -50,11 +49,35 @@ export const AuthContextProvider = ({ children }) => {
   }, [currentUser?.uid, classCategory]);
 
   useEffect(() => {
+    getQuizzesInformationForAllUser(
+      currentUser?.uid,
+      "Klasa 1 - 3",
+      setDataKlasa13
+    );
+    getQuizzesInformationForAllUser(
+      currentUser?.uid,
+      "Klasa 4 - 8",
+      setDataKlasa48
+    );
+    getQuizzesInformationForAllUser(
+      currentUser?.uid,
+      "Tech - Liceum",
+      setDataTL
+    );
+  }, [currentUser?.uid, classCategory]);
+
+  useEffect(() => {
     getDataSummaryForUser(currentUser?.uid, setSummaryQuiz);
   }, [currentUser?.uid]);
 
   useEffect(() => {
     getAllUsers(setAllUserUid);
+  }, []);
+
+  useEffect(() => {
+    allUserUid.map((id) => {
+      setAllUserUid((prev) => [...prev, id]);
+    });
   }, []);
 
   useEffect(() => {
@@ -92,6 +115,9 @@ export const AuthContextProvider = ({ children }) => {
     allUserUid,
     generalStatistics,
     userGeneralStatistics,
+    dataKlasa13,
+    dataKlasa48,
+    dataTL,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

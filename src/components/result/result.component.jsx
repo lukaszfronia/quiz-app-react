@@ -86,17 +86,6 @@ const Result = ({
   }, []);
 
   useEffect(() => {
-    if (finalScore > finalResult) {
-      updateFinalResultUser(
-        currentUser.uid,
-        currentClass,
-        `Quiz ${currentQuizNumber}`,
-        finalScore
-      );
-    }
-  }, [finalScore]);
-
-  useEffect(() => {
     if (finalScore <= 100 && !performed) {
       updatePerformedQuizUser(
         currentUser.uid,
@@ -106,7 +95,7 @@ const Result = ({
     }
   }, []);
   useEffect(() => {
-    if (finalScore === 100) {
+    if (finalScore <= 100) {
       updatePassedQuizUser(
         currentUser.uid,
         currentClass,

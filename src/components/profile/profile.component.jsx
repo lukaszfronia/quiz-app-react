@@ -14,11 +14,34 @@ import {
 } from "../../utils/firebase/firebase.utils";
 
 const Profile = () => {
-  const { currentUser, summaryQuiz, setCurrentUser } = useContext(AuthContext);
+  const {
+    currentUser,
+    summaryQuiz,
+    setCurrentUser,
+    dataKlasa13,
+    dataKlasa48,
+    dataTL,
+  } = useContext(AuthContext);
 
   const [name, setName] = useState([]);
   const [overlay, setOverlay] = useState(false);
   const [modal, setModal] = useState(false);
+  const [gradeKlasa13, setGradeKlasa13] = useState([]);
+  const [gradeKlasa48, setGradeKlasa48] = useState([]);
+  const [gradeTL, setGradeTL] = useState([]);
+
+  useEffect(() => {
+    const grade = dataKlasa13.map((statistic) => statistic.grade);
+    setGradeKlasa13(grade);
+  }, [dataKlasa13]);
+  useEffect(() => {
+    const grade = dataKlasa48.map((statistic) => statistic.grade);
+    setGradeKlasa48(grade);
+  }, [dataKlasa48]);
+  useEffect(() => {
+    const grade = dataTL.map((statistic) => statistic.grade);
+    setGradeTL(grade);
+  }, [dataTL]);
 
   useEffect(() => {
     const displayNameUser = async () => {
@@ -81,6 +104,9 @@ const Profile = () => {
               key={Math.floor(Math.random() * 10000)}
               category={category}
               summaryQuiz={summaryQuiz}
+              gradeKlasa13={gradeKlasa13}
+              gradeKlasa48={gradeKlasa48}
+              gradeTL={gradeTL}
             />
           );
         })}

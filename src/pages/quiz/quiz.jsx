@@ -16,6 +16,8 @@ import {
   updateGradeQuizUser,
   updateNumbersOfApproachesCurrentUserQuiz,
   updateIsFirstOpenQuiz,
+  updateMadeQuizzesCurrentUserQuiz,
+  updateFinalResultUser,
 } from "../../utils/firebase/firebase.utils";
 import "./quiz.styles.css";
 import CountDwownTimer from "../../components/timer/countdowntime.component";
@@ -39,6 +41,9 @@ const Quiz = ({ currentClass }) => {
   const [currentQuiz, setCurrentQuiz] = useState(quizzes[quiz]);
   const [result, setResult] = useState(false);
   const [score, setScore] = useState(0);
+  const [passed, setPassed] = useState(
+    quizInformationFromCurrentUser[currentQuizNumber].performed
+  );
 
   const [performed, setPerformed] = useState(
     quizInformationFromCurrentUser[currentQuizNumber].performed
@@ -52,6 +57,9 @@ const Quiz = ({ currentClass }) => {
   );
   const [gradeObtained, setGradeObtained] = useState(
     quizInformationFromCurrentUser[currentQuizNumber].grade
+  );
+  const [madeQuizzes, setMadeQuizzes] = useState(
+    quizInformationFromCurrentUser[currentQuizNumber].madeQuizzes
   );
   const [questions, setQuestions] = useState([]);
   const [question, setQuestion] = useState("");
@@ -98,8 +106,8 @@ const Quiz = ({ currentClass }) => {
   }, [restartQuiz]);
 
   useEffect(() => {
-    if (result & (finalResult < 100)) {
-      if (finalScore < 50) {
+    if (result & (finalResult < 100) || restartQuiz || isFirstOpen) {
+      if ((finalScore >= 0) & (finalScore < 49)) {
         setGradeObtained(1);
       } else if ((finalScore >= 50) & (finalScore <= 59)) {
         setGradeObtained(2);
@@ -147,11 +155,21 @@ const Quiz = ({ currentClass }) => {
   }, [gradeObtained]);
 
   useEffect(() => {
+    if (currentQuestion === questions.length - 1) {
+      updateFinalResultUser(
+        currentUser.uid,
+        currentClass,
+        `Quiz ${currentQuizNumber}`,
+        finalScore
+      );
+    }
+  }, [finalScore]);
+
+  useEffect(() => {
     if (
       (currentQuestion === questions.length - 1) &
       (finalScore === 100 || restartQuiz)
     ) {
-      console.log("wejde tu jak amm 100");
       if (summaryQuiz[currentClass].bestTime >= bestTime) {
         updateBestTimeCurrentUserQuiz(currentUser.uid, currentClass, bestTime);
         updateGeneralBestTime(currentUser.uid, bestTime);
@@ -187,6 +205,16 @@ const Quiz = ({ currentClass }) => {
 
   useEffect(() => {
     setGradeObtained(quizInformationFromCurrentUser[currentQuizNumber].grade);
+  }, [currentQuizNumber]);
+
+  useEffect(() => {
+    setPassed(quizInformationFromCurrentUser[currentQuizNumber].passed);
+  }, [currentQuizNumber]);
+
+  useEffect(() => {
+    setMadeQuizzes(
+      quizInformationFromCurrentUser[currentQuizNumber].madeQuizzes
+    );
   }, [currentQuizNumber]);
 
   useEffect(() => {
@@ -252,6 +280,16 @@ const Quiz = ({ currentClass }) => {
       );
     }
   }, [open]);
+
+  useEffect(() => {
+    if (!passed) {
+      updateMadeQuizzesCurrentUserQuiz(
+        currentUser.uid,
+        currentClass,
+        summaryQuiz[currentClass].madeQuizzes
+      );
+    }
+  }, [passed]);
 
   return (
     <div className="quiz-container">

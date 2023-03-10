@@ -383,6 +383,30 @@ export const updateNumbersOfApproachesCurrentUserQuiz = async (
   });
 };
 
+// export const updateGradeCurrentUserQuiz = async (
+//   uid,
+//   currentClass,
+//   grade
+// ) => {
+//   const collectionRef = doc(db, `/users/${uid}/Podsumowanie/${currentClass}`);
+
+//   await updateDoc(collectionRef, {
+//     numberOfApproaches: numberOfApproaches + 1,
+//   });
+// };
+
+export const updateMadeQuizzesCurrentUserQuiz = async (
+  uid,
+  currentClass,
+  madeQuizzes
+) => {
+  const collectionRef = doc(db, `/users/${uid}/Podsumowanie/${currentClass}`);
+
+  await updateDoc(collectionRef, {
+    madeQuizzes: madeQuizzes + 1,
+  });
+};
+
 export const updateBestTimeCurrentUserQuiz = async (
   uid,
   currentClass,
