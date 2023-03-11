@@ -10,6 +10,8 @@ import {
 } from "../../utils/firebase/firebase.utils";
 import { AuthContext } from "../../context/auth.context";
 
+import shuffleArray from "../../helper/shuffledArrayFunc";
+
 const CurrentQuizBox = ({
   question,
   currentQuestion,
@@ -32,6 +34,14 @@ const CurrentQuizBox = ({
   setOpen,
   setIsHintCreatedQuiz,
 }) => {
+  const [shuffledAnswers, setShuffledAnswers] = useState(
+    shuffleArray(question.answers)
+  );
+
+  useEffect(() => {
+    setShuffledAnswers(shuffleArray(question.answers));
+  }, []);
+
   useEffect(() => {
     setIsFirstOpen(false);
   }, []);
@@ -48,7 +58,7 @@ const CurrentQuizBox = ({
     <>
       <div className="quiz-question">{question.question}</div>
       <div className="quiz-answer-container">
-        {question.answers.map((answer, i) => (
+        {shuffledAnswers.map((answer, i) => (
           <QuestionItem
             question={question}
             answer={answer}

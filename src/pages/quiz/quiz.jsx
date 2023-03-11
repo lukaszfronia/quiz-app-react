@@ -24,6 +24,8 @@ import CountDwownTimer from "../../components/timer/countdowntime.component";
 import Result from "../../components/result/result.component";
 import Hint from "../../components/hint/hint.component";
 
+import shuffleArray from "../../helper/shuffledArrayFunc";
+
 const Quiz = ({ currentClass }) => {
   const { quiz } = useParams();
   const { quizzes } = useContext(QuizContext);
@@ -183,12 +185,18 @@ const Quiz = ({ currentClass }) => {
     setCurrentQuiz(quizzes[quiz]);
   }, [quiz, quizzes]);
 
+  const [shuffledQuestions, setShuffledQuestions] = useState([]);
+
   useEffect(() => {
-    const question = currentQuiz.questions.map((question) => {
+    setShuffledQuestions(shuffleArray(currentQuiz.questions));
+  }, []);
+
+  useEffect(() => {
+    const question = shuffledQuestions.map((question) => {
       return question;
     });
     setQuestions(question);
-  }, [currentQuiz.questions]);
+  }, [shuffledQuestions]);
 
   useEffect(() => {
     setQuestion(questions[currentQuestion]);
