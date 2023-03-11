@@ -9,6 +9,7 @@ import { Fragment } from "react";
 import SignUp from "./pages/sign-up/sign-up";
 import Protected from "./pages/protectedPage";
 import Category from "./pages/category/category";
+import CreateQuiz from "./pages/create-quiz/create-quiz";
 
 function App() {
   //nagłowek z logo i navigacją
@@ -31,6 +32,7 @@ function App() {
           <Route path="zaloguj-sie/" element={<SignIn />} />
           <Route path="zarejestruj-sie/" element={<SignUp />} />
           <Route path="category/*" element={<Category />} />
+          <Route path="stworzquiz/*" element={<CreateQuiz />} />
         </Route>
       </Routes>
       {/*<Footer />*/}

@@ -7,102 +7,93 @@ const data = [
         quizName: "Quiz 0",
         questions: [
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
             question: "Pytanie 1",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 2",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 3",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 4",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
@@ -112,102 +103,93 @@ const data = [
         quizName: "Quiz 1",
         questions: [
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
             question: "Pytanie 1",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 2",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 3",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 4",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
@@ -217,102 +199,93 @@ const data = [
         quizName: "Quiz 2",
         questions: [
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
             question: "Pytanie 1",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 2",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 3",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 4",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
@@ -322,102 +295,93 @@ const data = [
         quizName: "Quiz 3",
         questions: [
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
             question: "Pytanie 1",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 2",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 3",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 4",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
@@ -427,102 +391,93 @@ const data = [
         quizName: "Quiz 4",
         questions: [
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
             question: "Pytanie 1",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 2",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 3",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 4",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
@@ -532,102 +487,93 @@ const data = [
         quizName: "Quiz 5",
         questions: [
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
             question: "Pytanie 1",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 2",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 3",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 4",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
@@ -637,102 +583,93 @@ const data = [
         quizName: "Quiz 6",
         questions: [
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
             question: "Pytanie 1",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 2",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 3",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 4",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
@@ -742,102 +679,93 @@ const data = [
         quizName: "Quiz 7",
         questions: [
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
             question: "Pytanie 1",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 2",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 3",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 4",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
@@ -847,102 +775,93 @@ const data = [
         quizName: "Quiz 8",
         questions: [
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
             question: "Pytanie 1",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 2",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 3",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 4",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
@@ -952,102 +871,93 @@ const data = [
         quizName: "Quiz 9",
         questions: [
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
             question: "Pytanie 1",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 2",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 3",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },
           {
+            hint: "lorem ipsum dolor sit amet, consectetur adip locus, sed do eiusmod tempor incididunt lore lorem ipsum dolor lorem ipsum dolorlorem ipsum lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor",
+
             question: "Pytanie 4",
             answers: [
               {
                 text: "A: <script>",
                 correct: true,
-                score: 1,
               },
               {
                 text: "B: <javascript>",
                 correct: false,
-                score: 0,
               },
               {
                 text: "C: <source>",
                 correct: false,
-                score: 0.5,
               },
               {
                 text: "D: <src>",
                 correct: false,
-                score: 0,
               },
             ],
           },

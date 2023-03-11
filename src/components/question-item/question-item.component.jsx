@@ -16,6 +16,7 @@ const QuestionItem = ({
   setEndAfterHint,
   setCurrentAnswer,
   setOpen,
+  setIsHintCreatedQuiz,
 }) => {
   const [nextQuest, setNextQuest] = useState(false);
 
@@ -32,7 +33,8 @@ const QuestionItem = ({
       setCloseHint,
       setEndAfterHint,
       setCurrentAnswer,
-      setOpen
+      setOpen,
+      setIsHintCreatedQuiz
     );
   };
 

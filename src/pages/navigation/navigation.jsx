@@ -40,7 +40,7 @@ const Navigation = () => {
         </Link>
 
         <div className="links-container">
-          <Link className="link" to="/">
+          <Link className="link" to="stworzquiz/">
             Stwórz Quiz
           </Link>
 

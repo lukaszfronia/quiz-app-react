@@ -1,9 +1,18 @@
+.leaderboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .leaderboard-box {
+  margin-top: 2rem;
   box-shadow: 0px 15px 10px rgba(0, 0, 0, 0.123);
   border-radius: 1rem;
-  padding: 1rem 2rem;
+  padding: 3rem 2rem;
   background-color: #fef4d3;
-
+  overflow: scroll;
+  min-height: 4rem;
+  max-height: 30rem;
   display: flex;
   flex-direction: column;
   align-items: center;

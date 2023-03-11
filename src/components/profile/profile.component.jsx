@@ -5,7 +5,7 @@ import avatar from "./dog-gffec67af5_1280.png";
 
 import Button from "../../components/button/button.component";
 import Modal from "../modal/modal.component";
-import ResetForm from "../restet-form/reset-form.component";
+import ResetForm from "../reset-form/reset-form.component";
 import StatisticCategory from "../../components/statistic-category/statistic-category.component";
 import { AuthContext } from "../../context/auth.context";
 import {

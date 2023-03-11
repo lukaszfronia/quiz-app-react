@@ -50,7 +50,7 @@ p {
   align-items: center;
 }
 
-input {
+.input-sign-in {
   border: none;
   font-size: 0.9rem;
   width: 30rem;
@@ -58,8 +58,7 @@ input {
   border-radius: 15px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.123);
 }
-
-input::placeholder {
+.input-sign-in::placeholder {
   color: rgb(163, 163, 163);
 }
 /* ///////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\ */

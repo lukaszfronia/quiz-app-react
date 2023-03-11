@@ -30,9 +30,8 @@ const CurrentQuizBox = ({
   setEndAfterHint,
   setCurrentAnswer,
   setOpen,
+  setIsHintCreatedQuiz,
 }) => {
-  const { currentUser, summaryQuiz } = useContext(AuthContext);
-
   useEffect(() => {
     setIsFirstOpen(false);
   }, []);
@@ -47,7 +46,7 @@ const CurrentQuizBox = ({
 
   return (
     <>
-      <div className="quiz-question">{question.question}</div>;
+      <div className="quiz-question">{question.question}</div>
       <div className="quiz-answer-container">
         {question.answers.map((answer, i) => (
           <QuestionItem
@@ -64,6 +63,7 @@ const CurrentQuizBox = ({
             setEndAfterHint={setEndAfterHint}
             setCurrentAnswer={setCurrentAnswer}
             setOpen={setOpen}
+            setIsHintCreatedQuiz={setIsHintCreatedQuiz}
           />
         ))}
       </div>

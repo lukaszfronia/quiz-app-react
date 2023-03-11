@@ -23,7 +23,6 @@ import "./quiz.styles.css";
 import CountDwownTimer from "../../components/timer/countdowntime.component";
 import Result from "../../components/result/result.component";
 import Hint from "../../components/hint/hint.component";
-import nextQuestion from "../../helper/nextQuestionFunc";
 
 const Quiz = ({ currentClass }) => {
   const { quiz } = useParams();
@@ -76,7 +75,7 @@ const Quiz = ({ currentClass }) => {
   const [endAfterHint, setEndAfterHint] = useState(null);
   const [timeAfterHint, setTimeAfterHint] = useState(0);
 
-  const [scoreWithHint, setScoreWithHint] = useState(0);
+  const [isHintCreatedQuiz, setIsHintCreatedQuiz] = useState(0); // Potrzebne
 
   const [scoreBefore, setScoreBefore] = useState(0);
   const [open, setOpen] = useState(false);
@@ -236,6 +235,7 @@ const Quiz = ({ currentClass }) => {
       quizInformationFromCurrentUser[currentQuizNumber].finalScore
     );
   }, [currentQuizNumber, quizInformationFromCurrentUser]);
+
   useEffect(() => {
     if (finalResult === 100) {
       setResult(true);
@@ -316,6 +316,7 @@ const Quiz = ({ currentClass }) => {
                 setEndAfterHint={setEndAfterHint}
                 setCurrentAnswer={setCurrentAnswer}
                 setOpen={setOpen}
+                setIsHintCreatedQuiz={setIsHintCreatedQuiz}
               />
             )
           ) : (
@@ -324,6 +325,7 @@ const Quiz = ({ currentClass }) => {
               showHint={showHint}
               setStartAfterHint={setStartAfterHint}
               setCloseHint={setCloseHint}
+              question={question}
             />
           )
         ) : (

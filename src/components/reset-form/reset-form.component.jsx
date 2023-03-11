@@ -96,6 +96,7 @@ const ResetForm = ({ currentUser, setOverlay, setModal, setCurrentUser }) => {
             <form onSubmit={handleSubmit}>
               <div className="input-form">
                 <input
+                  className="input-sign-in"
                   type="password"
                   name="password"
                   placeholder="Podaj hasło"
@@ -104,6 +105,7 @@ const ResetForm = ({ currentUser, setOverlay, setModal, setCurrentUser }) => {
                   required
                 />
                 <input
+                  className="input-sign-in"
                   type="password"
                   name="confirmPassword"
                   placeholder="Powtórz hasło"

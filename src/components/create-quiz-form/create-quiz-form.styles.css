@@ -1,0 +1,98 @@
+.create-quiz-container {
+  display: grid;
+  place-items: center;
+}
+.create-quiz-box {
+  margin-top: 1rem;
+  background-color: #fef4d3;
+  box-shadow: 0px 15px 10px rgba(0, 0, 0, 0.123);
+  border-radius: 2rem;
+  padding: 3rem;
+}
+
+.create-quiz-form-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.quiz-name-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-create-quiz {
+  border: none;
+  font-size: 0.9rem;
+  width: 12rem;
+  padding: 1.2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.123);
+}
+.input-create-quiz-small {
+  border: none;
+  font-size: 0.9rem;
+  width: 10rem;
+  padding: 1.2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.123);
+}
+.input-create-quiz-large {
+  border: none;
+  font-size: 0.9rem;
+  width: 15rem;
+  height: 10rem;
+  padding: 1.2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.123);
+}
+
+.add-questions-count {
+  font-size: 1.4rem;
+  font-weight: 500;
+  padding-right: 3rem;
+}
+
+.question-hint-box {
+  display: flex;
+  gap: 4rem;
+}
+
+.input-create-quiz::placeholder
+  .input-create-quiz-small::placeholder
+  .input-create-quiz-large::placeholder {
+  color: rgb(163, 163, 163);
+}
+
+.answer-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  row-gap: 1rem;
+  column-gap: 2rem;
+}
+
+.answer-box {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+}
+.radio-box label {
+  display: block;
+  width: 100px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.radio-box input {
+  width: 20px;
+  display: block;
+  margin: 0px auto;
+}
+
+.btns-box {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}

@@ -136,6 +136,7 @@ const SignIn = () => {
           <form onSubmit={handleSubmit}>
             <div className="input-form">
               <input
+                className="input-sign-in"
                 type="e-mail"
                 name="email"
                 value={email}
@@ -144,6 +145,7 @@ const SignIn = () => {
                 required
               />
               <input
+                className="input-sign-in"
                 type="password"
                 name="password"
                 value={password}

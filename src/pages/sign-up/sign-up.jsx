@@ -125,6 +125,7 @@ const SignUp = () => {
           <form onSubmit={handleSubmit}>
             <div className="input-form">
               <input
+                className="input-sign-in"
                 type="text"
                 name="displayName"
                 placeholder="Podaj imię"
@@ -133,6 +134,7 @@ const SignUp = () => {
                 required
               />
               <input
+                className="input-sign-in"
                 type="e-mail"
                 name="email"
                 placeholder="Podaj adres e-mail"
@@ -141,6 +143,7 @@ const SignUp = () => {
                 required
               />
               <input
+                className="input-sign-in"
                 type="password"
                 name="password"
                 placeholder="Podaj hasło"
@@ -149,6 +152,7 @@ const SignUp = () => {
                 required
               />
               <input
+                className="input-sign-in"
                 type="password"
                 name="confirmPassword"
                 placeholder="Powtórz hasło"

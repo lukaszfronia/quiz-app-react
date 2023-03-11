@@ -1,6 +1,6 @@
 .statistic-container {
   max-width: 100rem;
-  height: 46rem;
+  height: auto;
   margin: 3rem auto;
 
   display: grid;

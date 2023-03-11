@@ -21,6 +21,7 @@ import {
   writeBatch,
   updateDoc,
   onSnapshot,
+  deleteDoc,
 } from "firebase/firestore";
 
 import data from "../../data.js";
@@ -174,7 +175,7 @@ export const addCollectionAndDocuments = async () => {
 
   data.forEach((object) => {
     object.quizzes.forEach((quiz) => {
-      docRef = doc(db, "Tech - Liceum", quiz.quizName);
+      docRef = doc(db, "Klasa 4 - 8", quiz.quizName);
       batch.set(docRef, quiz);
     });
   });
@@ -182,8 +183,87 @@ export const addCollectionAndDocuments = async () => {
   await batch.commit();
   console.log("done");
 };
-// addCollectionAndDocuments();
+//addCollectionAndDocuments();
 
+const createQuizData = [
+  {
+    name: "Quiz 0",
+    uid: "asfadfdsags",
+    questions: [
+      {
+        question: "Pytanie 1",
+        answers: [
+          {
+            text: "A: <script>",
+            correct: true,
+            score: 1,
+          },
+          {
+            text: "B: <javascript>",
+            correct: false,
+            score: 0,
+          },
+          {
+            text: "C: <source>",
+            correct: false,
+            score: 0,
+          },
+          {
+            text: "D: <src>",
+            correct: false,
+            score: 0,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: "Quiz 0",
+    uid: "asfadfdsags",
+    questions: [
+      {
+        question: "Pytanie 1",
+        answers: [
+          {
+            text: "A: <script>",
+            correct: true,
+            score: 1,
+          },
+          {
+            text: "B: <javascript>",
+            correct: false,
+            score: 0,
+          },
+          {
+            text: "C: <source>",
+            correct: false,
+            score: 0,
+          },
+          {
+            text: "D: <src>",
+            correct: false,
+            score: 0,
+          },
+        ],
+      },
+    ],
+  },
+];
+
+export const addCreatedQuizzesToDatabase = async (data) => {
+  const batch = writeBatch(db);
+  let docRef;
+
+  console.log(data);
+
+  docRef = doc(db, "Stworzone Quizy", data?.quizName);
+  batch.set(docRef, data);
+
+  await batch.commit();
+  console.log("done");
+};
+
+addCreatedQuizzesToDatabase();
 // Get data from database
 
 export const displayNameFromDatabase = async (user) => {
@@ -265,6 +345,31 @@ export const getGeneralStatsForAllUsers = (setGeneralStatistics) => {
     setGeneralStatistics(items);
   });
 };
+export const getCreatedQuizzes = (setQuizzes) => {
+  const collectionRef = collection(db, `Stworzone Quizy/`);
+
+  onSnapshot(collectionRef, (snapshot) => {
+    let items = [];
+    snapshot.docs.reduce((acc, doc) => {
+      acc = { ...doc.data() };
+      items[doc.data().quizName] = acc;
+    }, {});
+    setQuizzes(items);
+  });
+};
+
+export const getCreatedQuizzesToDisplay = (setCreatedQuizzesToDisplay) => {
+  const collectionRef = collection(db, `Stworzone Quizy/`);
+
+  onSnapshot(collectionRef, (snapshot) => {
+    let items = [];
+    snapshot.docs.map((doc) => {
+      items.push({ ...doc.data() });
+    });
+
+    setCreatedQuizzesToDisplay(items);
+  });
+};
 export const getGeneralStatsForCurrentUser = (
   uid,
   setUserGeneralStatistics
@@ -317,17 +422,23 @@ export const updateFinalResultUser = async (
 
 export const updatePassedQuizUser = async (uid, currentClass, quiz) => {
   const collectionRef = doc(db, `/users/${uid}/${currentClass}/${quiz}`);
-
-  await updateDoc(collectionRef, {
-    passed: true,
-  });
+  try {
+    await updateDoc(collectionRef, {
+      passed: true,
+    });
+  } catch (e) {
+    console.log(e);
+  }
 };
 export const updatePerformedQuizUser = async (uid, currentClass, quiz) => {
   const collectionRef = doc(db, `/users/${uid}/${currentClass}/${quiz}`);
-
-  await updateDoc(collectionRef, {
-    performed: true,
-  });
+  try {
+    await updateDoc(collectionRef, {
+      performed: true,
+    });
+  } catch (e) {
+    console.log(e);
+  }
 };
 export const updateUsedTimeQuizUser = async (
   uid,
@@ -458,3 +569,7 @@ export const updadateCurrentQuestionHintAll = async (
 
 export const setNewPassword = async (user, newPassword) =>
   await updatePassword(user, newPassword);
+
+export const deleteCreatedQuiz = async (quizName) => {
+  await deleteDoc(doc(db, `/Stworzone Quizy/${quizName}`));
+};
