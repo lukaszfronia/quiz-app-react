@@ -106,7 +106,7 @@ const Quiz = ({ currentClass }) => {
   }, [restartQuiz]);
 
   useEffect(() => {
-    if (result & (finalResult < 100) || restartQuiz || isFirstOpen) {
+    if (finalResult <= 100) {
       if ((finalScore >= 0) & (finalScore < 49)) {
         setGradeObtained(1);
       } else if ((finalScore >= 50) & (finalScore <= 59)) {
@@ -119,7 +119,7 @@ const Quiz = ({ currentClass }) => {
         setGradeObtained(5);
       }
     }
-  }, [finalScore, finalResult]);
+  }, [finalResult]);
 
   useEffect(() => {
     setIsHint(
@@ -364,6 +364,10 @@ const Quiz = ({ currentClass }) => {
           setScore={setScore}
           question={question}
           currentAnswer={currentAnswer}
+          setCloseHint={setCloseHint}
+          isHint={isHint}
+          setShowHint={setShowHint}
+          setOpen={setOpen}
         />
       ) : (
         ""

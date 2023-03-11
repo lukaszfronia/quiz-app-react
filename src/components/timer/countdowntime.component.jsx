@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 //Helper function
 import nextQuestion from "../../helper/nextQuestionFunc";
 
-const TIME_FOR_QUIZ = 100; // 1min 30sec
+const TIME_FOR_QUIZ = 100; // 1min 40sec
 const TICK = 1000; // 1 sec
 
 const CountDwownTimer = ({
@@ -17,13 +17,53 @@ const CountDwownTimer = ({
   score,
   setScore,
   currentAnswer,
+  setCloseHint,
+  isHint,
+  setShowHint,
+  setOpen,
 }) => {
   const [time, setTime] = useState(TIME_FOR_QUIZ);
   const [timeColapsed, setTimeColapsed] = useState(0);
   useEffect(() => {
     if (time === 0) {
       if (currentQuestion + 1 < questions.length) {
-        setCurrentQuestion((prevQuestion) => prevQuestion + 1);
+        if (isHint & (currentQuestion === 0)) {
+          setShowHint(true);
+
+          setCurrentQuestion(currentQuestion);
+          setCloseHint(false);
+          setScore(1.02);
+        }
+        if (isHint & (currentQuestion > 0)) {
+          setShowHint(true);
+
+          setCurrentQuestion(currentQuestion);
+          setCloseHint(false);
+        }
+
+        if (!isHint & (currentQuestion > 0)) {
+          setScore((prevScore) => prevScore + 0);
+          if (currentQuestion + 1 < questions.length) {
+            setCurrentQuestion((prevQuestion) => prevQuestion + 1);
+            setCloseHint(false);
+          } else {
+            setCloseHint(false);
+            setResult(true);
+            setOpen(false);
+          }
+        }
+
+        if (!isHint & (currentQuestion === 0)) {
+          setScore(0);
+          if (currentQuestion + 1 < questions.length) {
+            setCurrentQuestion((prevQuestion) => prevQuestion + 1);
+            setCloseHint(false);
+          } else {
+            setCloseHint(false);
+            setResult(true);
+            setOpen(false);
+          }
+        }
       } else {
         setResult(true);
       }
@@ -39,17 +79,15 @@ const CountDwownTimer = ({
   useEffect(() => {
     if (closeHint) {
       if (time === 0) {
-        if (currentQuestion + 1 < questions.length) {
-          setCurrentQuestion((prevQuestion) => prevQuestion + 1);
-        } else {
-          setResult(true);
-        }
+        score > 0 && setScore((prev) => prev + 0);
+        score < 0 && setScore(0);
+        setCloseHint(false);
       } else {
         score > 0 && setScore((prev) => prev - 0.01);
         score < 0 && setScore((prev) => prev - 0.01);
       }
     }
-  }, [closeHint, time]);
+  }, [time]);
 
   useEffect(() => {
     setTime(TIME_FOR_QUIZ);

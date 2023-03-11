@@ -163,7 +163,7 @@ const Result = ({
                 )}
 
                 <p className="quiz-final-result">
-                  Poprzedni wynik: {finalResult}%
+                  Poprzedni wynik: {scoreBefore}%
                 </p>
               </>
             )

@@ -44,7 +44,7 @@ const nextQuestion = (
   /////////////////////////////FALSE\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   if (!isHint & (answer?.correct === false) & (currentQuestion > 0)) {
     setCurrentAnswer(answer.correct);
-    setScore((prevScore) => prevScore - 0);
+    setScore((prevScore) => prevScore + 0);
     if (currentQuestion + 1 < questions.length) {
       setCurrentQuestion((prevQuestion) => prevQuestion + 1);
       setCloseHint(false);
