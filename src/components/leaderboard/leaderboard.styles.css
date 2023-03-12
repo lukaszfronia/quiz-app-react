@@ -10,7 +10,7 @@
   border-radius: 1rem;
   padding: 3rem 2rem;
   background-color: #fef4d3;
-  overflow: scroll;
+  overflow-y: scroll;
   min-height: 4rem;
   max-height: 30rem;
   display: flex;
