@@ -73,11 +73,10 @@ const Quiz = ({ currentClass }) => {
   const [currentAnswer, setCurrentAnswer] = useState(null);
 
   const [closeHint, setCloseHint] = useState(false);
-  const [startAfterHint, setStartAfterHint] = useState(null);
-  const [endAfterHint, setEndAfterHint] = useState(null);
-  const [timeAfterHint, setTimeAfterHint] = useState(0);
 
   const [isHintCreatedQuiz, setIsHintCreatedQuiz] = useState(0); // Potrzebne
+
+  const [timeAfterHint, setTimeAfterHint] = useState(0);
 
   const [scoreBefore, setScoreBefore] = useState(0);
   const [open, setOpen] = useState(false);
@@ -99,17 +98,14 @@ const Quiz = ({ currentClass }) => {
   }, [result]);
 
   useEffect(() => {
-    setTimeAfterHint(Math.floor(endAfterHint - startAfterHint));
-  }, [endAfterHint]);
-
-  useEffect(() => {
     restartQuiz && setScoreBefore(finalResult);
   }, [restartQuiz]);
 
   useEffect(() => {
     if (finalResult <= 100) {
-      if ((finalScore >= 0) & (finalScore < 49)) {
+      if (finalScore === 0) {
         setGradeObtained(1);
+      } else if (finalScore < 49) {
       } else if ((finalScore >= 50) & (finalScore <= 59)) {
         setGradeObtained(2);
       } else if ((finalScore >= 60) & (finalScore <= 74)) {
@@ -272,12 +268,10 @@ const Quiz = ({ currentClass }) => {
   }, [result]);
 
   useEffect(() => {
-    closeHint && setStartAfterHint(new Date().getTime() / 1000);
-  }, [closeHint]);
-
-  useEffect(() => {
     setStartTime(new Date().getTime() / 1000);
   }, []);
+
+  console.log("timafterhint", timeAfterHint);
 
   useEffect(() => {
     if (open) {
@@ -298,6 +292,14 @@ const Quiz = ({ currentClass }) => {
       );
     }
   }, [passed]);
+
+  useEffect(() => {
+    setScore(score);
+  }, [score]);
+
+  useEffect(() => {
+    score > 0 && setScore(score - timeAfterHint / 100);
+  }, [currentQuestion, closeHint]);
 
   return (
     <div className="quiz-container">
@@ -321,17 +323,16 @@ const Quiz = ({ currentClass }) => {
                 setCloseHint={setCloseHint}
                 showHint={showHint}
                 isHint={isHint}
-                setEndAfterHint={setEndAfterHint}
                 setCurrentAnswer={setCurrentAnswer}
                 setOpen={setOpen}
                 setIsHintCreatedQuiz={setIsHintCreatedQuiz}
+                score={score}
               />
             )
           ) : (
             <Hint
               setShowHint={setShowHint}
               showHint={showHint}
-              setStartAfterHint={setStartAfterHint}
               setCloseHint={setCloseHint}
               question={question}
             />
@@ -378,6 +379,8 @@ const Quiz = ({ currentClass }) => {
           isHint={isHint}
           setShowHint={setShowHint}
           setOpen={setOpen}
+          setTimeAfterHint={setTimeAfterHint}
+          setIsHintCreatedQuiz={setIsHintCreatedQuiz}
         />
       ) : (
         ""

@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { getAllQuizzesWithItems } from "../utils/firebase/firebase.utils";
 
 export const QuizContext = createContext({
@@ -10,10 +11,11 @@ export const QuizContext = createContext({
 });
 
 export const QuizProvider = ({ children }) => {
+  const { quiz } = useParams();
   const [quizzes, setQuizzes] = useState({});
   const [collection, setCollection] = useState("Klasa 1 - 3");
   const [quizLocked, setQuizLocked] = useState(true);
-
+  console.log(quiz);
   useEffect(() => {
     getAllQuizzesWithItems(collection, setQuizzes);
   }, [collection]);

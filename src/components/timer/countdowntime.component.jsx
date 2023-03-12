@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 
-//Helper function
-import nextQuestion from "../../helper/nextQuestionFunc";
-
-const TIME_FOR_QUIZ = 100; // 1min 40sec
+const TIME_FOR_QUIZ = 90; // 1min 40sec
 const TICK = 1000; // 1 sec
 
 const CountDwownTimer = ({
@@ -16,61 +13,47 @@ const CountDwownTimer = ({
   closeHint,
   score,
   setScore,
-  currentAnswer,
   setCloseHint,
   isHint,
   setShowHint,
   setOpen,
+  setTimeAfterHint,
+  setIsHintCreatedQuiz,
 }) => {
   const [time, setTime] = useState(TIME_FOR_QUIZ);
-  const [timeColapsed, setTimeColapsed] = useState(0);
   useEffect(() => {
     if (time === 0) {
-      if (currentQuestion + 1 < questions.length) {
-        if (isHint & (currentQuestion === 0)) {
-          setShowHint(true);
+      if (isHint) {
+        setShowHint(true);
+        setIsHintCreatedQuiz(false);
 
-          setCurrentQuestion(currentQuestion);
+        setCurrentQuestion(currentQuestion);
+        setCloseHint(false);
+      }
+      // if (isHint & (answer?.correct === false) & (currentQuestion > 0)) {
+      //   setShowHint(true);
+      //   setIsHintCreatedQuiz(false);
+
+      //   setCurrentQuestion(currentQuestion);
+      //   setCloseHint(false);
+      // }
+
+      if (!isHint) {
+        setIsHintCreatedQuiz(true);
+
+        setScore((prevScore) => prevScore + 0);
+        if (currentQuestion + 1 < questions.length) {
+          setCurrentQuestion((prevQuestion) => prevQuestion + 1);
           setCloseHint(false);
-          setScore(1.02);
-        }
-        if (isHint & (currentQuestion > 0)) {
-          setShowHint(true);
-
-          setCurrentQuestion(currentQuestion);
+        } else {
           setCloseHint(false);
+          setResult(true);
+          setOpen(false);
         }
-
-        if (!isHint & (currentQuestion > 0)) {
-          setScore((prevScore) => prevScore + 0);
-          if (currentQuestion + 1 < questions.length) {
-            setCurrentQuestion((prevQuestion) => prevQuestion + 1);
-            setCloseHint(false);
-          } else {
-            setCloseHint(false);
-            setResult(true);
-            setOpen(false);
-          }
-        }
-
-        if (!isHint & (currentQuestion === 0)) {
-          setScore(0);
-          if (currentQuestion + 1 < questions.length) {
-            setCurrentQuestion((prevQuestion) => prevQuestion + 1);
-            setCloseHint(false);
-          } else {
-            setCloseHint(false);
-            setResult(true);
-            setOpen(false);
-          }
-        }
-      } else {
-        setResult(true);
       }
     } else {
       const timer = setInterval(() => {
         setTime((prevTime) => prevTime - 1);
-        setTimeColapsed((prev) => prev + 1);
       }, TICK);
       return () => clearInterval(timer);
     }
@@ -83,11 +66,16 @@ const CountDwownTimer = ({
         score < 0 && setScore(0);
         setCloseHint(false);
       } else {
-        score > 0 && setScore((prev) => prev - 0.01);
-        score < 0 && setScore((prev) => prev - 0.01);
+        // score > 0 && setScore((prev) => prev - 0.01);
+        // score < 0 && setScore((prev) => prev - 0.01);
+
+        const timer = setInterval(() => {
+          setTimeAfterHint((prevTime) => prevTime + 1);
+        }, TICK);
+        return () => clearInterval(timer);
       }
     }
-  }, [time]);
+  }, [closeHint, time]);
 
   useEffect(() => {
     setTime(TIME_FOR_QUIZ);
@@ -95,6 +83,9 @@ const CountDwownTimer = ({
 
   useEffect(() => {
     setTime(TIME_FOR_QUIZ);
+  }, [closeHint]);
+  useEffect(() => {
+    setTimeAfterHint(0);
   }, [closeHint]);
 
   const min = `${Math.trunc(time / 60)}`.padStart(2, "0");

@@ -29,10 +29,11 @@ const CurrentQuizBox = ({
   showHint,
   isHint,
   setCloseHint,
-  setEndAfterHint,
-  setCurrentAnswer,
+
   setOpen,
   setIsHintCreatedQuiz,
+  score,
+  nextQuestion,
 }) => {
   const [shuffledAnswers, setShuffledAnswers] = useState(
     shuffleArray(question.answers)
@@ -70,10 +71,10 @@ const CurrentQuizBox = ({
             setScore={setScore}
             setShowHint={setShowHint}
             setCloseHint={setCloseHint}
-            setEndAfterHint={setEndAfterHint}
-            setCurrentAnswer={setCurrentAnswer}
             setOpen={setOpen}
             setIsHintCreatedQuiz={setIsHintCreatedQuiz}
+            score={score}
+            nextQuestion={nextQuestion}
           />
         ))}
       </div>

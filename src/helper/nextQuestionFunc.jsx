@@ -1,5 +1,3 @@
-import Result from "../components/result/result.component";
-
 const nextQuestion = (
   currentQuestion,
   questions,
@@ -10,8 +8,6 @@ const nextQuestion = (
   setShowHint,
   isHint,
   setCloseHint,
-  setEndAfterHint,
-  setCurrentAnswer,
   setOpen,
   setIsHintCreatedQuiz
 ) => {
@@ -28,27 +24,13 @@ const nextQuestion = (
     }
   }
 
-  if (!isHint & (answer?.correct === true) & (currentQuestion === 0)) {
+  if (!isHint & (answer?.correct === true)) {
+    setScore((prevScore) => prevScore + 1);
     setIsHintCreatedQuiz(true);
 
     if (currentQuestion + 1 < questions.length) {
       setCurrentQuestion((prevQuestion) => prevQuestion + 1);
       setCloseHint(false);
-      setEndAfterHint(new Date().getTime() / 1000);
-    } else {
-      setResult(true);
-      setCloseHint(false);
-      setOpen(false);
-    }
-  }
-  if (!isHint & (answer?.correct === true) & (currentQuestion > 0)) {
-    setScore((prevScore) => prevScore + 1.02);
-    setIsHintCreatedQuiz(true);
-
-    if (currentQuestion + 1 < questions.length) {
-      setCurrentQuestion((prevQuestion) => prevQuestion + 1);
-      setCloseHint(false);
-      setEndAfterHint(new Date().getTime() / 1000);
     } else {
       setResult(true);
       setCloseHint(false);
@@ -57,15 +39,7 @@ const nextQuestion = (
   }
   /////////////////////////////FALSE\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-  if (isHint & (answer?.correct === false) & (currentQuestion === 0)) {
-    setShowHint(true);
-    setIsHintCreatedQuiz(false);
-
-    setCurrentQuestion(currentQuestion);
-    setCloseHint(false);
-    setScore(1.02);
-  }
-  if (isHint & (answer?.correct === false) & (currentQuestion > 0)) {
+  if (isHint & (answer?.correct === false)) {
     setShowHint(true);
     setIsHintCreatedQuiz(false);
 
@@ -73,29 +47,13 @@ const nextQuestion = (
     setCloseHint(false);
   }
 
-  if (!isHint & (answer?.correct === false) & (currentQuestion > 0)) {
+  if (!isHint & (answer?.correct === false)) {
     setIsHintCreatedQuiz(true);
 
     setScore((prevScore) => prevScore + 0);
     if (currentQuestion + 1 < questions.length) {
       setCurrentQuestion((prevQuestion) => prevQuestion + 1);
       setCloseHint(false);
-      setEndAfterHint(new Date().getTime() / 1000);
-    } else {
-      setCloseHint(false);
-      setResult(true);
-      setOpen(false);
-    }
-  }
-
-  if (!isHint & (answer?.correct === false) & (currentQuestion === 0)) {
-    setIsHintCreatedQuiz(true);
-
-    setScore(0);
-    if (currentQuestion + 1 < questions.length) {
-      setCurrentQuestion((prevQuestion) => prevQuestion + 1);
-      setCloseHint(false);
-      setEndAfterHint(new Date().getTime() / 1000);
     } else {
       setCloseHint(false);
       setResult(true);

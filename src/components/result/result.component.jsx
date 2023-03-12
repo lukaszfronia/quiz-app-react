@@ -152,7 +152,7 @@ const Result = ({
           {restartQuiz & !isFirstOpen ? (
             (finalScore <= 100) & restartQuiz & !isFirstOpen && (
               <>
-                {finalScore < finalResult ? (
+                {finalScore < scoreBefore ? (
                   <h1 className="quiz-description">
                     Niestety nie udało Ci się poprawić wyniku
                   </h1>
@@ -185,7 +185,7 @@ const Result = ({
           <p className="quiz-final-result">
             Wykorzystany czas: {min}:{sec}
           </p>
-          <p className="quiz-final-result">Uzyskana ocena: {grade}</p>
+          <p className="quiz-final-result">Uzyskana ocena: {gradeObtained}</p>
           <div
             className={`
                    "result-btn-box"
