@@ -28,20 +28,26 @@ const CreatedQuiz = () => {
   const finalScore = Math.floor((score / questions.length) * 100);
   const quizLength = Object.keys(createdQuizzes).length;
   const [isHint, setIsHintCreatedQuiz] = useState(true);
+  const [timeAfterHint, setTimeAfterHint] = useState(0);
+
+  useEffect(() => {
+    score > 0 && setScore(score - timeAfterHint / 100);
+  }, [currentQuestion, closeHint]);
+
   useEffect(() => {
     setBestTime((prev) => prev + Math.floor(endTime - startTime));
   }, [endTime]);
 
   useEffect(() => {
-    if ((finalScore >= 0) & (finalScore < 49)) {
+    if (finalScore >= 0 && finalScore < 49) {
       setGrade(1);
-    } else if ((finalScore >= 50) & (finalScore <= 59)) {
+    } else if (finalScore >= 50 && finalScore <= 59) {
       setGrade(2);
-    } else if ((finalScore >= 60) & (finalScore <= 74)) {
+    } else if (finalScore >= 60 && finalScore <= 74) {
       setGrade(3);
-    } else if ((finalScore >= 75) & (finalScore <= 89)) {
+    } else if (finalScore >= 75 && finalScore <= 89) {
       setGrade(4);
-    } else if ((finalScore >= 90) & (finalScore <= 100)) {
+    } else if (finalScore >= 90 && finalScore <= 100) {
       setGrade(5);
     }
   }, [finalScore]);
@@ -109,13 +115,13 @@ const CreatedQuiz = () => {
             quizLength={quizLength}
             isFirstOpen={isFirstOpen}
             setIsFirstOpen={setIsFirstOpen}
-            grade={grade}
+            gradeObtained={grade}
             setOpen={setOpen}
             bestTime={bestTime}
           />
         )}
       </div>
-      {!result & !showHint ? (
+      {!result && !showHint ? (
         <CountDwownTimer
           currentQuestion={currentQuestion}
           currentQuiz={currentQuiz}
@@ -130,6 +136,7 @@ const CreatedQuiz = () => {
           setCloseHint={setCloseHint}
           isHint={isHint}
           setShowHint={setShowHint}
+          setTimeAfterHint={setTimeAfterHint}
         />
       ) : (
         ""

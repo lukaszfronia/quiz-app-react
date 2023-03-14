@@ -56,9 +56,7 @@ const Quiz = ({ currentClass }) => {
   const [usedTime, setUsedTime] = useState(
     quizInformationFromCurrentUser[currentQuizNumber].usedTime
   );
-  const [gradeObtained, setGradeObtained] = useState(
-    quizInformationFromCurrentUser[currentQuizNumber].grade
-  );
+  const [gradeObtained, setGradeObtained] = useState(2);
   const [madeQuizzes, setMadeQuizzes] = useState(
     quizInformationFromCurrentUser[currentQuizNumber].madeQuizzes
   );
@@ -81,12 +79,16 @@ const Quiz = ({ currentClass }) => {
   const [scoreBefore, setScoreBefore] = useState(0);
   const [open, setOpen] = useState(false);
 
-  const finalScore = Math.floor((score / questions.length) * 100);
+  const [finalScore, setFinalScore] = useState(0);
   const quizLength = Object.keys(quizzes).length;
 
   const [isHint, setIsHint] = useState(
     quizInformationFromCurrentUser[currentQuizNumber][currentQuestion]?.hint
   );
+
+  useEffect(() => {
+    setFinalScore(Math.floor((score / questions.length) * 100));
+  }, [result]);
 
   useEffect(() => {
     result &&
@@ -103,20 +105,22 @@ const Quiz = ({ currentClass }) => {
 
   useEffect(() => {
     if (finalResult <= 100) {
-      if (finalScore === 0) {
+      if (finalScore < 50) {
         setGradeObtained(1);
-      } else if (finalScore < 49) {
-      } else if ((finalScore >= 50) & (finalScore <= 59)) {
+      } else if (finalScore >= 50 && finalScore <= 59) {
         setGradeObtained(2);
-      } else if ((finalScore >= 60) & (finalScore <= 74)) {
+      } else if (finalScore >= 60 && finalScore <= 74) {
         setGradeObtained(3);
-      } else if ((finalScore >= 75) & (finalScore <= 89)) {
+      } else if (finalScore >= 75 && finalScore <= 89) {
         setGradeObtained(4);
-      } else if ((finalScore >= 90) & (finalScore <= 100)) {
+      } else if (finalScore >= 90 && finalScore <= 100) {
         setGradeObtained(5);
       }
     }
-  }, [finalResult]);
+  }, [finalResult, finalScore]);
+  useEffect(() => {
+    setGradeObtained(gradeObtained);
+  }, [result, gradeObtained]);
 
   useEffect(() => {
     setIsHint(
@@ -164,7 +168,8 @@ const Quiz = ({ currentClass }) => {
 
   useEffect(() => {
     if (
-      (currentQuestion === questions.length - 1) &
+      currentQuestion === questions.length - 1 &&
+      finalScore === 100 &&
       (finalScore === 100 || restartQuiz)
     ) {
       if (summaryQuiz[currentClass].bestTime >= bestTime) {
@@ -208,7 +213,7 @@ const Quiz = ({ currentClass }) => {
 
   useEffect(() => {
     setGradeObtained(quizInformationFromCurrentUser[currentQuizNumber].grade);
-  }, [currentQuizNumber]);
+  }, [quizInformationFromCurrentUser]);
 
   useEffect(() => {
     setPassed(quizInformationFromCurrentUser[currentQuizNumber].passed);
@@ -271,8 +276,6 @@ const Quiz = ({ currentClass }) => {
     setStartTime(new Date().getTime() / 1000);
   }, []);
 
-  console.log("timafterhint", timeAfterHint);
-
   useEffect(() => {
     if (open) {
       updateNumbersOfApproachesCurrentUserQuiz(
@@ -304,7 +307,7 @@ const Quiz = ({ currentClass }) => {
   return (
     <div className="quiz-container">
       <div className="quiz-box">
-        {!result & !performed ? (
+        {!result && !performed ? (
           !showHint ? (
             question && (
               <CurrentQuizBox
@@ -362,7 +365,7 @@ const Quiz = ({ currentClass }) => {
           />
         )}
       </div>
-      {!result & !performed & !showHint ? (
+      {!result && !performed && !showHint ? (
         <CountDwownTimer
           currentQuestion={currentQuestion}
           currentQuiz={currentQuiz}

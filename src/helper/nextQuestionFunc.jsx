@@ -12,7 +12,7 @@ const nextQuestion = (
   setIsHintCreatedQuiz
 ) => {
   ////////////////////////////TRUE\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-  if ((answer?.correct === true) & isHint) {
+  if (answer?.correct === true && isHint) {
     setScore((prevScore) => prevScore + 1);
     if (currentQuestion + 1 < questions.length) {
       setCurrentQuestion((prevQuestion) => prevQuestion + 1);
@@ -24,7 +24,7 @@ const nextQuestion = (
     }
   }
 
-  if (!isHint & (answer?.correct === true)) {
+  if (!isHint && answer?.correct === true) {
     setScore((prevScore) => prevScore + 1);
     setIsHintCreatedQuiz(true);
 
@@ -39,7 +39,7 @@ const nextQuestion = (
   }
   /////////////////////////////FALSE\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-  if (isHint & (answer?.correct === false)) {
+  if (isHint && answer?.correct === false) {
     setShowHint(true);
     setIsHintCreatedQuiz(false);
 
@@ -47,7 +47,7 @@ const nextQuestion = (
     setCloseHint(false);
   }
 
-  if (!isHint & (answer?.correct === false)) {
+  if (!isHint && answer?.correct === false) {
     setIsHintCreatedQuiz(true);
 
     setScore((prevScore) => prevScore + 0);

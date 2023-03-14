@@ -132,6 +132,7 @@ const CreateQuizForm = () => {
         uid: "",
         questions: [],
       });
+      setQuestionCount(0);
 
       try {
         await addCreatedQuizzesToDatabase(createQuizData);

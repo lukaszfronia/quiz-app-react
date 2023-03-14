@@ -76,38 +76,38 @@ const Result = ({
   };
 
   useEffect(() => {
-    if ((finalScore >= 50) & (currentQuizNumber < quizLength - 1)) {
+    if (finalScore >= 50 && currentQuizNumber < quizLength - 1) {
       updateLockedQuizUser(
-        currentUser.uid,
+        currentUser?.uid,
         currentClass,
         `Quiz ${currentQuizNumber + 1}`
       );
     }
-  }, []);
+  }, [finalScore]);
 
   useEffect(() => {
     if (finalScore <= 100 && !performed) {
       updatePerformedQuizUser(
-        currentUser.uid,
+        currentUser?.uid,
         currentClass,
         `Quiz ${currentQuizNumber}`
       );
     }
-  }, []);
+  }, [finalScore]);
   useEffect(() => {
     if (finalScore <= 100) {
       updatePassedQuizUser(
-        currentUser.uid,
+        currentUser?.uid,
         currentClass,
         `Quiz ${currentQuizNumber}`
       );
     }
-  }, []);
+  }, [finalScore]);
 
   useEffect(() => {
-    if (performed & restartQuiz) {
+    if (performed && restartQuiz) {
       updateNumbersOfApproachesCurrentUserQuiz(
-        currentUser.uid,
+        currentUser?.uid,
         currentClass,
         summaryQuiz[currentClass].numberOfApproaches
       );
@@ -125,7 +125,7 @@ const Result = ({
 
   return (
     <>
-      {performed & isFirstOpen & (finalResult === 100) ? (
+      {performed && isFirstOpen && finalResult === 100 ? (
         <div className="final-result-box">
           <img src={achivement} alt="puchar" className="img-achivement" />
           <h1 className="quiz-description">Rozwiązałeś poprawnie cały quiz!</h1>
@@ -135,7 +135,7 @@ const Result = ({
             <Button onClick={backToPreviousPage}>Powrót</Button>
           </div>
         </div>
-      ) : isFirstOpen & performed & (finalResult < 100) ? (
+      ) : isFirstOpen && performed && finalResult < 100 ? (
         <div className="final-result-box">
           <h1 className="quiz-description">
             Możesz spróbować poprawić swój wynik!
@@ -149,8 +149,10 @@ const Result = ({
         </div>
       ) : (
         <div className="final-result-box">
-          {restartQuiz & !isFirstOpen ? (
-            (finalScore <= 100) & restartQuiz & !isFirstOpen && (
+          {restartQuiz && !isFirstOpen ? (
+            finalScore <= 100 &&
+            restartQuiz &&
+            !isFirstOpen && (
               <>
                 {finalScore < scoreBefore ? (
                   <h1 className="quiz-description">
@@ -167,7 +169,7 @@ const Result = ({
                 </p>
               </>
             )
-          ) : !isFirstOpen & (finalScore >= 50) ? (
+          ) : !isFirstOpen && finalScore >= 50 ? (
             <>
               <h1 className="quiz-description">Rozwiązałeś poprawnie quiz</h1>
               <h2>
