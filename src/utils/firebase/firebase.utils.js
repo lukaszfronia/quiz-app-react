@@ -185,77 +185,9 @@ export const addCollectionAndDocuments = async () => {
 };
 //addCollectionAndDocuments();
 
-const createQuizData = [
-  {
-    name: "Quiz 0",
-    uid: "asfadfdsags",
-    questions: [
-      {
-        question: "Pytanie 1",
-        answers: [
-          {
-            text: "A: <script>",
-            correct: true,
-            score: 1,
-          },
-          {
-            text: "B: <javascript>",
-            correct: false,
-            score: 0,
-          },
-          {
-            text: "C: <source>",
-            correct: false,
-            score: 0,
-          },
-          {
-            text: "D: <src>",
-            correct: false,
-            score: 0,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    name: "Quiz 0",
-    uid: "asfadfdsags",
-    questions: [
-      {
-        question: "Pytanie 1",
-        answers: [
-          {
-            text: "A: <script>",
-            correct: true,
-            score: 1,
-          },
-          {
-            text: "B: <javascript>",
-            correct: false,
-            score: 0,
-          },
-          {
-            text: "C: <source>",
-            correct: false,
-            score: 0,
-          },
-          {
-            text: "D: <src>",
-            correct: false,
-            score: 0,
-          },
-        ],
-      },
-    ],
-  },
-];
-
 export const addCreatedQuizzesToDatabase = async (data) => {
   const batch = writeBatch(db);
   let docRef;
-
-  console.log(data);
-
   docRef = doc(db, "Stworzone Quizy", data?.quizName);
   batch.set(docRef, data);
 

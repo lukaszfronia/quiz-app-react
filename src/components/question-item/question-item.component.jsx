@@ -40,7 +40,6 @@ const QuestionItem = ({
 
   return (
     <div
-      key={Math.floor(Math.random() * 10000)}
       className="quiz-answer-box"
       onClick={(e) => {
         nextQuestionHandler(e, answer);

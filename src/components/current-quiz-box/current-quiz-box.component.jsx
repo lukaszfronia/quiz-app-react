@@ -61,6 +61,7 @@ const CurrentQuizBox = ({
       <div className="quiz-answer-container">
         {shuffledAnswers.map((answer, i) => (
           <QuestionItem
+            key={Math.floor(Math.random() * 10000)}
             question={question}
             answer={answer}
             currentQuestion={currentQuestion}

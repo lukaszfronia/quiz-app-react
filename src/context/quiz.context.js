@@ -11,11 +11,10 @@ export const QuizContext = createContext({
 });
 
 export const QuizProvider = ({ children }) => {
-  const { quiz } = useParams();
   const [quizzes, setQuizzes] = useState({});
   const [collection, setCollection] = useState("Klasa 1 - 3");
   const [quizLocked, setQuizLocked] = useState(true);
-  console.log(quiz);
+
   useEffect(() => {
     getAllQuizzesWithItems(collection, setQuizzes);
   }, [collection]);
