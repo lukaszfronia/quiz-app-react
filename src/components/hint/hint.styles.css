@@ -6,9 +6,52 @@
   justify-content: center;
   padding: 1rem 0.5rem;
 }
+.hint-title {
+  font-size: 2.4rem;
+}
 
 .hint-description {
   font-size: 1.6rem;
   letter-spacing: 1px;
   font-weight: 500;
+}
+
+@media (max-width: 63em) {
+  .hint-description {
+    font-size: 2.4rem;
+  }
+
+  .hint-title {
+    font-size: 2.6rem;
+  }
+}
+
+@media (max-width: 46em) {
+  .hint-description {
+    font-size: 2.6rem;
+  }
+
+  .hint-title {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 35em) {
+  .hint-description {
+    font-size: 1.8rem;
+  }
+
+  .hint-title {
+    font-size: 2.6rem;
+  }
+}
+
+@media (max-width: 31em) {
+  .hint-description {
+    font-size: 2.4rem;
+  }
+
+  .hint-title {
+    font-size: 2.8rem;
+  }
 }

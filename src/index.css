@@ -3,11 +3,14 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+html {
+  font-size: 62.5%;
+}
 body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 62.5%;
 
   color: #495057; /* <--- GRAY 7 https://yeun.github.io/open-color/ */
 }
@@ -19,4 +22,21 @@ code {
   color: #fff;
   font-size: 0.9rem;
   font-weight: 700;
+}
+
+@media (max-width: 63em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+
+@media (max-width: 46em) {
+  html {
+    font-size: 50%;
+  }
+}
+@media (max-width: 31em) {
+  html {
+    font-size: 35%;
+  }
 }

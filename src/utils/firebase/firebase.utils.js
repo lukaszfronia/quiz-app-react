@@ -175,9 +175,9 @@ export const addCollectionAndDocuments = async () => {
   const batch = writeBatch(db);
   let docRef;
 
-  data.forEach((object) => {
+  dataTL.forEach((object) => {
     object.quizzes.forEach((quiz) => {
-      docRef = doc(db, "Klasa 1 - 3", quiz.quizName);
+      docRef = doc(db, "Tech - Liceum", quiz.quizName);
       batch.set(docRef, quiz);
     });
   });
@@ -185,7 +185,7 @@ export const addCollectionAndDocuments = async () => {
   await batch.commit();
   console.log("done");
 };
-addCollectionAndDocuments();
+// addCollectionAndDocuments();
 
 export const addCreatedQuizzesToDatabase = async (data) => {
   const batch = writeBatch(db);

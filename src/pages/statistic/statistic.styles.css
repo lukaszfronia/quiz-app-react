@@ -12,3 +12,24 @@
   padding: 2rem;
   position: relative;
 }
+@media (max-width: 63em) {
+  .statistic-container {
+    max-width: 80rem;
+
+    grid-template-columns: 1fr;
+
+    border-radius: 2rem;
+    row-gap: 4rem;
+  }
+}
+@media (max-width: 56em) {
+  .statistic-container {
+    max-width: 70rem;
+  }
+}
+
+@media (max-width: 35em) {
+  .statistic-container {
+    max-width: 60rem;
+  }
+}

@@ -19,3 +19,17 @@
   width: 2rem;
   cursor: pointer;
 }
+
+@media (max-width: 56em) {
+  .created-quiz-item-box {
+    width: 50rem;
+  }
+  .created-quiz-name {
+    font-size: 1.6rem;
+  }
+
+  .close-btn {
+    height: 2.2rem;
+    width: 2.2rem;
+  }
+}

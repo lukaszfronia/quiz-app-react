@@ -40,18 +40,18 @@ const StatisticCategory = ({
 
       <ul className="statistic-list-items">
         <li className="statistic-list-item">
-          <p>Zdane Quizy: {passedQuizzes}</p>
+          <p className="statistic-description">Zdane Quizy: {passedQuizzes}</p>
         </li>
         <li className="statistic-list-item">
-          <p>
+          <p className="statistic-description">
             Najlepszy czas: {min}:{sec}
           </p>
         </li>
         <li className="statistic-list-item">
-          <p>Wykonane Quizy: {madeQuizzes}</p>
+          <p className="statistic-description">Wykonane Quizy: {madeQuizzes}</p>
         </li>
         <li className="statistic-list-item">
-          <p>
+          <p className="statistic-description">
             Ocena końcowa:{" "}
             {Math.floor(
               ((category === "Klasa 1 - 3" && newGradeKlasa13 > 0
@@ -67,7 +67,9 @@ const StatisticCategory = ({
           </p>
         </li>
         <li className="statistic-list-item">
-          <p>Liczba podejść: {numberOfApproaches}</p>
+          <p className="statistic-description">
+            Liczba podejść: {numberOfApproaches}
+          </p>
         </li>
       </ul>
     </div>

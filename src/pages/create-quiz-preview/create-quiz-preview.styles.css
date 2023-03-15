@@ -11,3 +11,35 @@
   padding: 3rem;
   gap: 3rem;
 }
+
+@media (max-width: 56em) {
+  .create-quiz-preview-container {
+    grid-template-columns: 1fr;
+
+    max-width: 90rem;
+  }
+}
+
+@media (max-width: 46em) {
+  .create-quiz-preview-container {
+    max-width: 80rem;
+  }
+}
+
+@media (max-width: 42em) {
+  .create-quiz-preview-container {
+    max-width: 70rem;
+  }
+}
+
+@media (max-width: 35em) {
+  .create-quiz-preview-container {
+    max-width: 60rem;
+  }
+}
+
+@media (max-width: 31em) {
+  .create-quiz-preview-container {
+    max-width: 60rem;
+  }
+}

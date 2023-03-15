@@ -1,7 +1,9 @@
-import { Fragment, useContext, useState, useEffect } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
 import Button from "../../components/button/button.component";
+import menu from "./menu.png";
+import close from "./close (1).png";
 
 import { AuthContext } from "../../context/auth.context";
 import {
@@ -14,6 +16,8 @@ import "./navigation.styles.css";
 const Navigation = () => {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(AuthContext);
+
+  const [isMobile, setIsMobile] = useState(false);
 
   const goToSignInHandler = () => {
     navigate("zaloguj-sie/");
@@ -29,33 +33,68 @@ const Navigation = () => {
       console.log(err);
     }
   };
+  useEffect(() => {
+    setIsMobile(isMobile);
+  }, [isMobile]);
+  console.log(isMobile);
 
   return (
     <Fragment>
-      <div className="naviagion-container">
+      <header className="naviagion-container">
         <Link className="logo" to="/">
-          <h1>
+          <h1 className="logo-text">
             Quiz<span className="quiz-color">Math</span>
           </h1>
         </Link>
 
-        <div className="links-container">
-          <Link className="link" to="stworzquiz/">
-            Stwórz Quiz
-          </Link>
-
-          {currentUser ? (
-            <>
-              <Link className="link" to="/statystyki">
-                Statystyki
+        <nav
+          className={isMobile ? "nav-open main-nav" : "main-nav"}
+          onClick={() => setIsMobile(false)}
+        >
+          <ul className="main-nav-list">
+            <li>
+              <Link className="link" to="stworzquiz/">
+                Stwórz Quiz
               </Link>
-              <Button onClick={signOutHandler}>Wyloguj się</Button>
-            </>
+            </li>
+            {currentUser ? (
+              <>
+                <li>
+                  <Link className="link" to="/statystyki">
+                    Statystyki
+                  </Link>
+                </li>
+                <li>
+                  <Button onClick={signOutHandler}>Wyloguj się</Button>
+                </li>
+              </>
+            ) : (
+              <li>
+                <Button onClick={goToSignInHandler}>Zaloguj się</Button>
+              </li>
+            )}
+          </ul>
+        </nav>
+
+        <button
+          className="mobile-menu-icon"
+          onClick={() => setIsMobile(!isMobile)}
+        >
+          {isMobile ? (
+            <img
+              src={close}
+              alt="przycisk do zamykania menu"
+              className="close-menu-icon"
+            />
           ) : (
-            <Button onClick={goToSignInHandler}>Zaloguj się</Button>
+            <img
+              src={menu}
+              alt="przycisk do otwierania menu"
+              className="open-menu-icon"
+            />
           )}
-        </div>
-      </div>
+        </button>
+      </header>
       <Outlet />
     </Fragment>
   );

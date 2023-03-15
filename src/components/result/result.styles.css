@@ -28,3 +28,21 @@
   font-size: 1.6rem;
   font-weight: 500;
 }
+
+@media (max-width: 63em) {
+  .quiz-description {
+    font-size: 2.2rem;
+  }
+  .quiz-final-result {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 42em) {
+  .quiz-description {
+    font-size: 1.6rem;
+  }
+  .quiz-final-result {
+    font-size: 1.4rem;
+  }
+}

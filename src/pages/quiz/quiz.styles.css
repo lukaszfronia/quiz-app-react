@@ -30,3 +30,69 @@
   font-size: 1.6rem;
   letter-spacing: 2px;
 }
+
+@media (max-width: 63em) {
+  .quiz-container {
+    max-width: 80rem;
+    margin: 30rem auto;
+    padding: 2rem 4rem;
+  }
+
+  .quiz-box {
+    padding: 4rem;
+  }
+
+  .timer-box {
+    margin: 2rem auto;
+    max-width: 10rem;
+  }
+
+  .timer {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 46em) {
+  .quiz-container {
+    max-width: 80rem;
+    margin: 30rem auto;
+    padding: 2rem 4rem;
+  }
+
+  .quiz-box {
+    padding: 4rem;
+  }
+
+  .timer-box {
+    margin: 2rem auto;
+    max-width: 10rem;
+  }
+
+  .timer {
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 35em) {
+  .quiz-box {
+    max-width: 60rem;
+    padding: 4rem;
+  }
+
+  .timer {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 31em) {
+  .quiz-box {
+    max-width: 90rem;
+  }
+
+  .timer {
+    font-size: 2.4rem;
+  }
+}

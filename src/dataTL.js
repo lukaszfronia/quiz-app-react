@@ -52,7 +52,7 @@ const dataTL = [
             ],
           },
           {
-            hint: "Odejmij 5 od obu stron, a następnie podziel przez 2.",
+            hint: "Przenieś liczby całkowite na jedną strone, a następnie podziel wszystko przez wartośc przy x",
 
             question: "Rozwiąż dla x: 2x + 5 = 13",
             answers: [

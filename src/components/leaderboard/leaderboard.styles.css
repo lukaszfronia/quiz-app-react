@@ -22,3 +22,15 @@
   letter-spacing: 2px;
   font-size: 2.6rem;
 }
+
+@media (max-width: 56em) {
+  .leaderboard-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 31em) {
+  .leaderboard-title {
+    font-size: 2.4rem;
+  }
+}

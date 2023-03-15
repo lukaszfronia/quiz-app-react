@@ -11,7 +11,7 @@ const Hint = ({ setShowHint, setCloseHint, question }) => {
   };
   return (
     <div className="hint-box">
-      <h1>Podpowiedź</h1>
+      <h1 className="hint-title">Podpowiedź</h1>
       <p className="hint-description">{question.hint}</p>
       <Button onClick={closeHintHandler}>Powrót</Button>
     </div>

@@ -2,11 +2,11 @@
   border: 1px solid #fcc822;
   background-color: #fff;
   color: #fcc822;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   letter-spacing: 1px;
   padding: 0 1.8rem;
   max-width: auto;
-  height: 3rem;
+  height: 4rem;
   box-shadow: 0 0.4rem 0.6rem #fcc92279;
   transition: all 0.4s ease-in-out;
 }
@@ -33,4 +33,51 @@
   width: 2rem;
   height: 2rem;
   cursor: pointer;
+}
+
+@media (max-width: 84em) {
+  .btn {
+    font-size: 1.6rem;
+    height: 3.6rem;
+  }
+}
+
+@media (max-width: 76em) {
+  .btn {
+    font-size: 1.4rem;
+    height: 3.4rem;
+  }
+}
+
+@media (max-width: 63em) {
+  .btn {
+    font-size: 1.6rem;
+    height: 3.6rem;
+  }
+}
+@media (max-width: 56em) {
+  .btn {
+    font-size: 1.6rem;
+    height: 3.4rem;
+  }
+}
+@media (max-width: 46em) {
+  .btn {
+    font-size: 2rem;
+    height: 4rem;
+  }
+}
+
+@media (max-width: 42em) {
+  .btn {
+    font-size: 1.8rem;
+    height: 4rem;
+  }
+}
+
+@media (max-width: 31em) {
+  .btn {
+    font-size: 1.6rem;
+    height: 3.4rem;
+  }
 }
