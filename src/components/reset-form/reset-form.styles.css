@@ -1,7 +1,7 @@
 .reset-container {
   display: flex;
   position: fixed;
-  transform: translate(50%, 50%);
+  transform: translate(90%, 40%);
 
   border-bottom: 5px solid #fcc822;
   border-top: 5px solid #fcc822;
