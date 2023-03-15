@@ -35,14 +35,6 @@ const CurrentQuizBox = ({
   score,
   nextQuestion,
 }) => {
-  const [shuffledAnswers, setShuffledAnswers] = useState(
-    shuffleArray(question.answers)
-  );
-
-  useEffect(() => {
-    setShuffledAnswers(shuffleArray(question.answers));
-  }, []);
-
   useEffect(() => {
     setIsFirstOpen(false);
   }, []);
@@ -59,7 +51,7 @@ const CurrentQuizBox = ({
     <>
       <div className="quiz-question">{question.question}</div>
       <div className="quiz-answer-container">
-        {shuffledAnswers.map((answer, i) => (
+        {question.answers.map((answer, i) => (
           <QuestionItem
             key={Math.floor(Math.random() * 10000)}
             question={question}

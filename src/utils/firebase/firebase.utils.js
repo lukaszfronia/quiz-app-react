@@ -27,7 +27,9 @@ import {
 import data from "../../data.js";
 import { summary } from "../../summaryAllQuiz.js";
 import category from "../../statisticQuizData.js";
-import hint from "../../hintData.js";
+import dataKlasa48 from "../../dataKlasa48.js";
+import dataTL from "../../dataTL.js";
+
 import generalStats from "../../generalStatistic.js";
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -175,7 +177,7 @@ export const addCollectionAndDocuments = async () => {
 
   data.forEach((object) => {
     object.quizzes.forEach((quiz) => {
-      docRef = doc(db, "Klasa 4 - 8", quiz.quizName);
+      docRef = doc(db, "Klasa 1 - 3", quiz.quizName);
       batch.set(docRef, quiz);
     });
   });
@@ -183,7 +185,7 @@ export const addCollectionAndDocuments = async () => {
   await batch.commit();
   console.log("done");
 };
-//addCollectionAndDocuments();
+addCollectionAndDocuments();
 
 export const addCreatedQuizzesToDatabase = async (data) => {
   const batch = writeBatch(db);
@@ -229,7 +231,7 @@ export const getQuizzesInformationForAllUser = (
 };
 
 export const getAllQuizzesWithItems = (col, setQizzes) => {
-  const collectionRef = collection(db, "Klasa 1 - 3");
+  const collectionRef = collection(db, `${col}`);
 
   onSnapshot(collectionRef, (snapshot) => {
     let items = {};
