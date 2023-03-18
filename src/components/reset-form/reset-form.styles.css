@@ -15,3 +15,9 @@
   max-width: auto;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
 }
+
+@media (max-width: 84em) {
+  .reset-container {
+    transform: translate(55%, 30%);
+  }
+}
