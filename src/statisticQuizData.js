@@ -14,7 +14,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 1",
@@ -28,7 +28,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 2",
@@ -42,7 +42,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 3",
@@ -56,7 +56,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 4",
@@ -70,7 +70,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 5",
@@ -84,7 +84,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 6",
@@ -98,7 +98,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 7",
@@ -112,7 +112,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 8",
@@ -126,7 +126,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 9",
@@ -140,7 +140,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
     ],
   },
@@ -159,7 +159,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 1",
@@ -173,7 +173,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 2",
@@ -187,7 +187,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 3",
@@ -201,7 +201,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 4",
@@ -215,7 +215,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 5",
@@ -229,7 +229,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 6",
@@ -243,7 +243,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 7",
@@ -257,7 +257,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 8",
@@ -271,7 +271,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 9",
@@ -285,7 +285,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
     ],
   },
@@ -304,7 +304,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 1",
@@ -318,7 +318,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 2",
@@ -332,7 +332,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 3",
@@ -346,7 +346,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 4",
@@ -360,7 +360,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 5",
@@ -374,7 +374,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 6",
@@ -388,7 +388,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 7",
@@ -402,7 +402,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 8",
@@ -416,7 +416,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
       {
         quiz: "Quiz 9",
@@ -430,7 +430,7 @@ const category = [
         2: { hint: true },
         3: { hint: true },
         usedTime: 0,
-        grade: 0,
+        grade: null,
       },
     ],
   },
