@@ -29,6 +29,28 @@
   transform: translateY(2px);
 }
 
+.btn-google-box {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+.btn-google {
+  border: none;
+  background-color: #fff;
+  box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.226);
+  color: #495057;
+  transition: all 0.2s ease-out;
+}
+.icon-google {
+  width: 2rem;
+  height: 2rem;
+}
+.btn-google:hover {
+  transform: translateY(2px);
+}
+
 .back-arrow {
   width: 2rem;
   height: 2rem;

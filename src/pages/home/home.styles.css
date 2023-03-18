@@ -202,7 +202,7 @@
 
 @media (max-width: 35em) {
   .home-container {
-    margin: 12rem 5rem 5 rem 0;
+    margin-top: 5rem;
     max-width: 40rem;
     min-width: 4rem;
     height: auto;

@@ -105,15 +105,14 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 110vh;
-
+    height: 100%;
     transform: translateY(-100%);
 
     display: flex;
     justify-content: center;
     align-items: center;
     transition: all 0.7s ease-in-out;
-
+    touch-action: none;
     opacity: 0;
 
     pointer-events: none;
@@ -134,11 +133,5 @@
   .link:link,
   .link:visited {
     font-size: 3rem;
-  }
-}
-
-@media (max-width: 31em) {
-  .logo-text {
-    font-size: 4rem;
   }
 }

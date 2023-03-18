@@ -8,6 +8,7 @@ import {
 import { AuthContext } from "../../context/auth.context";
 
 import image from "./geometry-g8bc5c6b0e_1280.png";
+import google from "./google.png";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -158,10 +159,20 @@ const SignIn = () => {
               <Button type="submit" buttonType="secondary">
                 Zaloguj się
               </Button>
-              <GoogleButton
-                type="light"
+              <Button
+                type="button"
+                className="btn-google"
                 onClick={logInWithGoogle}
-              ></GoogleButton>
+              >
+                <div className="btn-google-box">
+                  <img
+                    className="icon-google"
+                    src={google}
+                    alt="ikonka google"
+                  />
+                  <span>Zaloguj się z Google</span>
+                </div>
+              </Button>
             </div>
 
             <div className="to-register-box">

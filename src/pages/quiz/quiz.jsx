@@ -56,7 +56,7 @@ const Quiz = ({ currentClass }) => {
   const [usedTime, setUsedTime] = useState(
     quizInformationFromCurrentUser[currentQuizNumber].usedTime
   );
-  const [gradeObtained, setGradeObtained] = useState(2);
+  const [gradeObtained, setGradeObtained] = useState(null);
   const [madeQuizzes, setMadeQuizzes] = useState(
     quizInformationFromCurrentUser[currentQuizNumber].madeQuizzes
   );
