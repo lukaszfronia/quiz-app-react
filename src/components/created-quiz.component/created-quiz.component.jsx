@@ -57,17 +57,16 @@ const CreatedQuiz = () => {
   }, [quiz, createdQuizzes]);
 
   useEffect(() => {
-    const question = currentQuiz.questions.map((question) => {
+    const question = currentQuiz?.questions.map((question) => {
       return question;
     });
     setQuestions(question);
-  }, [currentQuiz.questions]);
+  }, [currentQuiz?.questions]);
 
   useEffect(() => {
     setQuestion(questions[currentQuestion]);
   }, [questions, currentQuestion]);
 
-  console.log(question);
   useEffect(() => {
     setStartTime(new Date().getTime() / 1000);
   }, []);

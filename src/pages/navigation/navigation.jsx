@@ -19,7 +19,7 @@ const Navigation = () => {
 
   const [isMobile, setIsMobile] = useState(false);
 
-  const [sticky, setSticky] = useState(false);
+  const [sticky, setSticky] = useState(null);
 
   useEffect(() => {
     const handlerScroll = () => {
@@ -46,11 +46,10 @@ const Navigation = () => {
   useEffect(() => {
     setIsMobile(isMobile);
   }, [isMobile]);
-  console.log(isMobile);
 
   return (
     <Fragment>
-      <div className={sticky && "sticky"}>
+      <div className={sticky ? "sticky" : ""}>
         <header className="naviagion-container">
           <Link className="logo" to="/">
             <h1 className="logo-text">

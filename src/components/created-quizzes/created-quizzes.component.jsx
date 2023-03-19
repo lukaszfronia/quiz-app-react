@@ -18,9 +18,14 @@ const CreatedQuizzes = () => {
     <div className="created-quizzes-container">
       <h1>Stworzone Quizy</h1>
       <div className="created-quizzes-box">
-        {quizzesToDisplay.length > 0 ? (
+        {quizzesToDisplay?.length > 0 ? (
           quizzesToDisplay.map((createdQuiz, i) => {
-            return <CreatedQuizItem createdQuiz={createdQuiz} />;
+            return (
+              <CreatedQuizItem
+                key={Math.floor(Math.random() * 10000)}
+                createdQuiz={createdQuiz}
+              />
+            );
           })
         ) : (
           <p className="created-quizzes-description">

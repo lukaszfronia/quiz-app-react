@@ -14,7 +14,6 @@ export const QuizProvider = ({ children }) => {
   const [quizzes, setQuizzes] = useState({});
   const [collection, setCollection] = useState("Klasa 1 - 3");
   const [quizLocked, setQuizLocked] = useState(true);
-  console.log(collection);
 
   useEffect(() => {
     getAllQuizzesWithItems(collection, setQuizzes);
