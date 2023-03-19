@@ -62,3 +62,21 @@
     font-size: 1.2rem;
   }
 }
+
+@media (max-width: 63em) {
+  .leaderboard-user-box {
+    width: 30rem;
+  }
+
+  .leaderboard-user-name {
+    font-size: 1.4rem;
+  }
+
+  .icon {
+    width: 2.4rem;
+  }
+
+  .user-stats-description {
+    font-size: 1.2rem;
+  }
+}

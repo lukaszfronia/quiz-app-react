@@ -1,10 +1,13 @@
 .naviagion-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  margin: 0 auto;
+  max-width: 120rem;
+}
 
-  max-width: 100%;
-
+.bottom-line {
+  max-width: 200%;
   border-bottom: 0.2rem solid rgba(51, 51, 51, 0.466);
 }
 .main-nav {
@@ -68,7 +71,23 @@
   height: 3.8rem;
 }
 
+.sticky {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  height: 6rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 100%;
+  z-index: 999;
+
+  background-color: #f7f7f7;
+}
+
 @media (max-width: 84em) {
+  .naviagion-container {
+    max-width: 95rem;
+  }
   .logo-text {
     font-size: 3rem;
   }
@@ -79,6 +98,9 @@
 }
 
 @media (max-width: 76em) {
+  .naviagion-container {
+    max-width: 100rem;
+  }
   .logo-text {
     font-size: 3rem;
   }
@@ -88,8 +110,15 @@
   }
 }
 
+@media (max-width: 70em) {
+  .naviagion-container {
+    max-width: 95rem;
+  }
+}
+
 @media (max-width: 63em) {
   .naviagion-container {
+    max-width: 90rem;
     padding: 1rem 0;
   }
   .mobile-menu-icon {
@@ -133,5 +162,52 @@
   .link:link,
   .link:visited {
     font-size: 3rem;
+  }
+  .logo-text {
+    font-size: 3.2rem;
+  }
+}
+
+@media (max-width: 56em) {
+  .naviagion-container {
+    max-width: 70rem;
+  }
+
+  .logo-text {
+    font-size: 3.2rem;
+  }
+  .link:link,
+  .link:visited {
+    font-size: 2.4rem;
+  }
+}
+
+@media (max-width: 42em) {
+  .naviagion-container {
+    max-width: 60rem;
+  }
+  .open-menu-icon,
+  .close-menu-icon {
+    width: 3.4rem;
+    height: 3.4rem;
+  }
+
+  .logo-text {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 35em) {
+  .naviagion-container {
+    max-width: 35rem;
+  }
+  .open-menu-icon,
+  .close-menu-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .logo-text {
+    font-size: 2.4rem;
   }
 }

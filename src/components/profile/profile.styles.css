@@ -13,6 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  margin-bottom: 1rem;
 }
 
 .avatar-box {
@@ -53,6 +54,7 @@
 }
 .statistic-category-description {
   grid-column: 1 / -1;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 56em) {
@@ -61,24 +63,23 @@
   }
 
   .statistic-category-description {
-    font-size: 2rem;
+    font-size: 2.8rem;
   }
 }
 
-@media (max-width: 31em) {
+@media (max-width: 35em) {
+  .statistic-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 36rem;
+  }
   .statistic-categroy-container {
     grid-template-columns: 1fr;
-
     row-gap: 3rem;
   }
-  .statistic-box {
-    display: grid;
-    grid-template-rows: 1fr;
-    justify-items: center;
-  }
-
   .statistic-category-description {
-    margin-top: 2rem;
-    font-size: 2.4rem;
+    font-size: 2.6rem;
+    margin-bottom: 0;
   }
 }

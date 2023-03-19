@@ -1,5 +1,3 @@
-import "./question-item.styles.css";
-import { useEffect, useState } from "react";
 import nextQuestion from "../../helper/nextQuestionFunc";
 
 const QuestionItem = ({
@@ -19,8 +17,6 @@ const QuestionItem = ({
   setIsHintCreatedQuiz,
   score,
 }) => {
-  const [nextQuest, setNextQuest] = useState(false);
-
   const nextQuestionHandler = (e, answer) => {
     return nextQuestion(
       currentQuestion,

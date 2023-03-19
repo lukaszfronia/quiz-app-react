@@ -91,7 +91,7 @@ const ResetForm = ({ currentUser, setOverlay, setModal, setCurrentUser }) => {
         <div className={`reset-container `}>
           <div className="log-in-box">
             <div className="log-in-text-box">
-              <h1>Wprowadź nowe hasło</h1>
+              <h1 className="change-password-title">Wprowadź nowe hasło</h1>
             </div>
             <form onSubmit={handleSubmit}>
               <div className="input-form">
@@ -114,7 +114,7 @@ const ResetForm = ({ currentUser, setOverlay, setModal, setCurrentUser }) => {
                   required
                 />
               </div>
-              <div className="btn-box">
+              <div className="btn-box-reset-form">
                 <Button onClick={setOverlayHandler} buttonType="secondary">
                   Cofnij
                 </Button>

@@ -45,13 +45,3 @@
     font-size: 2.6rem;
   }
 }
-
-@media (max-width: 31em) {
-  .hint-description {
-    font-size: 2.4rem;
-  }
-
-  .hint-title {
-    font-size: 2.8rem;
-  }
-}

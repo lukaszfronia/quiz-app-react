@@ -63,7 +63,7 @@ const SignUp = () => {
       await addUserNameToGeneralStats(user, displayName);
 
       resetFields();
-      navigate("/zaloguj-sie");
+      navigate("/zaloguj-sie/");
     } catch (error) {
       // TODO: Ulepszyć wyswitlanie się błędów
       switch (error.code) {
@@ -95,6 +95,15 @@ const SignUp = () => {
           console.log(error);
       }
     }
+    toast.success("Konto zostało poprawnie utworzone", {
+      position: "top-center",
+      autoClose: true,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      theme: "colored",
+    });
   };
   const onChangeHandler = (e) => {
     const { name, value } = e.target;

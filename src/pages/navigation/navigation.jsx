@@ -19,6 +19,16 @@ const Navigation = () => {
 
   const [isMobile, setIsMobile] = useState(false);
 
+  const [sticky, setSticky] = useState(false);
+
+  useEffect(() => {
+    const handlerScroll = () => {
+      setSticky(window.scrollY >= 80);
+    };
+    window.addEventListener("scroll", handlerScroll);
+    return () => window.removeEventListener("scroll", handlerScroll);
+  }, []);
+
   const goToSignInHandler = () => {
     navigate("zaloguj-sie/");
   };
@@ -40,61 +50,64 @@ const Navigation = () => {
 
   return (
     <Fragment>
-      <header className="naviagion-container">
-        <Link className="logo" to="/">
-          <h1 className="logo-text">
-            Quiz<span className="quiz-color">Math</span>
-          </h1>
-        </Link>
+      <div className={sticky && "sticky"}>
+        <header className="naviagion-container">
+          <Link className="logo" to="/">
+            <h1 className="logo-text">
+              Quiz<span className="quiz-color">Math</span>
+            </h1>
+          </Link>
 
-        <nav
-          className={isMobile ? "nav-open main-nav" : "main-nav"}
-          onClick={() => setIsMobile(false)}
-        >
-          <ul className="main-nav-list">
-            <li>
-              <Link className="link" to="stworzquiz/">
-                Stwórz Quiz
-              </Link>
-            </li>
-            {currentUser ? (
-              <>
-                <li>
-                  <Link className="link" to="/statystyki">
-                    Statystyki
-                  </Link>
-                </li>
-                <li>
-                  <Button onClick={signOutHandler}>Wyloguj się</Button>
-                </li>
-              </>
-            ) : (
+          <nav
+            className={isMobile ? "nav-open main-nav" : "main-nav"}
+            onClick={() => setIsMobile(false)}
+          >
+            <ul className="main-nav-list">
               <li>
-                <Button onClick={goToSignInHandler}>Zaloguj się</Button>
+                <Link className="link" to="stworzquiz/">
+                  Stwórz Quiz
+                </Link>
               </li>
-            )}
-          </ul>
-        </nav>
+              {currentUser ? (
+                <>
+                  <li>
+                    <Link className="link" to="/statystyki">
+                      Statystyki
+                    </Link>
+                  </li>
+                  <li>
+                    <Button onClick={signOutHandler}>Wyloguj się</Button>
+                  </li>
+                </>
+              ) : (
+                <li>
+                  <Button onClick={goToSignInHandler}>Zaloguj się</Button>
+                </li>
+              )}
+            </ul>
+          </nav>
 
-        <button
-          className="mobile-menu-icon"
-          onClick={() => setIsMobile(!isMobile)}
-        >
-          {isMobile ? (
-            <img
-              src={close}
-              alt="przycisk do zamykania menu"
-              className="close-menu-icon"
-            />
-          ) : (
-            <img
-              src={menu}
-              alt="przycisk do otwierania menu"
-              className="open-menu-icon"
-            />
-          )}
-        </button>
-      </header>
+          <button
+            className="mobile-menu-icon"
+            onClick={() => setIsMobile(!isMobile)}
+          >
+            {isMobile ? (
+              <img
+                src={close}
+                alt="przycisk do zamykania menu"
+                className="close-menu-icon"
+              />
+            ) : (
+              <img
+                src={menu}
+                alt="przycisk do otwierania menu"
+                className="open-menu-icon"
+              />
+            )}
+          </button>
+        </header>
+        <div className="bottom-line"></div>
+      </div>
       <Outlet />
     </Fragment>
   );

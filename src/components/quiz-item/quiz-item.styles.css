@@ -152,38 +152,3 @@
     height: 6.6rem;
   }
 }
-
-@media (max-width: 31em) {
-  .quiz-category-box {
-    width: 30rem;
-    height: 35rem;
-  }
-
-  .circle-1 {
-    height: 22rem;
-    width: 22rem;
-  }
-  .circle-2 {
-    height: 18rem;
-    width: 18rem;
-  }
-  .quiz-name {
-    font-size: 3rem;
-  }
-  .quiz-finalscore {
-    font-size: 2.6rem;
-  }
-
-  .circle-3 {
-    height: 22rem;
-    width: 22rem;
-  }
-  .circle-4 {
-    height: 18rem;
-    width: 18rem;
-  }
-
-  .locker {
-    height: 7rem;
-  }
-}

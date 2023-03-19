@@ -1,16 +1,7 @@
-import { useEffect, useContext, useState } from "react";
+import { useEffect } from "react";
 
-import nextQuestion from "../../helper/nextQuestionFunc";
 import QuestionItem from "../../components/question-item/question-item.component";
 import "./currnet-quiz-box.styles.css";
-import {
-  updateNumbersOfApproachesCurrentUserQuiz,
-  updateIsFirstOpenQuiz,
-  updadateCurrentQuestionHint,
-} from "../../utils/firebase/firebase.utils";
-import { AuthContext } from "../../context/auth.context";
-
-import shuffleArray from "../../helper/shuffledArrayFunc";
 
 const CurrentQuizBox = ({
   question,

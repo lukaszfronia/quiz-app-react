@@ -1,7 +1,7 @@
 .reset-container {
   display: flex;
   position: fixed;
-  transform: translate(90%, 40%);
+  transform: translate(100%, 30%);
 
   border-bottom: 5px solid #fcc822;
   border-top: 5px solid #fcc822;
@@ -15,9 +15,46 @@
   max-width: auto;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
 }
+.change-password-title {
+  font-size: 2.4rem;
+}
+
+.btn-box-reset-form {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding: 2rem;
+}
 
 @media (max-width: 84em) {
   .reset-container {
-    transform: translate(55%, 30%);
+    transform: translate(85%, 30%);
+  }
+}
+@media (max-width: 70em) {
+  .reset-container {
+    transform: translate(75%, 30%);
+  }
+}
+@media (max-width: 63em) {
+  .reset-container {
+    transform: translate(50%, 50%);
+  }
+}
+@media (max-width: 56em) {
+  .reset-container {
+    transform: translate(35%, 50%);
+  }
+}
+
+@media (max-width: 42em) {
+  .reset-container {
+    transform: translate(30%, 50%);
+  }
+}
+
+@media (max-width: 35em) {
+  .reset-container {
+    transform: translate(10%, 30%);
   }
 }

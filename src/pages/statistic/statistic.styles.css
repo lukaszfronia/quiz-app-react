@@ -1,5 +1,5 @@
 .statistic-container {
-  max-width: 100rem;
+  max-width: 130rem;
   height: auto;
   margin: 3rem auto;
 
@@ -12,6 +12,19 @@
   padding: 2rem;
   position: relative;
 }
+
+@media (max-width: 84em) {
+  .statistic-container {
+    max-width: 110rem;
+  }
+}
+
+@media (max-width: 70em) {
+  .statistic-container {
+    max-width: 100rem;
+  }
+}
+
 @media (max-width: 63em) {
   .statistic-container {
     max-width: 80rem;
@@ -28,8 +41,14 @@
   }
 }
 
+@media (max-width: 42em) {
+  .statistic-container {
+    max-width: 65rem;
+  }
+}
+
 @media (max-width: 35em) {
   .statistic-container {
-    max-width: 60rem;
+    max-width: 40rem;
   }
 }

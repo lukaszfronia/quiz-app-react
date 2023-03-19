@@ -27,24 +27,24 @@
 
 .input-create-quiz {
   border: none;
-  font-size: 0.9rem;
-  width: 12rem;
+  font-size: 1.2rem;
+  width: 18rem;
   padding: 1.2rem;
   border-radius: 15px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.123);
 }
 .input-create-quiz-small {
   border: none;
-  font-size: 0.9rem;
-  width: 10rem;
+  font-size: 1.2rem;
+  width: 12rem;
   padding: 1.2rem;
   border-radius: 15px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.123);
 }
 .input-create-quiz-large {
   border: none;
-  font-size: 0.9rem;
-  width: 15rem;
+  font-size: 1.2rem;
+  width: 21rem;
   height: 10rem;
   padding: 1.2rem;
   border-radius: 15px;
@@ -52,7 +52,7 @@
 }
 
 .add-questions-count {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 500;
   padding-right: 3rem;
 }
@@ -85,7 +85,7 @@
   display: block;
   width: 100px;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 500;
 }
 .radio-box input {
@@ -125,7 +125,7 @@
   }
 }
 
-@media (max-width: 31em) {
+@media (max-width: 35rem) {
   .create-quiz-form-box {
     display: flex;
     flex-direction: column;
@@ -136,28 +136,29 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 30rem;
     gap: 1rem;
   }
 
   .input-create-quiz {
     font-size: 1.4rem;
-    width: 40rem;
+    width: 30rem;
 
     order: 1;
   }
   .input-create-quiz-small {
     font-size: 1.4rem;
-    width: 40rem;
+    width: 30rem;
   }
   .input-create-quiz-large {
     border: none;
     font-size: 1.4rem;
-    width: 40rem;
+    width: 30rem;
     height: 10rem;
   }
 
   .add-questions-count {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 500;
     padding-right: 3rem;
   }
@@ -181,9 +182,10 @@
     align-items: center;
   }
   .radio-box label {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
   .radio-box input {
+    margin-top: 1rem;
     width: 10px;
   }
 

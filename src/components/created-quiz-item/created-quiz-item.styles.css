@@ -20,9 +20,37 @@
   cursor: pointer;
 }
 
+@media (max-width: 63em) {
+  .created-quiz-item-box {
+    width: 34rem;
+  }
+  .created-quiz-name {
+    font-size: 1.6rem;
+  }
+
+  .close-btn {
+    height: 2.2rem;
+    width: 2.2rem;
+  }
+}
+
 @media (max-width: 56em) {
   .created-quiz-item-box {
     width: 50rem;
+  }
+  .created-quiz-name {
+    font-size: 1.6rem;
+  }
+
+  .close-btn {
+    height: 2.2rem;
+    width: 2.2rem;
+  }
+}
+
+@media (max-width: 35em) {
+  .created-quiz-item-box {
+    width: 35rem;
   }
   .created-quiz-name {
     font-size: 1.6rem;

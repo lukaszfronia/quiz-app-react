@@ -25,28 +25,45 @@
   background-color: #fcc822;
   color: #fff;
 }
+@media (hover: none) {
+  .quiz-answer-box:hover {
+    color: inherit;
+  }
+}
+
 @media (max-width: 63em) {
   .quiz-question {
     font-size: 2.4rem;
   }
 }
 
-@media (max-width: 35em) {
+@media (max-width: 46em) {
   .quiz-question {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 
   .quiz-answer-container {
-    width: 55rem;
+    font-size: 1.8rem;
+    width: 60rem;
   }
 }
 
-@media (max-width: 31em) {
+@media (max-width: 35em) {
   .quiz-question {
-    font-size: 2.2rem;
+    font-size: 1.7rem;
   }
 
   .quiz-answer-container {
+    font-size: 1.6rem;
     width: 55rem;
+  }
+
+  .quiz-answer-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 3rem;
+
+    padding: 2rem;
+    width: 30rem;
   }
 }

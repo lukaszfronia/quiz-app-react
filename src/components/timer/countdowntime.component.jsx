@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const TIME_FOR_QUIZ = 90; // 1min 40sec
+const TIME_FOR_QUIZ = 900; // 1min 40sec
 const TICK = 1000; // 1 sec
 
 const CountDwownTimer = ({

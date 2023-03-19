@@ -38,7 +38,15 @@
   }
 }
 
-@media (max-width: 42em) {
+@media (max-width: 46em) {
+  .quiz-description {
+    font-size: 1.8rem;
+  }
+  .quiz-final-result {
+    font-size: 1.6rem;
+  }
+}
+@media (max-width: 35em) {
   .quiz-description {
     font-size: 1.6rem;
   }
