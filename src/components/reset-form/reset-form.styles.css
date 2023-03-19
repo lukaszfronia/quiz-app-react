@@ -1,12 +1,12 @@
 .reset-container {
   display: flex;
   position: fixed;
-  transform: translate(100%, 30%);
+  transform: translate(80%, 30%);
 
   border-bottom: 5px solid #fcc822;
   border-top: 5px solid #fcc822;
   border-radius: 2rem;
-
+  width: 50rem;
   padding: 2.4rem 2.4rem 0 2.4rem;
   justify-content: center;
 
@@ -28,33 +28,38 @@
 
 @media (max-width: 84em) {
   .reset-container {
-    transform: translate(85%, 30%);
+    transform: translate(65%, 30%);
   }
 }
 @media (max-width: 70em) {
   .reset-container {
-    transform: translate(75%, 30%);
+    transform: translate(50%, 30%);
   }
 }
 @media (max-width: 63em) {
   .reset-container {
-    transform: translate(50%, 50%);
+    transform: translate(30%, 50%);
   }
 }
 @media (max-width: 56em) {
   .reset-container {
-    transform: translate(35%, 50%);
+    transform: translate(20%, 50%);
+    width: 50rem;
   }
 }
 
 @media (max-width: 42em) {
   .reset-container {
-    transform: translate(30%, 50%);
+    transform: translate(15%, 50%);
   }
 }
 
 @media (max-width: 35em) {
   .reset-container {
-    transform: translate(10%, 30%);
+    transform: translate(15%, 30%);
+    width: 30rem;
+  }
+  .change-password-title {
+    font-size: 2rem;
   }
 }
