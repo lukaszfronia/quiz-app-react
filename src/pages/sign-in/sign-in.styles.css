@@ -175,4 +175,7 @@ span {
     display: flex;
     flex-direction: column;
   }
+  .to-register-box {
+    font-size: 0.8rem;
+  }
 }
