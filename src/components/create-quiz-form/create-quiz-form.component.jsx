@@ -91,7 +91,7 @@ const CreateQuizForm = () => {
     const newQuestions = [...createQuizData.questions, newQuestion];
     setCreateQuizData({
       ...createQuizData,
-      quizName: quizName,
+      quizName: quizName.trim(),
       uid: uid,
       questions: newQuestions,
     });

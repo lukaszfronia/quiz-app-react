@@ -355,24 +355,20 @@ export const updateFinalResultUser = async (
 };
 
 export const updatePassedQuizUser = async (uid, currentClass, quiz) => {
+  if (!uid || !currentClass || !quiz) return;
   const collectionRef = doc(db, `/users/${uid}/${currentClass}/${quiz}`);
-  try {
-    await updateDoc(collectionRef, {
-      passed: true,
-    });
-  } catch (e) {
-    console.log(e);
-  }
+
+  await updateDoc(collectionRef, {
+    passed: true,
+  });
 };
 export const updatePerformedQuizUser = async (uid, currentClass, quiz) => {
+  if (!uid || !currentClass || !quiz) return;
   const collectionRef = doc(db, `/users/${uid}/${currentClass}/${quiz}`);
-  try {
-    await updateDoc(collectionRef, {
-      performed: true,
-    });
-  } catch (e) {
-    console.log(e);
-  }
+
+  await updateDoc(collectionRef, {
+    performed: true,
+  });
 };
 export const updateUsedTimeQuizUser = async (
   uid,

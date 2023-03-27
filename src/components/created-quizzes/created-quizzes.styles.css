@@ -9,6 +9,9 @@
   background-color: #fef4d3;
   box-shadow: 0px 15px 10px rgba(0, 0, 0, 0.123);
   border-radius: 2rem;
+  overflow-y: auto;
+
+  max-height: 42rem;
   padding: 2rem;
   display: flex;
   flex-direction: column;

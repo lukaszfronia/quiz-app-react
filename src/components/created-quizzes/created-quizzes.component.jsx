@@ -11,7 +11,7 @@ const CreatedQuizzes = () => {
   const { currentUser } = useContext(AuthContext);
 
   const quizzesToDisplay = currentUser
-    ? createdQuizzesToDisplay.filter((quiz) => quiz.uid === currentUser.uid)
+    ? createdQuizzesToDisplay?.filter((quiz) => quiz.uid === currentUser.uid)
     : createdQuizzesToDisplay;
   console.log();
   return (

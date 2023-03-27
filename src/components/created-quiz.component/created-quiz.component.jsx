@@ -15,7 +15,7 @@ const CreatedQuiz = () => {
   const [result, setResult] = useState(false);
   const [score, setScore] = useState(0);
   const [questions, setQuestions] = useState([]);
-  const [question, setQuestion] = useState("");
+  const [question, setQuestion] = useState(null);
   const [restartQuiz, setRestartQuiz] = useState(false);
   const [bestTime, setBestTime] = useState(0);
   const [startTime, setStartTime] = useState(null);
@@ -25,7 +25,7 @@ const CreatedQuiz = () => {
   const [closeHint, setCloseHint] = useState(false);
   const [grade, setGrade] = useState(null);
   const [open, setOpen] = useState(false);
-  const finalScore = Math.floor((score / questions.length) * 100);
+  const finalScore = Math.floor((score / questions?.length) * 100);
   const quizLength = Object.keys(createdQuizzes).length;
   const [isHint, setIsHintCreatedQuiz] = useState(true);
   const [timeAfterHint, setTimeAfterHint] = useState(0);
@@ -57,7 +57,7 @@ const CreatedQuiz = () => {
   }, [quiz, createdQuizzes]);
 
   useEffect(() => {
-    const question = currentQuiz?.questions.map((question) => {
+    const question = currentQuiz?.questions?.map((question) => {
       return question;
     });
     setQuestions(question);

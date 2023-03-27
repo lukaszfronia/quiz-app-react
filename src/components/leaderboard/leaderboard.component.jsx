@@ -1,7 +1,7 @@
 import "./leaderboard.styles.css";
 
 import { AuthContext } from "../../context/auth.context";
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import LeaderBoardUser from "../leaderboard-user/leaderboard-user.component";
 
 const Leaderboard = () => {
