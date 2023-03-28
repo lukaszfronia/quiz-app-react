@@ -1,6 +1,7 @@
 .create-quiz-container {
   display: grid;
   place-items: center;
+  row-gap: 3rem;
 }
 .create-quiz-box {
   margin-top: 1rem;

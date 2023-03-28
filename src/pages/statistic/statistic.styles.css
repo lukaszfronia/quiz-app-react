@@ -8,8 +8,8 @@
   background-color: #fee9a7;
   box-shadow: 0px 15px 10px rgba(0, 0, 0, 0.123);
   border-radius: 2rem;
-  column-gap: 4rem;
-  padding: 2rem;
+
+  padding: 6rem 2rem;
   position: relative;
 }
 
@@ -22,6 +22,7 @@
 @media (max-width: 70em) {
   .statistic-container {
     max-width: 100rem;
+    column-gap: 3rem;
   }
 }
 

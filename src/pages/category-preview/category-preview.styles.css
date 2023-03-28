@@ -1,10 +1,10 @@
 .category-container {
-  max-width: 100rem;
+  max-width: 130rem;
   height: auto;
   margin: 2rem auto;
   display: grid;
   grid-template-rows: 0.2fr 1fr;
-  gap: 9rem;
+  row-gap: 9rem;
 }
 
 .category-box-name {
@@ -14,7 +14,7 @@
   grid-template-columns: 1fr 1.5fr;
 }
 .name {
-  font-size: 2.4rem;
+  font-size: 2.8rem;
 }
 .categories-box {
   display: grid;
@@ -35,12 +35,12 @@
 @media (max-width: 56em) {
   .category-container {
     max-width: 80rem;
-    gap: 3rem;
+    row-gap: 1rem;
   }
   .categories-box {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 4rem 0;
+    row-gap: 3rem;
     justify-items: center;
   }
 

@@ -1,12 +1,12 @@
 .quiz-question {
-  font-size: 2.4rem;
+  font-size: 2.6rem;
 }
 
 .quiz-answer-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem 3rem;
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin-bottom: 0.8rem;
   padding: 2rem;
   width: 65rem;

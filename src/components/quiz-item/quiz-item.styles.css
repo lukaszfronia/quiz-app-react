@@ -2,8 +2,8 @@
   border: 2px solid #fcc822;
   border-radius: 2rem;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.123);
-  width: 15rem;
-  height: 20rem;
+  width: 20rem;
+  height: 25rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,8 +21,8 @@
 .circle-1 {
   background-color: #ffffff;
   border: 6px dotted #fcc922dd;
-  height: 12rem;
-  width: 12rem;
+  height: 14rem;
+  width: 14rem;
   border-radius: 40%;
   display: flex;
   justify-content: center;
@@ -31,29 +31,29 @@
 }
 .circle-2 {
   background-color: #fcc922dd;
-  height: 10rem;
-  width: 10rem;
+  height: 12rem;
+  width: 12rem;
   border-radius: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .quiz-name {
-  font-size: 2rem;
+  font-size: 2.4rem;
   letter-spacing: 1px;
   font-weight: 700;
 }
 .quiz-finalscore {
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 2rem;
   color: #adb5bd;
 }
 
 .circle-3 {
   background-color: #ffffff;
   border: 6px dotted #adb5bd;
-  height: 12rem;
-  width: 12rem;
+  height: 14rem;
+  width: 14rem;
   border-radius: 40%;
   display: flex;
   justify-content: center;
@@ -62,8 +62,8 @@
 }
 .circle-4 {
   background-color: #adb5bd;
-  height: 10rem;
-  width: 10rem;
+  height: 12rem;
+  width: 12rem;
   border-radius: 40%;
   display: flex;
   justify-content: center;
@@ -71,8 +71,38 @@
 }
 
 .locker {
-  height: 6rem;
+  height: 6.2rem;
   opacity: 0.6;
+}
+
+@media (max-width: 70em) {
+  .quiz-category-box {
+    width: 18rem;
+    height: 23rem;
+  }
+  .circle-1 {
+    height: 13rem;
+    width: 13rem;
+  }
+  .circle-2 {
+    height: 11rem;
+    width: 11rem;
+  }
+  .quiz-name {
+    font-size: 2.2rem;
+  }
+  .quiz-finalscore {
+    font-size: 1.8rem;
+  }
+
+  .circle-3 {
+    height: 13rem;
+    width: 13rem;
+  }
+  .circle-4 {
+    height: 11rem;
+    width: 11rem;
+  }
 }
 
 @media (max-width: 63em) {
@@ -90,12 +120,6 @@
   .circle-2 {
     height: 12rem;
     width: 12rem;
-  }
-  .quiz-name {
-    font-size: 2.2rem;
-  }
-  .quiz-finalscore {
-    font-size: 1.8rem;
   }
 
   .circle-3 {

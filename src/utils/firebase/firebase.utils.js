@@ -197,7 +197,7 @@ export const addCreatedQuizzesToDatabase = async (data) => {
   console.log("done");
 };
 
-addCreatedQuizzesToDatabase();
+// addCreatedQuizzesToDatabase();
 // Get data from database
 
 export const displayNameFromDatabase = async (user) => {

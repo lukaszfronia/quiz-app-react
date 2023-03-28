@@ -2,10 +2,11 @@
   display: grid;
   grid-template-rows: 1fr 2fr;
   justify-items: center;
+  row-gap: 5rem;
 }
 
 .statistic-profil-container {
-  width: 35rem;
+  width: 50rem;
   background-color: #fef4d3;
   box-shadow: 0px 15px 10px rgba(0, 0, 0, 0.123);
   border-radius: 2rem;
@@ -18,8 +19,8 @@
 
 .avatar-box {
   background-color: #fff;
-  width: 10rem;
-  height: 10rem;
+  width: 13rem;
+  height: 13rem;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -27,7 +28,7 @@
   overflow: hidden;
 }
 .avatar {
-  width: 10rem;
+  width: 11rem;
 }
 
 .statistic-user-box {
@@ -51,6 +52,7 @@
   justify-items: center;
   align-items: center;
   column-gap: 3rem;
+  row-gap: 2rem;
 }
 .statistic-category-description {
   grid-column: 1 / -1;
@@ -81,5 +83,9 @@
   .statistic-category-description {
     font-size: 2.6rem;
     margin-bottom: 0;
+  }
+
+  .statistic-profil-container {
+    width: 35rem;
   }
 }

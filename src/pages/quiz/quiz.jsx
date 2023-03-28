@@ -43,7 +43,7 @@ const Quiz = ({ currentClass }) => {
   const [result, setResult] = useState(false);
   const [score, setScore] = useState(0);
   const [passed, setPassed] = useState(
-    quizInformationFromCurrentUser[currentQuizNumber].performed
+    quizInformationFromCurrentUser[currentQuizNumber].passed
   );
 
   const [performed, setPerformed] = useState(
