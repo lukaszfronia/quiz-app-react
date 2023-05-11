@@ -1,2 +1,2 @@
 
-#Link do strony: https://quizmath-fronia.netlify.app
+#Link do strony: quizmath-fronia.netlify.app
