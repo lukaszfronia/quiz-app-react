@@ -62,13 +62,23 @@ const SignUp = () => {
       await addGeneralStatsForUser(user);
       await addUserNameToGeneralStats(user, displayName);
 
+      toast.success("Konto zostało poprawnie utworzone", {
+        position: "top-center",
+        autoClose: true,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        theme: "colored",
+      });
+
       resetFields();
       navigate("/zaloguj-sie/");
     } catch (error) {
       // TODO: Ulepszyć wyswitlanie się błędów
       switch (error.code) {
-        case "auth/wrong-password":
-          toast.error("Błędne hasło", {
+        case "auth/invalid-email":
+          toast.error("Błędny adres e-mail", {
             position: "top-center",
             autoClose: true,
             hideProgressBar: true,
@@ -79,8 +89,19 @@ const SignUp = () => {
           });
           resetFields();
           break;
-        case "auth/user-not-found":
-          toast.error("Błędny adres e-mail", {
+        case "auth/weak-password":
+          toast.warn("Hasło powinno składać się z conajmniej 6 znaków", {
+            position: "top-center",
+            autoClose: true,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            theme: "colored",
+          });
+          break;
+        case "auth/email-already-in-use":
+          toast.error("Użytkownik o podanym e-mail już istnieje", {
             position: "top-center",
             autoClose: true,
             hideProgressBar: true,
@@ -95,15 +116,6 @@ const SignUp = () => {
           console.log(error);
       }
     }
-    toast.success("Konto zostało poprawnie utworzone", {
-      position: "top-center",
-      autoClose: true,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      theme: "colored",
-    });
   };
   const onChangeHandler = (e) => {
     const { name, value } = e.target;

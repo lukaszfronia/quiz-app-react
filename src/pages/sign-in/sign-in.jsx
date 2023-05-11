@@ -86,6 +86,18 @@ const SignIn = () => {
           resetFields();
           break;
         case "auth/user-not-found":
+          toast.error("Podany użytkownik nie istnieje", {
+            position: "top-center",
+            autoClose: true,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            theme: "colored",
+          });
+          resetFields();
+          break;
+        case "auth/invalid-email":
           toast.error("Błędny adres e-mail", {
             position: "top-center",
             autoClose: true,

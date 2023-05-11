@@ -378,7 +378,6 @@ export const updateUsedTimeQuizUser = async (
   usedTime
 ) => {
   const collectionRef = doc(db, `/users/${uid}/${currentClass}/${quiz}`);
-
   await updateDoc(collectionRef, {
     usedTime: time + usedTime,
   });
@@ -386,7 +385,6 @@ export const updateUsedTimeQuizUser = async (
 
 export const updateGradeQuizUser = async (uid, currentClass, quiz, grade) => {
   const collectionRef = doc(db, `/users/${uid}/${currentClass}/${quiz}`);
-
   await updateDoc(collectionRef, {
     grade: grade,
   });
@@ -494,6 +492,7 @@ export const updadateCurrentQuestionHintAll = async (
     [`1`]: { hint: true },
     [`2`]: { hint: true },
     [`3`]: { hint: true },
+    [`4`]: { hint: true },
   });
 };
 

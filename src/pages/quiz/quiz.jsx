@@ -87,6 +87,11 @@ const Quiz = ({ currentClass }) => {
   const [isHint, setIsHint] = useState(
     quizInformationFromCurrentUser[currentQuizNumber][currentQuestion]?.hint
   );
+  console.log(isHint);
+
+  const fn = () => [];
+  const [state, setState] = useState(fn());
+  console.log(state);
 
   useEffect(() => {
     setFinalScore(Math.floor((score / questions.length) * 100));

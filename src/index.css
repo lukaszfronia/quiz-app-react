@@ -33,11 +33,11 @@ code {
   background: #fcc822;
 }
 
-.toast-message {
+/* .toast-message {
   color: #fff;
   font-size: 0.9rem;
   font-weight: 700;
-}
+} */
 
 @media (max-width: 63em) {
   html {
